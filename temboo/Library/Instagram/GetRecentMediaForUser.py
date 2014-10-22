@@ -5,7 +5,22 @@
 # GetRecentMediaForUser
 # Retrieves the most recent media published by a user.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetRecentMediaForUser(Choreography):
         Create a new instance of the GetRecentMediaForUser Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Instagram/GetRecentMediaForUser')
+        super(GetRecentMediaForUser, self).__init__(temboo_session, '/Library/Instagram/GetRecentMediaForUser')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class GetRecentMediaForUserInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved during the OAuth 2.0 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('AccessToken', value)
     def set_Count(self, value):
         """
         Set the value of the Count input for this Choreo. ((optional, integer) The number of results to return.)
         """
-        InputSet._set_input(self, 'Count', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('Count', value)
     def set_MaxID(self, value):
         """
         Set the value of the MaxID input for this Choreo. ((optional, string) Return media liked before this id.)
         """
-        InputSet._set_input(self, 'MaxID', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('MaxID', value)
     def set_MinID(self, value):
         """
         Set the value of the MinID input for this Choreo. ((optional, string) Returns media later than this min_id.)
         """
-        InputSet._set_input(self, 'MinID', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('MinID', value)
     def set_MinTimestamp(self, value):
         """
         Set the value of the MinTimestamp input for this Choreo. ((optional, date) Returns media after this UNIX timestamp.)
         """
-        InputSet._set_input(self, 'MinTimestamp', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('MinTimestamp', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((optional, string) The ID of the user whose media to return. Defaults to 'self' indicating that the authenticating user is assumed.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(GetRecentMediaForUserInputSet, self)._set_input('UserID', value)
 
 class GetRecentMediaForUserResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetRecentMediaForUser Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Instagram.)
@@ -87,6 +102,6 @@ class GetRecentMediaForUserResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetRecentMediaForUserChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetRecentMediaForUserResultSet(response, path)

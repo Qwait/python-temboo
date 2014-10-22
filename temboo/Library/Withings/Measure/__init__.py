@@ -1,2 +1,2 @@
-from GetBodyMetrics import *
-from GetActivityMetrics import *
+from temboo.Library.Withings.Measure.GetActivityMetrics import GetActivityMetrics, GetActivityMetricsInputSet, GetActivityMetricsResultSet, GetActivityMetricsChoreographyExecution
+from temboo.Library.Withings.Measure.GetBodyMetrics import GetBodyMetrics, GetBodyMetricsInputSet, GetBodyMetricsResultSet, GetBodyMetricsChoreographyExecution

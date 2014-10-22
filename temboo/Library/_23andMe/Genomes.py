@@ -5,7 +5,22 @@
 # Genomes
 # Retrieves the entire profile's genome as a string of base pairs.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Genomes(Choreography):
         Create a new instance of the Genomes Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/23andMe/Genomes')
+        super(Genomes, self).__init__(temboo_session, '/Library/23andMe/Genomes')
 
 
     def new_input_set(self):
@@ -44,27 +59,27 @@ class GenomesInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved after completing the OAuth2 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(GenomesInputSet, self)._set_input('AccessToken', value)
     def set_ProfileID(self, value):
         """
         Set the value of the ProfileID input for this Choreo. ((required, string) The unique identifier for a profile to retrieve information for. This ID can be retrieved by running the User Choreo.)
         """
-        InputSet._set_input(self, 'ProfileID', value)
+        super(GenomesInputSet, self)._set_input('ProfileID', value)
     def set_TestMode(self, value):
         """
         Set the value of the TestMode input for this Choreo. ((optional, boolean) A boolean flag indicating that the request should be made to the "demo" 23andMe endpoint for testing. Set to 1 for test mode. Defaults to 0.)
         """
-        InputSet._set_input(self, 'TestMode', value)
+        super(GenomesInputSet, self)._set_input('TestMode', value)
 
 class GenomesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Genomes Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from 23AndMe.)
@@ -72,6 +87,6 @@ class GenomesResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GenomesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GenomesResultSet(response, path)

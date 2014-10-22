@@ -1,5 +1,5 @@
-from DownloadSpreadsheet import *
-from ListAllSpreadsheets import *
-from ListTrashedSpreadsheets import *
-from ListPublicSpreadsheets import *
-from ListSharedSpreadsheets import *
+from temboo.Library.Zoho.Sheet.DownloadSpreadsheet import DownloadSpreadsheet, DownloadSpreadsheetInputSet, DownloadSpreadsheetResultSet, DownloadSpreadsheetChoreographyExecution
+from temboo.Library.Zoho.Sheet.ListAllSpreadsheets import ListAllSpreadsheets, ListAllSpreadsheetsInputSet, ListAllSpreadsheetsResultSet, ListAllSpreadsheetsChoreographyExecution
+from temboo.Library.Zoho.Sheet.ListPublicSpreadsheets import ListPublicSpreadsheets, ListPublicSpreadsheetsInputSet, ListPublicSpreadsheetsResultSet, ListPublicSpreadsheetsChoreographyExecution
+from temboo.Library.Zoho.Sheet.ListSharedSpreadsheets import ListSharedSpreadsheets, ListSharedSpreadsheetsInputSet, ListSharedSpreadsheetsResultSet, ListSharedSpreadsheetsChoreographyExecution
+from temboo.Library.Zoho.Sheet.ListTrashedSpreadsheets import ListTrashedSpreadsheets, ListTrashedSpreadsheetsInputSet, ListTrashedSpreadsheetsResultSet, ListTrashedSpreadsheetsChoreographyExecution

@@ -1,2 +1,2 @@
-from UpdateUserInfo import *
-from GetUserInfo import *
+from temboo.Library.Fitbit.Profile.GetUserInfo import GetUserInfo, GetUserInfoInputSet, GetUserInfoResultSet, GetUserInfoChoreographyExecution
+from temboo.Library.Fitbit.Profile.UpdateUserInfo import UpdateUserInfo, UpdateUserInfoInputSet, UpdateUserInfoResultSet, UpdateUserInfoChoreographyExecution

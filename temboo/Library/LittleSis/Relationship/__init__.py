@@ -1,3 +1,3 @@
-from GetOneRelationship import *
-from GetRelationships import *
-from GetBatchRelationships import *
+from temboo.Library.LittleSis.Relationship.GetBatchRelationships import GetBatchRelationships, GetBatchRelationshipsInputSet, GetBatchRelationshipsResultSet, GetBatchRelationshipsChoreographyExecution
+from temboo.Library.LittleSis.Relationship.GetOneRelationship import GetOneRelationship, GetOneRelationshipInputSet, GetOneRelationshipResultSet, GetOneRelationshipChoreographyExecution
+from temboo.Library.LittleSis.Relationship.GetRelationships import GetRelationships, GetRelationshipsInputSet, GetRelationshipsResultSet, GetRelationshipsChoreographyExecution

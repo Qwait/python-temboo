@@ -1,4 +1,4 @@
-from ListChannelsByID import *
-from ListChannelsByCategory import *
-from ListMySubscribers import *
-from ListMyChannels import *
+from temboo.Library.YouTube.Channels.ListChannelsByCategory import ListChannelsByCategory, ListChannelsByCategoryInputSet, ListChannelsByCategoryResultSet, ListChannelsByCategoryChoreographyExecution
+from temboo.Library.YouTube.Channels.ListChannelsByID import ListChannelsByID, ListChannelsByIDInputSet, ListChannelsByIDResultSet, ListChannelsByIDChoreographyExecution
+from temboo.Library.YouTube.Channels.ListMyChannels import ListMyChannels, ListMyChannelsInputSet, ListMyChannelsResultSet, ListMyChannelsChoreographyExecution
+from temboo.Library.YouTube.Channels.ListMySubscribers import ListMySubscribers, ListMySubscribersInputSet, ListMySubscribersResultSet, ListMySubscribersChoreographyExecution

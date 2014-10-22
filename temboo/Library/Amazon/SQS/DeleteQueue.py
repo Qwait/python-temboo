@@ -5,7 +5,22 @@
 # DeleteQueue
 # Deletes a queue with a specified queue URL.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class DeleteQueue(Choreography):
         Create a new instance of the DeleteQueue Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/SQS/DeleteQueue')
+        super(DeleteQueue, self).__init__(temboo_session, '/Library/Amazon/SQS/DeleteQueue')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class DeleteQueueInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(DeleteQueueInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSAccountId(self, value):
         """
         Set the value of the AWSAccountId input for this Choreo. ((required, integer) The id for the AWS account associated with the queue you're deleting a message from (remove all dashes in the account number).)
         """
-        InputSet._set_input(self, 'AWSAccountId', value)
+        super(DeleteQueueInputSet, self)._set_input('AWSAccountId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(DeleteQueueInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_QueueName(self, value):
         """
         Set the value of the QueueName input for this Choreo. ((required, string) The name of the queue you want to delete.)
         """
-        InputSet._set_input(self, 'QueueName', value)
+        super(DeleteQueueInputSet, self)._set_input('QueueName', value)
     def set_UserRegion(self, value):
         """
         Set the value of the UserRegion input for this Choreo. ((optional, string) The AWS region that corresponds to the SQS endpoint you wish to access. The default region is "us-east-1". See description below for valid values.)
         """
-        InputSet._set_input(self, 'UserRegion', value)
+        super(DeleteQueueInputSet, self)._set_input('UserRegion', value)
 
 class DeleteQueueResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the DeleteQueue Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Amazon.)
@@ -82,6 +97,6 @@ class DeleteQueueResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class DeleteQueueChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return DeleteQueueResultSet(response, path)

@@ -5,7 +5,22 @@
 # TipsFromUser
 # Returns tips from a user.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class TipsFromUser(Choreography):
         Create a new instance of the TipsFromUser Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Foursquare/Users/TipsFromUser')
+        super(TipsFromUser, self).__init__(temboo_session, '/Library/Foursquare/Users/TipsFromUser')
 
 
     def new_input_set(self):
@@ -44,52 +59,52 @@ class TipsFromUserInputSet(InputSet):
         """
         Set the value of the Latitude input for this Choreo. ((optional, decimal) The latitude point of the user's location.)
         """
-        InputSet._set_input(self, 'Latitude', value)
+        super(TipsFromUserInputSet, self)._set_input('Latitude', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) Number of results to return, up to 500.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(TipsFromUserInputSet, self)._set_input('Limit', value)
     def set_Longitude(self, value):
         """
         Set the value of the Longitude input for this Choreo. ((optional, decimal) The longitude point of the user's location.)
         """
-        InputSet._set_input(self, 'Longitude', value)
+        super(TipsFromUserInputSet, self)._set_input('Longitude', value)
     def set_OauthToken(self, value):
         """
         Set the value of the OauthToken input for this Choreo. ((required, string) The Foursquare API OAuth token string.)
         """
-        InputSet._set_input(self, 'OauthToken', value)
+        super(TipsFromUserInputSet, self)._set_input('OauthToken', value)
     def set_Offset(self, value):
         """
         Set the value of the Offset input for this Choreo. ((optional, integer) Used to page through results.)
         """
-        InputSet._set_input(self, 'Offset', value)
+        super(TipsFromUserInputSet, self)._set_input('Offset', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(TipsFromUserInputSet, self)._set_input('ResponseFormat', value)
     def set_Sort(self, value):
         """
         Set the value of the Sort input for this Choreo. ((optional, string) Enter: recent, nearby, or popular. NEARBY requires geolat and geolong to be provided.)
         """
-        InputSet._set_input(self, 'Sort', value)
+        super(TipsFromUserInputSet, self)._set_input('Sort', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((optional, string) Identity of the user to get tips for. Defaults to "self" to get lists of the acting user.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(TipsFromUserInputSet, self)._set_input('UserID', value)
 
 class TipsFromUserResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the TipsFromUser Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Foursquare. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -97,6 +112,6 @@ class TipsFromUserResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class TipsFromUserChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return TipsFromUserResultSet(response, path)

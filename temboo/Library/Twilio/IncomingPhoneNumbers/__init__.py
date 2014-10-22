@@ -1,5 +1,5 @@
-from AddPhoneNumber import *
-from GetPhoneNumber import *
-from UpdatePhoneNumber import *
-from ListPhoneNumbers import *
-from DeletePhoneNumber import *
+from temboo.Library.Twilio.IncomingPhoneNumbers.AddPhoneNumber import AddPhoneNumber, AddPhoneNumberInputSet, AddPhoneNumberResultSet, AddPhoneNumberChoreographyExecution
+from temboo.Library.Twilio.IncomingPhoneNumbers.DeletePhoneNumber import DeletePhoneNumber, DeletePhoneNumberInputSet, DeletePhoneNumberResultSet, DeletePhoneNumberChoreographyExecution
+from temboo.Library.Twilio.IncomingPhoneNumbers.GetPhoneNumber import GetPhoneNumber, GetPhoneNumberInputSet, GetPhoneNumberResultSet, GetPhoneNumberChoreographyExecution
+from temboo.Library.Twilio.IncomingPhoneNumbers.ListPhoneNumbers import ListPhoneNumbers, ListPhoneNumbersInputSet, ListPhoneNumbersResultSet, ListPhoneNumbersChoreographyExecution
+from temboo.Library.Twilio.IncomingPhoneNumbers.UpdatePhoneNumber import UpdatePhoneNumber, UpdatePhoneNumberInputSet, UpdatePhoneNumberResultSet, UpdatePhoneNumberChoreographyExecution

@@ -5,7 +5,22 @@
 # ListOrganizationRequests
 # List all requests for the specified organization.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListOrganizationRequests(Choreography):
         Create a new instance of the ListOrganizationRequests Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zendesk/Requests/ListOrganizationRequests')
+        super(ListOrganizationRequests, self).__init__(temboo_session, '/Library/Zendesk/Requests/ListOrganizationRequests')
 
 
     def new_input_set(self):
@@ -44,64 +59,64 @@ class ListOrganizationRequestsInputSet(InputSet):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address you use to login to your Zendesk account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('Email', value)
     def set_ID(self, value):
         """
         Set the value of the ID input for this Choreo. ((required, string) The ID of the organization to list requests for.)
         """
-        InputSet._set_input(self, 'ID', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('ID', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) The page number of the results to be returned. Used together with the PerPage parameter to paginate a large set of results.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('Page', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) Your Zendesk password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('Password', value)
     def set_PerPage(self, value):
         """
         Set the value of the PerPage input for this Choreo. ((optional, integer) The number of results to return per page. Maximum is 100 and default is 100.)
         """
-        InputSet._set_input(self, 'PerPage', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('PerPage', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) Your Zendesk domain and subdomain (e.g., temboocare.zendesk.com).)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('Server', value)
     def set_Status(self, value):
         """
         Set the value of the Status input for this Choreo. ((optional, string) Comma-seperated list of request statuses to match (e.g. hold, open, solved, ccd))
         """
-        InputSet._set_input(self, 'Status', value)
+        super(ListOrganizationRequestsInputSet, self)._set_input('Status', value)
 
 class ListOrganizationRequestsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListOrganizationRequests Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Zendesk.)
         """
         return self._output.get('Response', None)
-    def get_PreviousPage(self):
-        """
-        Retrieve the value for the "PreviousPage" output from this Choreo execution. ((integer) The index for the previous page of results.)
-        """
-        return self._output.get('PreviousPage', None)
     def get_NextPage(self):
         """
         Retrieve the value for the "NextPage" output from this Choreo execution. ((integer) The index for the next page of results.)
         """
         return self._output.get('NextPage', None)
+    def get_PreviousPage(self):
+        """
+        Retrieve the value for the "PreviousPage" output from this Choreo execution. ((integer) The index for the previous page of results.)
+        """
+        return self._output.get('PreviousPage', None)
 
 class ListOrganizationRequestsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListOrganizationRequestsResultSet(response, path)

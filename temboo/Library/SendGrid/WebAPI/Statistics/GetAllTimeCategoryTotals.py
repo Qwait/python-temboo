@@ -5,7 +5,22 @@
 # GetAllTimeCategoryTotals
 # Obtain statistics by specified categories.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetAllTimeCategoryTotals(Choreography):
         Create a new instance of the GetAllTimeCategoryTotals Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/SendGrid/WebAPI/Statistics/GetAllTimeCategoryTotals')
+        super(GetAllTimeCategoryTotals, self).__init__(temboo_session, '/Library/SendGrid/WebAPI/Statistics/GetAllTimeCategoryTotals')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetAllTimeCategoryTotalsInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key obtained from SendGrid.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('APIKey', value)
     def set_APIUser(self, value):
         """
         Set the value of the APIUser input for this Choreo. ((required, string) The username registered with SendGrid.)
         """
-        InputSet._set_input(self, 'APIUser', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('APIUser', value)
     def set_Aggregate(self, value):
         """
         Set the value of the Aggregate input for this Choreo. ((required, integer) Retrieve category statistics.  Default is set to 1.)
         """
-        InputSet._set_input(self, 'Aggregate', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('Aggregate', value)
     def set_Category(self, value):
         """
         Set the value of the Category input for this Choreo. ((required, string) Enter a category for which statistics will be retrieved. It must be an existing category that has statistics. If the category entered does not exist, an empty result set will be returned.)
         """
-        InputSet._set_input(self, 'Category', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('Category', value)
     def set_Days(self, value):
         """
         Set the value of the Days input for this Choreo. ((optional, integer) The number of days (greater than 0) for which block data will be retrieved. Note that you can use either the days parameter or the start_date and end_date parameter.)
         """
-        InputSet._set_input(self, 'Days', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('Days', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format of the response from SendGrid, in either json, or xml.  Default is set to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('ResponseFormat', value)
     def set_StartDate(self, value):
         """
         Set the value of the StartDate input for this Choreo. ((optional, string) The start of the date range for which blocks are to be retireved. The specified date must be in YYYY-MM-DD format, and must be earlier than the EndDate variable value. Use this ,or Days.)
         """
-        InputSet._set_input(self, 'StartDate', value)
+        super(GetAllTimeCategoryTotalsInputSet, self)._set_input('StartDate', value)
 
 
 class GetAllTimeCategoryTotalsResultSet(ResultSet):
@@ -82,10 +97,10 @@ class GetAllTimeCategoryTotalsResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the GetAllTimeCategoryTotals Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from SendGrid. The format corresponds to the ResponseFormat input. Default is json.)
@@ -93,6 +108,6 @@ class GetAllTimeCategoryTotalsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetAllTimeCategoryTotalsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetAllTimeCategoryTotalsResultSet(response, path)

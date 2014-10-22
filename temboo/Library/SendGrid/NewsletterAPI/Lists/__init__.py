@@ -1,4 +1,4 @@
-from GetAllRecipientLists import *
-from CreateRecipientList import *
-from RenameRecipientList import *
-from DeleteRecipientList import *
+from temboo.Library.SendGrid.NewsletterAPI.Lists.CreateRecipientList import CreateRecipientList, CreateRecipientListInputSet, CreateRecipientListResultSet, CreateRecipientListChoreographyExecution
+from temboo.Library.SendGrid.NewsletterAPI.Lists.DeleteRecipientList import DeleteRecipientList, DeleteRecipientListInputSet, DeleteRecipientListResultSet, DeleteRecipientListChoreographyExecution
+from temboo.Library.SendGrid.NewsletterAPI.Lists.GetAllRecipientLists import GetAllRecipientLists, GetAllRecipientListsInputSet, GetAllRecipientListsResultSet, GetAllRecipientListsChoreographyExecution
+from temboo.Library.SendGrid.NewsletterAPI.Lists.RenameRecipientList import RenameRecipientList, RenameRecipientListInputSet, RenameRecipientListResultSet, RenameRecipientListChoreographyExecution

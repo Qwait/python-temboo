@@ -1,8 +1,8 @@
-from SearchByNeighborhood import *
-from SearchForBusinessesWithDeals import *
-from SearchByCity import *
-from SearchByAddress import *
-from SearchByCategory import *
-from SearchByBoundingBox import *
-from SearchByCoordinates import *
-from SearchForBusiness import *
+from temboo.Library.Yelp.SearchByAddress import SearchByAddress, SearchByAddressInputSet, SearchByAddressResultSet, SearchByAddressChoreographyExecution
+from temboo.Library.Yelp.SearchByBoundingBox import SearchByBoundingBox, SearchByBoundingBoxInputSet, SearchByBoundingBoxResultSet, SearchByBoundingBoxChoreographyExecution
+from temboo.Library.Yelp.SearchByCategory import SearchByCategory, SearchByCategoryInputSet, SearchByCategoryResultSet, SearchByCategoryChoreographyExecution
+from temboo.Library.Yelp.SearchByCity import SearchByCity, SearchByCityInputSet, SearchByCityResultSet, SearchByCityChoreographyExecution
+from temboo.Library.Yelp.SearchByCoordinates import SearchByCoordinates, SearchByCoordinatesInputSet, SearchByCoordinatesResultSet, SearchByCoordinatesChoreographyExecution
+from temboo.Library.Yelp.SearchByNeighborhood import SearchByNeighborhood, SearchByNeighborhoodInputSet, SearchByNeighborhoodResultSet, SearchByNeighborhoodChoreographyExecution
+from temboo.Library.Yelp.SearchForBusiness import SearchForBusiness, SearchForBusinessInputSet, SearchForBusinessResultSet, SearchForBusinessChoreographyExecution
+from temboo.Library.Yelp.SearchForBusinessesWithDeals import SearchForBusinessesWithDeals, SearchForBusinessesWithDealsInputSet, SearchForBusinessesWithDealsResultSet, SearchForBusinessesWithDealsChoreographyExecution

@@ -1,1 +1,1 @@
-from SendMessage import *
+from temboo.Library.Nexmo.SMS.SendMessage import SendMessage, SendMessageInputSet, SendMessageResultSet, SendMessageChoreographyExecution

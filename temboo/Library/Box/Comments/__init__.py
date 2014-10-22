@@ -1,4 +1,4 @@
-from UpdateComment import *
-from AddComment import *
-from GetComment import *
-from DeleteComment import *
+from temboo.Library.Box.Comments.AddComment import AddComment, AddCommentInputSet, AddCommentResultSet, AddCommentChoreographyExecution
+from temboo.Library.Box.Comments.DeleteComment import DeleteComment, DeleteCommentInputSet, DeleteCommentResultSet, DeleteCommentChoreographyExecution
+from temboo.Library.Box.Comments.GetComment import GetComment, GetCommentInputSet, GetCommentResultSet, GetCommentChoreographyExecution
+from temboo.Library.Box.Comments.UpdateComment import UpdateComment, UpdateCommentInputSet, UpdateCommentResultSet, UpdateCommentChoreographyExecution

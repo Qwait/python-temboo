@@ -5,7 +5,22 @@
 # Listing
 # Retrieves a list of transactions for the user associated with the authorized access token.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Listing(Choreography):
         Create a new instance of the Listing Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Dwolla/Transactions/Listing')
+        super(Listing, self).__init__(temboo_session, '/Library/Dwolla/Transactions/Listing')
 
 
     def new_input_set(self):
@@ -44,37 +59,42 @@ class ListingInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) A valid OAuth token.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(ListingInputSet, self)._set_input('AccessToken', value)
+    def set_EndDate(self, value):
+        """
+        Set the value of the EndDate input for this Choreo. ((optional, string) Latest date and time for which to retrieve transactions.  (In ISO 8601 format.  e.g. 2012-07-22)  Defaults to current date and time in UTC.)
+        """
+        super(ListingInputSet, self)._set_input('EndDate', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) Number of transactions to retrieve. Defaults to 10. Can be between 1 and 200 transactions.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(ListingInputSet, self)._set_input('Limit', value)
     def set_SinceDate(self, value):
         """
-        Set the value of the SinceDate input for this Choreo. ((optional, string) Earliest date and time for which to retrieve transactions. Defaults to 7 days prior to current date and time in UTC.)
+        Set the value of the SinceDate input for this Choreo. ((optional, string) Earliest date and time (in ISO 8601 format) for which to retrieve transactions. (e.g. 2012-07-20) Defaults to 7 days prior to current date and time in UTC.)
         """
-        InputSet._set_input(self, 'SinceDate', value)
+        super(ListingInputSet, self)._set_input('SinceDate', value)
     def set_Skip(self, value):
         """
         Set the value of the Skip input for this Choreo. ((optional, integer) Number of transactions to skip. Defaults to 0.)
         """
-        InputSet._set_input(self, 'Skip', value)
+        super(ListingInputSet, self)._set_input('Skip', value)
     def set_Types(self, value):
         """
         Set the value of the Types input for this Choreo. ((optional, string) Transaction types to retrieve. Must be delimited by a '|'. Options are money_sent, money_received, deposit, withdrawal, and fee. Defaults to include all transaction types.)
         """
-        InputSet._set_input(self, 'Types', value)
+        super(ListingInputSet, self)._set_input('Types', value)
 
 class ListingResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Listing Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Dwolla.)
@@ -82,6 +102,6 @@ class ListingResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListingChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListingResultSet(response, path)

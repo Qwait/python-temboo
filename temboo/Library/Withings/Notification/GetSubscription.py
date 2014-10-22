@@ -5,7 +5,22 @@
 # GetSubscription
 # Allows your application to check whether the notification service was previously subscribed on a specific user and to retrieve the subscription expiration date.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetSubscription(Choreography):
         Create a new instance of the GetSubscription Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Withings/Notification/GetSubscription')
+        super(GetSubscription, self).__init__(temboo_session, '/Library/Withings/Notification/GetSubscription')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class GetSubscriptionInputSet(InputSet):
         """
         Set the value of the AccessTokenSecret input for this Choreo. ((required, string) The Access Token Secret retrieved during the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessTokenSecret', value)
+        super(GetSubscriptionInputSet, self)._set_input('AccessTokenSecret', value)
     def set_AccessToken(self, value):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(GetSubscriptionInputSet, self)._set_input('AccessToken', value)
     def set_CallbackURL(self, value):
         """
         Set the value of the CallbackURL input for this Choreo. ((required, string) The URL used when subscribing to the notification service.)
         """
-        InputSet._set_input(self, 'CallbackURL', value)
+        super(GetSubscriptionInputSet, self)._set_input('CallbackURL', value)
     def set_ConsumerKey(self, value):
         """
         Set the value of the ConsumerKey input for this Choreo. ((required, string) The Consumer Key provided by Withings.)
         """
-        InputSet._set_input(self, 'ConsumerKey', value)
+        super(GetSubscriptionInputSet, self)._set_input('ConsumerKey', value)
     def set_ConsumerSecret(self, value):
         """
         Set the value of the ConsumerSecret input for this Choreo. ((required, string) The Consumer Secret provided by Withings.)
         """
-        InputSet._set_input(self, 'ConsumerSecret', value)
+        super(GetSubscriptionInputSet, self)._set_input('ConsumerSecret', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((required, string) The ID of the user to verify a subscription for.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(GetSubscriptionInputSet, self)._set_input('UserID', value)
 
 class GetSubscriptionResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetSubscription Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Withings.)
@@ -87,6 +102,6 @@ class GetSubscriptionResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetSubscriptionChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetSubscriptionResultSet(response, path)

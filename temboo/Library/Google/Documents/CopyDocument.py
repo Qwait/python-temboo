@@ -5,7 +5,22 @@
 # CopyDocument
 # Copies a document with the title you specify.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CopyDocument(Choreography):
         Create a new instance of the CopyDocument Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Google/Documents/CopyDocument')
+        super(CopyDocument, self).__init__(temboo_session, '/Library/Google/Documents/CopyDocument')
 
 
     def new_input_set(self):
@@ -44,32 +59,32 @@ class CopyDocumentInputSet(InputSet):
         """
         Set the value of the NewTitle input for this Choreo. ((required, string) The title for the new, copied document.)
         """
-        InputSet._set_input(self, 'NewTitle', value)
+        super(CopyDocumentInputSet, self)._set_input('NewTitle', value)
     def set_Password(self, value):
         """
-        Set the value of the Password input for this Choreo. ((required, password) Your Google account password.)
+        Set the value of the Password input for this Choreo. ((required, password) A Google App-specific password that you've generated after enabling 2-Step Verification.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(CopyDocumentInputSet, self)._set_input('Password', value)
     def set_Title(self, value):
         """
         Set the value of the Title input for this Choreo. ((required, string) The title of the document to copy. Enclose in quotation marks for an exact, non-case-sensitive match.)
         """
-        InputSet._set_input(self, 'Title', value)
+        super(CopyDocumentInputSet, self)._set_input('Title', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) Your full Google email address e.g., martha.temboo@gmail.com.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(CopyDocumentInputSet, self)._set_input('Username', value)
 
 class CopyDocumentResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CopyDocument Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from the Google Documents API.)
@@ -77,6 +92,6 @@ class CopyDocumentResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CopyDocumentChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CopyDocumentResultSet(response, path)

@@ -5,7 +5,22 @@
 # GetFeedSubmissionResult
 # Returns the feed processing report and the Content-MD5 header.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetFeedSubmissionResult(Choreography):
         Create a new instance of the GetFeedSubmissionResult Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/Marketplace/Feeds/GetFeedSubmissionResult')
+        super(GetFeedSubmissionResult, self).__init__(temboo_session, '/Library/Amazon/Marketplace/Feeds/GetFeedSubmissionResult')
 
 
     def new_input_set(self):
@@ -44,54 +59,54 @@ class GetFeedSubmissionResultInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSMarketplaceId(self, value):
         """
         Set the value of the AWSMarketplaceId input for this Choreo. ((required, string) The Marketplace ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSMarketplaceId', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('AWSMarketplaceId', value)
     def set_AWSMerchantId(self, value):
         """
         Set the value of the AWSMerchantId input for this Choreo. ((required, string) The Merchant ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSMerchantId', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('AWSMerchantId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_Endpoint(self, value):
         """
         Set the value of the Endpoint input for this Choreo. ((conditional, string) The base URL for the MWS endpoint. Defaults to mws.amazonservices.co.uk.)
         """
-        InputSet._set_input(self, 'Endpoint', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('Endpoint', value)
     def set_FeedSubmissionId(self, value):
         """
         Set the value of the FeedSubmissionId input for this Choreo. ((required, string) A FeedSubmmissionId value.)
         """
-        InputSet._set_input(self, 'FeedSubmissionId', value)
+        super(GetFeedSubmissionResultInputSet, self)._set_input('FeedSubmissionId', value)
 
 class GetFeedSubmissionResultResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetFeedSubmissionResult Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
-    def get_ContentMD5Header(self):
-        """
-        Retrieve the value for the "ContentMD5Header" output from this Choreo execution. ((string) The Content MD5 header returned from Amazon. This can used to check against an MD5 hash that you generate before submitting the feed to verify that the feed was submitted correctly.)
-        """
-        return self._output.get('ContentMD5Header', None)
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (Stores the response from Amazon.)
         """
         return self._output.get('Response', None)
+    def get_ContentMD5Header(self):
+        """
+        Retrieve the value for the "ContentMD5Header" output from this Choreo execution. ((string) The Content MD5 header returned from Amazon. This can used to check against an MD5 hash that you generate before submitting the feed to verify that the feed was submitted correctly.)
+        """
+        return self._output.get('ContentMD5Header', None)
 
 class GetFeedSubmissionResultChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetFeedSubmissionResultResultSet(response, path)

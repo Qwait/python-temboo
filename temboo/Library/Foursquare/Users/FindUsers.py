@@ -5,7 +5,22 @@
 # FindUsers
 # Allows a user to locate friends.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class FindUsers(Choreography):
         Create a new instance of the FindUsers Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Foursquare/Users/FindUsers')
+        super(FindUsers, self).__init__(temboo_session, '/Library/Foursquare/Users/FindUsers')
 
 
     def new_input_set(self):
@@ -44,52 +59,52 @@ class FindUsersInputSet(InputSet):
         """
         Set the value of the Email input for this Choreo. ((conditional, string) A comma-delimited list of email addresses to look for. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(FindUsersInputSet, self)._set_input('Email', value)
     def set_FacebookID(self, value):
         """
         Set the value of the FacebookID input for this Choreo. ((conditional, string) A comma-delimited list of Facebook ID's to look for. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'FacebookID', value)
+        super(FindUsersInputSet, self)._set_input('FacebookID', value)
     def set_Name(self, value):
         """
         Set the value of the Name input for this Choreo. ((conditional, string) A single string to search for in users' names. A single string to search for in users' names. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'Name', value)
+        super(FindUsersInputSet, self)._set_input('Name', value)
     def set_OauthToken(self, value):
         """
         Set the value of the OauthToken input for this Choreo. ((required, string) The Foursquare API OAuth token string.)
         """
-        InputSet._set_input(self, 'OauthToken', value)
+        super(FindUsersInputSet, self)._set_input('OauthToken', value)
     def set_Phone(self, value):
         """
         Set the value of the Phone input for this Choreo. ((conditional, string) A comma-delimited list of phone numbers to look for. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'Phone', value)
+        super(FindUsersInputSet, self)._set_input('Phone', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(FindUsersInputSet, self)._set_input('ResponseFormat', value)
     def set_TwitterSource(self, value):
         """
         Set the value of the TwitterSource input for this Choreo. ((conditional, string) A single Twitter handle. Results will be users that this handle follows on Twitter who use Foursquare. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'TwitterSource', value)
+        super(FindUsersInputSet, self)._set_input('TwitterSource', value)
     def set_Twitter(self, value):
         """
         Set the value of the Twitter input for this Choreo. ((conditional, string) A comma-delimited list of Twitter handles to look for. Must specify one of Name, Phone, Email, FacebookID, Twitter, or TwitterSource.)
         """
-        InputSet._set_input(self, 'Twitter', value)
+        super(FindUsersInputSet, self)._set_input('Twitter', value)
 
 class FindUsersResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the FindUsers Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Foursquare. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -97,6 +112,6 @@ class FindUsersResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class FindUsersChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return FindUsersResultSet(response, path)

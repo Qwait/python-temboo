@@ -1,3 +1,3 @@
-from GetWalkingDirections import *
-from GetBicyclingDirections import *
-from GetDrivingDirections import *
+from temboo.Library.Google.Directions.GetBicyclingDirections import GetBicyclingDirections, GetBicyclingDirectionsInputSet, GetBicyclingDirectionsResultSet, GetBicyclingDirectionsChoreographyExecution
+from temboo.Library.Google.Directions.GetDrivingDirections import GetDrivingDirections, GetDrivingDirectionsInputSet, GetDrivingDirectionsResultSet, GetDrivingDirectionsChoreographyExecution
+from temboo.Library.Google.Directions.GetWalkingDirections import GetWalkingDirections, GetWalkingDirectionsInputSet, GetWalkingDirectionsResultSet, GetWalkingDirectionsChoreographyExecution

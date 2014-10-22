@@ -1,4 +1,4 @@
-from GetReviewer import *
-from SearchByKeyword import *
-from SearchByReviewer import *
-from GetPicks import *
+from temboo.Library.NYTimes.MovieReviews.GetPicks import GetPicks, GetPicksInputSet, GetPicksResultSet, GetPicksChoreographyExecution
+from temboo.Library.NYTimes.MovieReviews.GetReviewer import GetReviewer, GetReviewerInputSet, GetReviewerResultSet, GetReviewerChoreographyExecution
+from temboo.Library.NYTimes.MovieReviews.SearchByKeyword import SearchByKeyword, SearchByKeywordInputSet, SearchByKeywordResultSet, SearchByKeywordChoreographyExecution
+from temboo.Library.NYTimes.MovieReviews.SearchByReviewer import SearchByReviewer, SearchByReviewerInputSet, SearchByReviewerResultSet, SearchByReviewerChoreographyExecution

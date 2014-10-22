@@ -5,7 +5,22 @@
 # VoteOnPost
 # Register a vote on a post.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class VoteOnPost(Choreography):
         Create a new instance of the VoteOnPost Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Disqus/Posts/VoteOnPost')
+        super(VoteOnPost, self).__init__(temboo_session, '/Library/Disqus/Posts/VoteOnPost')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class VoteOnPostInputSet(InputSet):
         """
         Set the value of the PostID input for this Choreo. ((required, integer) The post ID for which a vote is being registered.)
         """
-        InputSet._set_input(self, 'PostID', value)
+        super(VoteOnPostInputSet, self)._set_input('PostID', value)
     def set_PublicKey(self, value):
         """
         Set the value of the PublicKey input for this Choreo. ((required, string) The Public Key provided by Disqus (AKA the API Key).)
         """
-        InputSet._set_input(self, 'PublicKey', value)
+        super(VoteOnPostInputSet, self)._set_input('PublicKey', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: json (the default) and jsonp.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(VoteOnPostInputSet, self)._set_input('ResponseFormat', value)
     def set_Vote(self, value):
         """
         Set the value of the Vote input for this Choreo. ((required, integer) A numeric value for your vote. Valid choices are: -1, 0, or 1.)
         """
-        InputSet._set_input(self, 'Vote', value)
+        super(VoteOnPostInputSet, self)._set_input('Vote', value)
 
 
 class VoteOnPostResultSet(ResultSet):
@@ -67,10 +82,10 @@ class VoteOnPostResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the VoteOnPost Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Disqus.)
@@ -78,6 +93,6 @@ class VoteOnPostResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class VoteOnPostChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return VoteOnPostResultSet(response, path)

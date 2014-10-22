@@ -5,7 +5,22 @@
 # FindByCoordinates
 # Retrieves complete location information from a specified pair of latitude and longitude coordinates.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class FindByCoordinates(Choreography):
         Create a new instance of the FindByCoordinates Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Yahoo/PlaceFinder/FindByCoordinates')
+        super(FindByCoordinates, self).__init__(temboo_session, '/Library/Yahoo/PlaceFinder/FindByCoordinates')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class FindByCoordinatesInputSet(InputSet):
         """
         Set the value of the AppID input for this Choreo. ((optional, string) The App ID provided by Yahoo!)
         """
-        InputSet._set_input(self, 'AppID', value)
+        super(FindByCoordinatesInputSet, self)._set_input('AppID', value)
     def set_GeocodeFlags(self, value):
         """
         Set the value of the GeocodeFlags input for this Choreo. ((optional, string) Affects how geocoding is performed for the request. Valid value are: A, C, L, Q, or R. See documentation for more details on this parameter.)
         """
-        InputSet._set_input(self, 'GeocodeFlags', value)
+        super(FindByCoordinatesInputSet, self)._set_input('GeocodeFlags', value)
     def set_Latitude(self, value):
         """
         Set the value of the Latitude input for this Choreo. ((required, string) The latitude coordinate of the location you want to find.)
         """
-        InputSet._set_input(self, 'Latitude', value)
+        super(FindByCoordinatesInputSet, self)._set_input('Latitude', value)
     def set_Longitude(self, value):
         """
         Set the value of the Longitude input for this Choreo. ((required, string) The longitude coordinate of the location you want to find.)
         """
-        InputSet._set_input(self, 'Longitude', value)
+        super(FindByCoordinatesInputSet, self)._set_input('Longitude', value)
     def set_ResponseFlags(self, value):
         """
         Set the value of the ResponseFlags input for this Choreo. ((optional, string) Determines which data elements are returned in the response. Valid values are: B, C, D, E, G, I, J, Q, R, T, U, W, X. See documentation for details on this parameter.)
         """
-        InputSet._set_input(self, 'ResponseFlags', value)
+        super(FindByCoordinatesInputSet, self)._set_input('ResponseFlags', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) You can specify json to get this output format in JSON. Otherwise, the default output will be in XML.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(FindByCoordinatesInputSet, self)._set_input('ResponseFormat', value)
 
 class FindByCoordinatesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the FindByCoordinates Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Yahoo! PlaceFinder.)
@@ -87,6 +102,6 @@ class FindByCoordinatesResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class FindByCoordinatesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return FindByCoordinatesResultSet(response, path)

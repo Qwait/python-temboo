@@ -1,4 +1,4 @@
-from ReadReadings import *
-from UpdateReading import *
-from CreateReading import *
-from DeleteReading import *
+from temboo.Library.Facebook.Actions.News.Reads.CreateReading import CreateReading, CreateReadingInputSet, CreateReadingResultSet, CreateReadingChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Reads.DeleteReading import DeleteReading, DeleteReadingInputSet, DeleteReadingResultSet, DeleteReadingChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Reads.ReadReadings import ReadReadings, ReadReadingsInputSet, ReadReadingsResultSet, ReadReadingsChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Reads.UpdateReading import UpdateReading, UpdateReadingInputSet, UpdateReadingResultSet, UpdateReadingChoreographyExecution

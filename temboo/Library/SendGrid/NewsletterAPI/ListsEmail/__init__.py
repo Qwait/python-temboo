@@ -1,3 +1,3 @@
-from GetListEmailAddresses import *
-from AddEmailToList import *
-from DeleteEmailFromList import *
+from temboo.Library.SendGrid.NewsletterAPI.ListsEmail.AddEmailToList import AddEmailToList, AddEmailToListInputSet, AddEmailToListResultSet, AddEmailToListChoreographyExecution
+from temboo.Library.SendGrid.NewsletterAPI.ListsEmail.DeleteEmailFromList import DeleteEmailFromList, DeleteEmailFromListInputSet, DeleteEmailFromListResultSet, DeleteEmailFromListChoreographyExecution
+from temboo.Library.SendGrid.NewsletterAPI.ListsEmail.GetListEmailAddresses import GetListEmailAddresses, GetListEmailAddressesInputSet, GetListEmailAddressesResultSet, GetListEmailAddressesChoreographyExecution

@@ -5,7 +5,22 @@
 # GetTeamLenders
 # Returns a list of public lenders belonging to a specific team.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetTeamLenders(Choreography):
         Create a new instance of the GetTeamLenders Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Kiva/Teams/GetTeamLenders')
+        super(GetTeamLenders, self).__init__(temboo_session, '/Library/Kiva/Teams/GetTeamLenders')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetTeamLendersInputSet(InputSet):
         """
         Set the value of the AppID input for this Choreo. ((optional, string) Your unique application ID, usually in reverse DNS notation.)
         """
-        InputSet._set_input(self, 'AppID', value)
+        super(GetTeamLendersInputSet, self)._set_input('AppID', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) The page position of results to return. Defaults to 1.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(GetTeamLendersInputSet, self)._set_input('Page', value)
     def set_ResponseType(self, value):
         """
         Set the value of the ResponseType input for this Choreo. ((optional, string) Output returned can be XML or JSON. Defaults to JSON.)
         """
-        InputSet._set_input(self, 'ResponseType', value)
+        super(GetTeamLendersInputSet, self)._set_input('ResponseType', value)
     def set_SortBy(self, value):
         """
         Set the value of the SortBy input for this Choreo. ((optional, string) The order by which to sort results: oldest  or newest. Defaults to newest.)
         """
-        InputSet._set_input(self, 'SortBy', value)
+        super(GetTeamLendersInputSet, self)._set_input('SortBy', value)
     def set_TeamID(self, value):
         """
         Set the value of the TeamID input for this Choreo. ((required, string) The TeamID for which to return lenders.)
         """
-        InputSet._set_input(self, 'TeamID', value)
+        super(GetTeamLendersInputSet, self)._set_input('TeamID', value)
 
 class GetTeamLendersResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetTeamLenders Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Kiva.)
@@ -82,6 +97,6 @@ class GetTeamLendersResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetTeamLendersChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetTeamLendersResultSet(response, path)

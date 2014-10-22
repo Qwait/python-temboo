@@ -1,4 +1,4 @@
-from GetGlobalOperation import *
-from AggregatedList import *
-from ListGlobalOperations import *
-from DeleteGlobalOperation import *
+from temboo.Library.Google.ComputeEngine.GlobalOperations.AggregatedList import AggregatedList, AggregatedListInputSet, AggregatedListResultSet, AggregatedListChoreographyExecution
+from temboo.Library.Google.ComputeEngine.GlobalOperations.DeleteGlobalOperation import DeleteGlobalOperation, DeleteGlobalOperationInputSet, DeleteGlobalOperationResultSet, DeleteGlobalOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.GlobalOperations.GetGlobalOperation import GetGlobalOperation, GetGlobalOperationInputSet, GetGlobalOperationResultSet, GetGlobalOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.GlobalOperations.ListGlobalOperations import ListGlobalOperations, ListGlobalOperationsInputSet, ListGlobalOperationsResultSet, ListGlobalOperationsChoreographyExecution

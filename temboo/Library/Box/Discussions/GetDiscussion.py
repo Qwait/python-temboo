@@ -5,7 +5,22 @@
 # GetDiscussion
 # Retrieves the metadata for a specific discussion.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetDiscussion(Choreography):
         Create a new instance of the GetDiscussion Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Box/Discussions/GetDiscussion')
+        super(GetDiscussion, self).__init__(temboo_session, '/Library/Box/Discussions/GetDiscussion')
 
 
     def new_input_set(self):
@@ -44,17 +59,22 @@ class GetDiscussionInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved during the OAuth2 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(GetDiscussionInputSet, self)._set_input('AccessToken', value)
+    def set_AsUser(self, value):
+        """
+        Set the value of the AsUser input for this Choreo. ((optional, string) The ID of the user. Only used for enterprise administrators to make API calls for their managed users.)
+        """
+        super(GetDiscussionInputSet, self)._set_input('AsUser', value)
     def set_DiscussionID(self, value):
         """
         Set the value of the DiscussionID input for this Choreo. ((required, string) The id of the discussion to retrieve.)
         """
-        InputSet._set_input(self, 'DiscussionID', value)
+        super(GetDiscussionInputSet, self)._set_input('DiscussionID', value)
     def set_Fields(self, value):
         """
         Set the value of the Fields input for this Choreo. ((optional, string) A comma-separated list of fields to include in the response.)
         """
-        InputSet._set_input(self, 'Fields', value)
+        super(GetDiscussionInputSet, self)._set_input('Fields', value)
 
 
 class GetDiscussionResultSet(ResultSet):
@@ -62,10 +82,10 @@ class GetDiscussionResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the GetDiscussion Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Box.)
@@ -73,6 +93,6 @@ class GetDiscussionResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetDiscussionChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetDiscussionResultSet(response, path)

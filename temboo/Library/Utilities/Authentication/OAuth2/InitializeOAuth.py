@@ -5,7 +5,22 @@
 # InitializeOAuth
 # Generates an authorization URL that an application can use to complete the first step in the OAuth 2.0 process.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class InitializeOAuth(Choreography):
         Create a new instance of the InitializeOAuth Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Authentication/OAuth2/InitializeOAuth')
+        super(InitializeOAuth, self).__init__(temboo_session, '/Library/Utilities/Authentication/OAuth2/InitializeOAuth')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class InitializeOAuthInputSet(InputSet):
         """
         Set the value of the ClientID input for this Choreo. ((required, string) The Client ID provided by the service.)
         """
-        InputSet._set_input(self, 'ClientID', value)
+        super(InitializeOAuthInputSet, self)._set_input('ClientID', value)
     def set_CustomCallbackID(self, value):
         """
         Set the value of the CustomCallbackID input for this Choreo. ((optional, string) A unique identifier that you can pass to eliminate the need to wait for a Temboo-generated CallbackID. Callback identifiers may only contain numbers, letters, periods, and hyphens.)
         """
-        InputSet._set_input(self, 'CustomCallbackID', value)
+        super(InitializeOAuthInputSet, self)._set_input('CustomCallbackID', value)
     def set_ForwardingURL(self, value):
         """
         Set the value of the ForwardingURL input for this Choreo. ((optional, string) The URL that Temboo will redirect your users to after they grant access to your application. This should include the "https://" or "http://" prefix and be a fully qualified URL.)
         """
-        InputSet._set_input(self, 'ForwardingURL', value)
+        super(InitializeOAuthInputSet, self)._set_input('ForwardingURL', value)
     def set_RequestTokenEndpoint(self, value):
         """
         Set the value of the RequestTokenEndpoint input for this Choreo. ((required, string) The Authorization Server URL where the initial token request occurs (e.g. https://accounts.google.com/o/oauth2/auth).)
         """
-        InputSet._set_input(self, 'RequestTokenEndpoint', value)
+        super(InitializeOAuthInputSet, self)._set_input('RequestTokenEndpoint', value)
     def set_Scope(self, value):
         """
         Set the value of the Scope input for this Choreo. ((conditional, string) The OAuth scope that should be associated with the access token being requested. This is not always required. Typically, you can specify multiple scopes separated by spaces, commas, or pipes.)
         """
-        InputSet._set_input(self, 'Scope', value)
+        super(InitializeOAuthInputSet, self)._set_input('Scope', value)
 
 class InitializeOAuthResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the InitializeOAuth Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_AuthorizationURL(self):
         """
         Retrieve the value for the "AuthorizationURL" output from this Choreo execution. ((string) The authorization URL that the application's user needs to go to in order to grant access to your application.)
@@ -87,6 +102,6 @@ class InitializeOAuthResultSet(ResultSet):
         return self._output.get('CallbackID', None)
 
 class InitializeOAuthChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return InitializeOAuthResultSet(response, path)

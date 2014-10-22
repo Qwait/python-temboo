@@ -1,2 +1,2 @@
-from ListYourIssues import *
-from ListIssuesForRepo import *
+from temboo.Library.GitHub.IssuesAPI.Issues.ListIssuesForRepo import ListIssuesForRepo, ListIssuesForRepoInputSet, ListIssuesForRepoResultSet, ListIssuesForRepoChoreographyExecution
+from temboo.Library.GitHub.IssuesAPI.Issues.ListYourIssues import ListYourIssues, ListYourIssuesInputSet, ListYourIssuesResultSet, ListYourIssuesChoreographyExecution

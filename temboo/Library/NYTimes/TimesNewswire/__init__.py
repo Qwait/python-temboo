@@ -1,2 +1,2 @@
-from GetRecentNewsItems import *
-from GetNewsItem import *
+from temboo.Library.NYTimes.TimesNewswire.GetNewsItem import GetNewsItem, GetNewsItemInputSet, GetNewsItemResultSet, GetNewsItemChoreographyExecution
+from temboo.Library.NYTimes.TimesNewswire.GetRecentNewsItems import GetRecentNewsItems, GetRecentNewsItemsInputSet, GetRecentNewsItemsResultSet, GetRecentNewsItemsChoreographyExecution

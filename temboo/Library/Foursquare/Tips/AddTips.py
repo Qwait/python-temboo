@@ -5,7 +5,22 @@
 # AddTips
 # Allows you to add a new tip at a venue. 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class AddTips(Choreography):
         Create a new instance of the AddTips Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Foursquare/Tips/AddTips')
+        super(AddTips, self).__init__(temboo_session, '/Library/Foursquare/Tips/AddTips')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class AddTipsInputSet(InputSet):
         """
         Set the value of the Broadcast input for this Choreo. ((optional, string) Whether to broadcast this tip. Set to "twitter" if you want to send to twitter, "facebook" if you want to send to facebook, or "twitter,facebook" if you want to send to both.)
         """
-        InputSet._set_input(self, 'Broadcast', value)
+        super(AddTipsInputSet, self)._set_input('Broadcast', value)
     def set_OauthToken(self, value):
         """
         Set the value of the OauthToken input for this Choreo. ((required, string) The Foursquare API OAuth token string.)
         """
-        InputSet._set_input(self, 'OauthToken', value)
+        super(AddTipsInputSet, self)._set_input('OauthToken', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(AddTipsInputSet, self)._set_input('ResponseFormat', value)
     def set_Text(self, value):
         """
         Set the value of the Text input for this Choreo. ((required, string) The text of the tip, up to 200 characters.)
         """
-        InputSet._set_input(self, 'Text', value)
+        super(AddTipsInputSet, self)._set_input('Text', value)
     def set_URL(self, value):
         """
         Set the value of the URL input for this Choreo. ((optional, string) A URL related to this tip.)
         """
-        InputSet._set_input(self, 'URL', value)
+        super(AddTipsInputSet, self)._set_input('URL', value)
     def set_VenueID(self, value):
         """
         Set the value of the VenueID input for this Choreo. ((required, string) The venue where you want to add this tip.)
         """
-        InputSet._set_input(self, 'VenueID', value)
+        super(AddTipsInputSet, self)._set_input('VenueID', value)
 
 class AddTipsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the AddTips Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Foursquare. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -87,6 +102,6 @@ class AddTipsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class AddTipsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return AddTipsResultSet(response, path)

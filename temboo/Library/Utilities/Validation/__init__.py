@@ -1,10 +1,10 @@
-from EmailAddress import *
-from JSON import *
-from RussianPostalCodes import *
-from XML import *
-from CanadianPostalCodes import *
-from DutchPostalCodes import *
-from GermanPostalCodes import *
-from UKPostalCodes import *
-from USPostalCodes import *
-from PasswordCriteria import *
+from temboo.Library.Utilities.Validation.CanadianPostalCodes import CanadianPostalCodes, CanadianPostalCodesInputSet, CanadianPostalCodesResultSet, CanadianPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.DutchPostalCodes import DutchPostalCodes, DutchPostalCodesInputSet, DutchPostalCodesResultSet, DutchPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.EmailAddress import EmailAddress, EmailAddressInputSet, EmailAddressResultSet, EmailAddressChoreographyExecution
+from temboo.Library.Utilities.Validation.GermanPostalCodes import GermanPostalCodes, GermanPostalCodesInputSet, GermanPostalCodesResultSet, GermanPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.JSON import JSON, JSONInputSet, JSONResultSet, JSONChoreographyExecution
+from temboo.Library.Utilities.Validation.PasswordCriteria import PasswordCriteria, PasswordCriteriaInputSet, PasswordCriteriaResultSet, PasswordCriteriaChoreographyExecution
+from temboo.Library.Utilities.Validation.RussianPostalCodes import RussianPostalCodes, RussianPostalCodesInputSet, RussianPostalCodesResultSet, RussianPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.UKPostalCodes import UKPostalCodes, UKPostalCodesInputSet, UKPostalCodesResultSet, UKPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.USPostalCodes import USPostalCodes, USPostalCodesInputSet, USPostalCodesResultSet, USPostalCodesChoreographyExecution
+from temboo.Library.Utilities.Validation.XML import XML, XMLInputSet, XMLResultSet, XMLChoreographyExecution

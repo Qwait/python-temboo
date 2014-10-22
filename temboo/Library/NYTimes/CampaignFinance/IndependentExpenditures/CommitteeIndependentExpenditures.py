@@ -5,7 +5,22 @@
 # CommitteeIndependentExpenditures
 # Retrieve the 20 most recent independent expenditures by a given committee, also known as "Super PACs."
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CommitteeIndependentExpenditures(Choreography):
         Create a new instance of the CommitteeIndependentExpenditures Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/NYTimes/CampaignFinance/IndependentExpenditures/CommitteeIndependentExpenditures')
+        super(CommitteeIndependentExpenditures, self).__init__(temboo_session, '/Library/NYTimes/CampaignFinance/IndependentExpenditures/CommitteeIndependentExpenditures')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class CommitteeIndependentExpendituresInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by NY Times.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(CommitteeIndependentExpendituresInputSet, self)._set_input('APIKey', value)
     def set_CampaignCycle(self, value):
         """
         Set the value of the CampaignCycle input for this Choreo. ((required, integer) Enter the campaign cycle year in YYYY format.  This must be an even year.)
         """
-        InputSet._set_input(self, 'CampaignCycle', value)
+        super(CommitteeIndependentExpendituresInputSet, self)._set_input('CampaignCycle', value)
     def set_FECID(self, value):
         """
         Set the value of the FECID input for this Choreo. ((required, string) Enter the FEC ID for the committee.  ID can be obtained by first running the CommitteeSearch Choreo.)
         """
-        InputSet._set_input(self, 'FECID', value)
+        super(CommitteeIndependentExpendituresInputSet, self)._set_input('FECID', value)
     def set_Offset(self, value):
         """
         Set the value of the Offset input for this Choreo. ((optional, integer) The first 20 results are shown by default. To page through the results, set Offset to the appropriate value (e.g., Offset=40 displays results 41–60).)
         """
-        InputSet._set_input(self, 'Offset', value)
+        super(CommitteeIndependentExpendituresInputSet, self)._set_input('Offset', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) Enter json or xml.  Default is json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(CommitteeIndependentExpendituresInputSet, self)._set_input('ResponseFormat', value)
 
 class CommitteeIndependentExpendituresResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CommitteeIndependentExpenditures Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from the NY Times API corresponds to the setting (json, or xml) entered in the ResponseFormat variable.  Default is set to json.)
@@ -82,6 +97,6 @@ class CommitteeIndependentExpendituresResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CommitteeIndependentExpendituresChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CommitteeIndependentExpendituresResultSet(response, path)

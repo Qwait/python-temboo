@@ -4,11 +4,10 @@
 #
 # Utility functions.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
 #
+# Copyright 2014, Temboo Inc.
 #
-# Copyright 2012, Temboo Inc.
-# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at

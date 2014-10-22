@@ -5,7 +5,22 @@
 # GetEvents
 # Retrieves a list of upcoming events that a user is attending.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetEvents(Choreography):
         Create a new instance of the GetEvents Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LastFm/User/GetEvents')
+        super(GetEvents, self).__init__(temboo_session, '/Library/LastFm/User/GetEvents')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetEventsInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((string) Your Last.fm API Key.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetEventsInputSet, self)._set_input('APIKey', value)
     def set_FestivalsOnly(self, value):
         """
         Set the value of the FestivalsOnly input for this Choreo. ((optional, boolean) Whether only festivals should be returned, or all events. Defaults to 0 to return all events.)
         """
-        InputSet._set_input(self, 'FestivalsOnly', value)
+        super(GetEventsInputSet, self)._set_input('FestivalsOnly', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) The number of results to fetch per page. Defaults to 50.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(GetEventsInputSet, self)._set_input('Limit', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) The page number to fetch. Defaults to 1.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(GetEventsInputSet, self)._set_input('Page', value)
     def set_User(self, value):
         """
         Set the value of the User input for this Choreo. ((string) The user to fetch the events for.)
         """
-        InputSet._set_input(self, 'User', value)
+        super(GetEventsInputSet, self)._set_input('User', value)
 
 class GetEventsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetEvents Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((XML) The response from Last.fm.)
@@ -82,6 +97,6 @@ class GetEventsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetEventsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetEventsResultSet(response, path)

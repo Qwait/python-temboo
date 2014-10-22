@@ -5,7 +5,22 @@
 # GetCensusIDByTypeAndName
 # Retrieve the U.S. census ID for a specified geography type and name.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetCensusIDByTypeAndName(Choreography):
         Create a new instance of the GetCensusIDByTypeAndName Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/DataGov/GetCensusIDByTypeAndName')
+        super(GetCensusIDByTypeAndName, self).__init__(temboo_session, '/Library/DataGov/GetCensusIDByTypeAndName')
 
 
     def new_input_set(self):
@@ -44,32 +59,32 @@ class GetCensusIDByTypeAndNameInputSet(InputSet):
         """
         Set the value of the GeographyName input for this Choreo. ((required, string) Specify the geography name for the correspnding type, with at least three leading characters. For example, for the geography type "state" you could enter "ore" for Oregon.)
         """
-        InputSet._set_input(self, 'GeographyName', value)
+        super(GetCensusIDByTypeAndNameInputSet, self)._set_input('GeographyName', value)
     def set_GeographyType(self, value):
         """
         Set the value of the GeographyType input for this Choreo. ((required, string) Specify one of the following geography type values: "state", "county", "tract", "block", "congdistrict", "statehouse", "statesenate", "censusplace", or "msa" (metropolitan statistical area).)
         """
-        InputSet._set_input(self, 'GeographyType', value)
+        super(GetCensusIDByTypeAndNameInputSet, self)._set_input('GeographyType', value)
     def set_MaxResults(self, value):
         """
         Set the value of the MaxResults input for this Choreo. ((required, integer) Specify the maximum number of results to return. Defaults to 50.)
         """
-        InputSet._set_input(self, 'MaxResults', value)
+        super(GetCensusIDByTypeAndNameInputSet, self)._set_input('MaxResults', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: xml (the default) and json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetCensusIDByTypeAndNameInputSet, self)._set_input('ResponseFormat', value)
 
 class GetCensusIDByTypeAndNameResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetCensusIDByTypeAndName Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response returned from the API.)
@@ -82,6 +97,6 @@ class GetCensusIDByTypeAndNameResultSet(ResultSet):
         return self._output.get('CensusID', None)
 
 class GetCensusIDByTypeAndNameChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetCensusIDByTypeAndNameResultSet(response, path)

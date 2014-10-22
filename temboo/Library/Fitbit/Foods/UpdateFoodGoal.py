@@ -3,9 +3,24 @@
 ###############################################################################
 #
 # UpdateFoodGoal
-# Updates a user's current daily calorie consumption goal or Food Plan.
+# Create or updates a user's current daily calorie consumption goal or Food Plan.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class UpdateFoodGoal(Choreography):
         Create a new instance of the UpdateFoodGoal Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Fitbit/Foods/UpdateFoodGoal')
+        super(UpdateFoodGoal, self).__init__(temboo_session, '/Library/Fitbit/Foods/UpdateFoodGoal')
 
 
     def new_input_set(self):
@@ -44,57 +59,57 @@ class UpdateFoodGoalInputSet(InputSet):
         """
         Set the value of the AccessTokenSecret input for this Choreo. ((required, string) The Access Token Secret retrieved during the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessTokenSecret', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('AccessTokenSecret', value)
     def set_AccessToken(self, value):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('AccessToken', value)
     def set_Calories(self, value):
         """
         Set the value of the Calories input for this Choreo. ((conditional, integer) The calorie consumption goal; either calories or intensity should be provided.)
         """
-        InputSet._set_input(self, 'Calories', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('Calories', value)
     def set_ConsumerKey(self, value):
         """
         Set the value of the ConsumerKey input for this Choreo. ((required, string) The Consumer Key provided by Fitbit.)
         """
-        InputSet._set_input(self, 'ConsumerKey', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('ConsumerKey', value)
     def set_ConsumerSecret(self, value):
         """
         Set the value of the ConsumerSecret input for this Choreo. ((required, string) The Consumer Secret provided by Fitbit.)
         """
-        InputSet._set_input(self, 'ConsumerSecret', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('ConsumerSecret', value)
     def set_Intensity(self, value):
         """
         Set the value of the Intensity input for this Choreo. ((conditional, string) Food Plan intensity; (MAINTENANCE, EASIER, MEDIUM, KINDAHARD, HARDER); either calories or intensity should be provided.)
         """
-        InputSet._set_input(self, 'Intensity', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('Intensity', value)
     def set_Personalized(self, value):
         """
         Set the value of the Personalized input for this Choreo. ((optional, boolean) Food Plan type; true or false.)
         """
-        InputSet._set_input(self, 'Personalized', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('Personalized', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that you want the response to be in: xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('ResponseFormat', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((optional, string) The user's encoded id. Defaults to "-" (dash) which will return data for the user associated with the token credentials provided.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(UpdateFoodGoalInputSet, self)._set_input('UserID', value)
 
 class UpdateFoodGoalResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the UpdateFoodGoal Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Fitbit.)
@@ -102,6 +117,6 @@ class UpdateFoodGoalResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class UpdateFoodGoalChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return UpdateFoodGoalResultSet(response, path)

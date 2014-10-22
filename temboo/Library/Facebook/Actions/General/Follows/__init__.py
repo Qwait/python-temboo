@@ -1,4 +1,4 @@
-from UpdateFollow import *
-from CreateFollow import *
-from ReadFollows import *
-from DeleteFollow import *
+from temboo.Library.Facebook.Actions.General.Follows.CreateFollow import CreateFollow, CreateFollowInputSet, CreateFollowResultSet, CreateFollowChoreographyExecution
+from temboo.Library.Facebook.Actions.General.Follows.DeleteFollow import DeleteFollow, DeleteFollowInputSet, DeleteFollowResultSet, DeleteFollowChoreographyExecution
+from temboo.Library.Facebook.Actions.General.Follows.ReadFollows import ReadFollows, ReadFollowsInputSet, ReadFollowsResultSet, ReadFollowsChoreographyExecution
+from temboo.Library.Facebook.Actions.General.Follows.UpdateFollow import UpdateFollow, UpdateFollowInputSet, UpdateFollowResultSet, UpdateFollowChoreographyExecution

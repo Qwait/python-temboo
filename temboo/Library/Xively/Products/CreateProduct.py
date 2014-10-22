@@ -5,7 +5,22 @@
 # CreateProduct
 # Creates a new product batch.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateProduct(Choreography):
         Create a new instance of the CreateProduct Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Xively/Products/CreateProduct')
+        super(CreateProduct, self).__init__(temboo_session, '/Library/Xively/Products/CreateProduct')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class CreateProductInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by Xively.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(CreateProductInputSet, self)._set_input('APIKey', value)
     def set_CustomProduct(self, value):
         """
         Set the value of the CustomProduct input for this Choreo. ((optional, json) Optional custom configuration for creating your product in JSON. If you use this field the other optional parameters will be ignored. See Choreo description and Xively documentation for details.)
         """
-        InputSet._set_input(self, 'CustomProduct', value)
+        super(CreateProductInputSet, self)._set_input('CustomProduct', value)
     def set_Datastreams(self, value):
         """
         Set the value of the Datastreams input for this Choreo. ((optional, json) Default device datastream JSON array. Every newly created device in this product will have this default datastream. Ex: [{"id":"channel1"},{"id":"demo"}])
         """
-        InputSet._set_input(self, 'Datastreams', value)
+        super(CreateProductInputSet, self)._set_input('Datastreams', value)
     def set_Description(self, value):
         """
         Set the value of the Description input for this Choreo. ((optional, string) Description of the product.)
         """
-        InputSet._set_input(self, 'Description', value)
+        super(CreateProductInputSet, self)._set_input('Description', value)
     def set_Name(self, value):
         """
         Set the value of the Name input for this Choreo. ((conditional, string) Name of the product. Required unless using the CustomProduct JSON input.)
         """
-        InputSet._set_input(self, 'Name', value)
+        super(CreateProductInputSet, self)._set_input('Name', value)
     def set_Private(self, value):
         """
         Set the value of the Private input for this Choreo. ((optional, string) Default device feed privacy settings. Valid values: "true", "false" (default).)
         """
-        InputSet._set_input(self, 'Private', value)
+        super(CreateProductInputSet, self)._set_input('Private', value)
 
 class CreateProductResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateProduct Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_ProductID(self):
         """
         Retrieve the value for the "ProductID" output from this Choreo execution. ((string) The ProductID obtained from the ProductLocation returned by this Choreo.)
@@ -97,6 +112,6 @@ class CreateProductResultSet(ResultSet):
         return self._output.get('ResponseStatusCode', None)
 
 class CreateProductChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateProductResultSet(response, path)

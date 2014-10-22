@@ -5,7 +5,22 @@
 # CreateManyOrganizations
 # Create multiple organizations with a single request. 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateManyOrganizations(Choreography):
         Create a new instance of the CreateManyOrganizations Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zendesk/Organizations/CreateManyOrganizations')
+        super(CreateManyOrganizations, self).__init__(temboo_session, '/Library/Zendesk/Organizations/CreateManyOrganizations')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class CreateManyOrganizationsInputSet(InputSet):
         """
         Set the value of the OrganizationData input for this Choreo. ((optional, json) A JSON-formatted string containing an array of organization properties you wish to set. This can used when you need to set multiple properties.)
         """
-        InputSet._set_input(self, 'OrganizationData', value)
+        super(CreateManyOrganizationsInputSet, self)._set_input('OrganizationData', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address you use to login to your Zendesk account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(CreateManyOrganizationsInputSet, self)._set_input('Email', value)
     def set_Names(self, value):
         """
         Set the value of the Names input for this Choreo. ((conditional, string) Comma-seperated list of up to 10  organization names to create.)
         """
-        InputSet._set_input(self, 'Names', value)
+        super(CreateManyOrganizationsInputSet, self)._set_input('Names', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) Your Zendesk password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(CreateManyOrganizationsInputSet, self)._set_input('Password', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) Your Zendesk domain and subdomain (e.g., temboocare.zendesk.com).)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(CreateManyOrganizationsInputSet, self)._set_input('Server', value)
 
 class CreateManyOrganizationsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateManyOrganizations Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Zendesk.)
@@ -82,6 +97,6 @@ class CreateManyOrganizationsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateManyOrganizationsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateManyOrganizationsResultSet(response, path)

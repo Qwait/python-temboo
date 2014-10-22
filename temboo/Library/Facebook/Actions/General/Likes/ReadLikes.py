@@ -5,7 +5,22 @@
 # ReadLikes
 # Retrieves one or more like actions.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ReadLikes(Choreography):
         Create a new instance of the ReadLikes Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Facebook/Actions/General/Likes/ReadLikes')
+        super(ReadLikes, self).__init__(temboo_session, '/Library/Facebook/Actions/General/Likes/ReadLikes')
 
 
     def new_input_set(self):
@@ -44,52 +59,47 @@ class ReadLikesInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved from the final step of the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(ReadLikesInputSet, self)._set_input('AccessToken', value)
     def set_ActionID(self, value):
         """
         Set the value of the ActionID input for this Choreo. ((optional, string) The id of an action to retrieve. If an id is not provided, a list of all like actions will be returned.)
         """
-        InputSet._set_input(self, 'ActionID', value)
+        super(ReadLikesInputSet, self)._set_input('ActionID', value)
     def set_Fields(self, value):
         """
         Set the value of the Fields input for this Choreo. ((optional, string) A comma separated list of fields to return (i.e. id,name).)
         """
-        InputSet._set_input(self, 'Fields', value)
+        super(ReadLikesInputSet, self)._set_input('Fields', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) Used to page through results. Limits the number of records returned in the response.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(ReadLikesInputSet, self)._set_input('Limit', value)
     def set_Offset(self, value):
         """
         Set the value of the Offset input for this Choreo. ((optional, integer) Used to page through results. Returns results starting from the specified number.)
         """
-        InputSet._set_input(self, 'Offset', value)
+        super(ReadLikesInputSet, self)._set_input('Offset', value)
     def set_ProfileID(self, value):
         """
         Set the value of the ProfileID input for this Choreo. ((optional, string) The id of the user's profile. Defaults to "me" indicating the authenticated user.)
         """
-        InputSet._set_input(self, 'ProfileID', value)
+        super(ReadLikesInputSet, self)._set_input('ProfileID', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ReadLikesInputSet, self)._set_input('ResponseFormat', value)
 
 class ReadLikesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ReadLikes Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
-    def get_HasPrevious(self):
-        """
-        Retrieve the value for the "HasPrevious" output from this Choreo execution. ((boolean) A boolean flag indicating that a previous page exists.)
-        """
-        return self._output.get('HasPrevious', None)
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Facebook. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -100,8 +110,13 @@ class ReadLikesResultSet(ResultSet):
         Retrieve the value for the "HasNext" output from this Choreo execution. ((boolean) A boolean flag indicating that a next page exists.)
         """
         return self._output.get('HasNext', None)
+    def get_HasPrevious(self):
+        """
+        Retrieve the value for the "HasPrevious" output from this Choreo execution. ((boolean) A boolean flag indicating that a previous page exists.)
+        """
+        return self._output.get('HasPrevious', None)
 
 class ReadLikesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ReadLikesResultSet(response, path)

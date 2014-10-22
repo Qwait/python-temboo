@@ -5,7 +5,22 @@
 # DeleteProduct
 # Deletes a product batch. This will also delete all devices and feeds associated with the specified product batch.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class DeleteProduct(Choreography):
         Create a new instance of the DeleteProduct Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Xively/Products/DeleteProduct')
+        super(DeleteProduct, self).__init__(temboo_session, '/Library/Xively/Products/DeleteProduct')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class DeleteProductInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by Xively.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(DeleteProductInputSet, self)._set_input('APIKey', value)
     def set_ProductID(self, value):
         """
         Set the value of the ProductID input for this Choreo. ((required, string) The ID of the product you are trying to delete.)
         """
-        InputSet._set_input(self, 'ProductID', value)
+        super(DeleteProductInputSet, self)._set_input('ProductID', value)
 
 class DeleteProductResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the DeleteProduct Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_ResponseStatusCode(self):
         """
         Retrieve the value for the "ResponseStatusCode" output from this Choreo execution. ((integer) The response status code returned from Xively. For a successful product deletion, the code should be 200.)
@@ -67,6 +82,6 @@ class DeleteProductResultSet(ResultSet):
         return self._output.get('ResponseStatusCode', None)
 
 class DeleteProductChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return DeleteProductResultSet(response, path)

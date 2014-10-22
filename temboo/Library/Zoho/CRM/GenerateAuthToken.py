@@ -5,7 +5,22 @@
 # GenerateAuthToken
 # Generates an authentication token.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GenerateAuthToken(Choreography):
         Create a new instance of the GenerateAuthToken Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zoho/CRM/GenerateAuthToken')
+        super(GenerateAuthToken, self).__init__(temboo_session, '/Library/Zoho/CRM/GenerateAuthToken')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class GenerateAuthTokenInputSet(InputSet):
         """
         Set the value of the Password input for this Choreo. ((required, string) Your Zoho password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(GenerateAuthTokenInputSet, self)._set_input('Password', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) Your Zoho CRM username.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(GenerateAuthTokenInputSet, self)._set_input('Username', value)
 
 class GenerateAuthTokenResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GenerateAuthToken Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_AuthenticationToken(self):
         """
         Retrieve the value for the "AuthenticationToken" output from this Choreo execution. ((string) The authentication token returned from Zoho.)
@@ -67,6 +82,6 @@ class GenerateAuthTokenResultSet(ResultSet):
         return self._output.get('AuthenticationToken', None)
 
 class GenerateAuthTokenChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GenerateAuthTokenResultSet(response, path)

@@ -1,5 +1,5 @@
-from GetCategoryStatistics import *
-from RetrieveAggregates import *
-from ListAllCategories import *
-from RetrieveStatistics import *
-from GetAllTimeCategoryTotals import *
+from temboo.Library.SendGrid.WebAPI.Statistics.GetAllTimeCategoryTotals import GetAllTimeCategoryTotals, GetAllTimeCategoryTotalsInputSet, GetAllTimeCategoryTotalsResultSet, GetAllTimeCategoryTotalsChoreographyExecution
+from temboo.Library.SendGrid.WebAPI.Statistics.GetCategoryStatistics import GetCategoryStatistics, GetCategoryStatisticsInputSet, GetCategoryStatisticsResultSet, GetCategoryStatisticsChoreographyExecution
+from temboo.Library.SendGrid.WebAPI.Statistics.ListAllCategories import ListAllCategories, ListAllCategoriesInputSet, ListAllCategoriesResultSet, ListAllCategoriesChoreographyExecution
+from temboo.Library.SendGrid.WebAPI.Statistics.RetrieveAggregates import RetrieveAggregates, RetrieveAggregatesInputSet, RetrieveAggregatesResultSet, RetrieveAggregatesChoreographyExecution
+from temboo.Library.SendGrid.WebAPI.Statistics.RetrieveStatistics import RetrieveStatistics, RetrieveStatisticsInputSet, RetrieveStatisticsResultSet, RetrieveStatisticsChoreographyExecution

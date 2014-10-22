@@ -1,2 +1,2 @@
-from FinalizeOAuth import *
-from InitializeOAuth import *
+from temboo.Library.Dropbox.OAuth.FinalizeOAuth import FinalizeOAuth, FinalizeOAuthInputSet, FinalizeOAuthResultSet, FinalizeOAuthChoreographyExecution
+from temboo.Library.Dropbox.OAuth.InitializeOAuth import InitializeOAuth, InitializeOAuthInputSet, InitializeOAuthResultSet, InitializeOAuthChoreographyExecution

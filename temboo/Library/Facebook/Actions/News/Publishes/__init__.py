@@ -1,4 +1,4 @@
-from CreatePublication import *
-from DeletePublication import *
-from UpdatePublication import *
-from ReadPublications import *
+from temboo.Library.Facebook.Actions.News.Publishes.CreatePublication import CreatePublication, CreatePublicationInputSet, CreatePublicationResultSet, CreatePublicationChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Publishes.DeletePublication import DeletePublication, DeletePublicationInputSet, DeletePublicationResultSet, DeletePublicationChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Publishes.ReadPublications import ReadPublications, ReadPublicationsInputSet, ReadPublicationsResultSet, ReadPublicationsChoreographyExecution
+from temboo.Library.Facebook.Actions.News.Publishes.UpdatePublication import UpdatePublication, UpdatePublicationInputSet, UpdatePublicationResultSet, UpdatePublicationChoreographyExecution

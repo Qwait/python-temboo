@@ -1,2 +1,2 @@
-from DeleteInvalidAddress import *
-from RetrieveInvalidEmails import *
+from temboo.Library.SendGrid.WebAPI.InvalidEmails.DeleteInvalidAddress import DeleteInvalidAddress, DeleteInvalidAddressInputSet, DeleteInvalidAddressResultSet, DeleteInvalidAddressChoreographyExecution
+from temboo.Library.SendGrid.WebAPI.InvalidEmails.RetrieveInvalidEmails import RetrieveInvalidEmails, RetrieveInvalidEmailsInputSet, RetrieveInvalidEmailsResultSet, RetrieveInvalidEmailsChoreographyExecution

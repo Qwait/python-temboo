@@ -5,7 +5,22 @@
 # GetWeatherByCoordinates
 # Retrieves the Yahoo Weather RSS Feed for any specified location by geo-coordinates.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetWeatherByCoordinates(Choreography):
         Create a new instance of the GetWeatherByCoordinates Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Yahoo/Weather/GetWeatherByCoordinates')
+        super(GetWeatherByCoordinates, self).__init__(temboo_session, '/Library/Yahoo/Weather/GetWeatherByCoordinates')
 
 
     def new_input_set(self):
@@ -44,44 +59,44 @@ class GetWeatherByCoordinatesInputSet(InputSet):
         """
         Set the value of the AppID input for this Choreo. ((optional, string) The App ID provided by Yahoo!)
         """
-        InputSet._set_input(self, 'AppID', value)
+        super(GetWeatherByCoordinatesInputSet, self)._set_input('AppID', value)
     def set_Latitude(self, value):
         """
         Set the value of the Latitude input for this Choreo. ((required, decimal) The latitude coordinate of the location you want to search.)
         """
-        InputSet._set_input(self, 'Latitude', value)
+        super(GetWeatherByCoordinatesInputSet, self)._set_input('Latitude', value)
     def set_Longitude(self, value):
         """
         Set the value of the Longitude input for this Choreo. ((required, decimal) The longitude coordinate of the location you want to search.)
         """
-        InputSet._set_input(self, 'Longitude', value)
+        super(GetWeatherByCoordinatesInputSet, self)._set_input('Longitude', value)
     def set_Units(self, value):
         """
         Set the value of the Units input for this Choreo. ((optional, string) The unit of temperature in the response. Acceptable inputs: f for Fahrenheit or c for Celsius. Defaults to f. When c is specified, all units measurements returned are changed to metric.)
         """
-        InputSet._set_input(self, 'Units', value)
+        super(GetWeatherByCoordinatesInputSet, self)._set_input('Units', value)
 
 class GetWeatherByCoordinatesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetWeatherByCoordinates Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
-    def get_WOEID(self):
-        """
-        Retrieve the value for the "WOEID" output from this Choreo execution. ((integer) The unique Where On Earth ID of the location.)
-        """
-        return self._output.get('WOEID', None)
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Yahoo Weather.)
         """
         return self._output.get('Response', None)
+    def get_WOEID(self):
+        """
+        Retrieve the value for the "WOEID" output from this Choreo execution. ((integer) The unique Where On Earth ID of the location.)
+        """
+        return self._output.get('WOEID', None)
 
 class GetWeatherByCoordinatesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetWeatherByCoordinatesResultSet(response, path)

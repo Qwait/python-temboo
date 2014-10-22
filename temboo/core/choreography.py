@@ -5,18 +5,18 @@
 # temboo.coreo.choreography.ResultSet
 # temboo.core.choreography.ChoreographyExecution
 #
-# Interface classes for calling and manipulating choreographies. 
+# Interface classes for calling and manipulating choreographies.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
 #
-# Copyright 2012, Temboo Inc.
-# 
+# Copyright 2014, Temboo Inc.
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
@@ -37,7 +37,7 @@ class Choreography(_TembooResource):
 
 
     resource_path = '/choreos'
-    
+
 
     def __init__(self, temboo_session, temboo_path):
         """ Create a Choreography instance.
@@ -48,10 +48,11 @@ class Choreography(_TembooResource):
                        of this choreo on the Temboo server. For example
 
                        /Choreos/MyStore/RunReport
-        
-        """
-        _TembooResource.__init__(self, temboo_session, temboo_path)
 
+        """
+        super(Choreography, self).__init__(temboo_session, temboo_path)
+        # For proxied executions from the JS SDK
+        self._jsClientVersion = None
 
     def execute_with_results(self, choreo_inputs=None):
         """Runs the choreography and waits for it to complete.
@@ -68,7 +69,8 @@ class Choreography(_TembooResource):
         """
         choreo_inputs = choreo_inputs if choreo_inputs else InputSet()
         body = choreo_inputs.format_inputs();
-        params = {"source_id": TembooSession.SOURCE_ID}
+        # Append JS client version string if present
+        params = {"source_id": TembooSession.SOURCE_ID + (('-' + self._jsClientVersion) if self._jsClientVersion else '')}
         return self._make_result_set(self._temboo_session.post(self.get_session_path(), body, params), self._temboo_path)
 
     def _make_result_set(self, result, path):
@@ -79,7 +81,7 @@ class Choreography(_TembooResource):
         
         This method will run this choreography with the supplied
         inputs.  It does not wait for the choreography to complete.
-        
+
         choreo_inputs -- an optional instance of InputSet (default = None)
 
         store_results -- a boolean that determines whether choreo results
@@ -105,14 +107,23 @@ class Choreography(_TembooResource):
         return ChoreographyExecution(session, exec_id, path)
 
     def _get_resource_path(self):
-        return Choreography.resource_path
+        return self.resource_path
 
+    def _set_js_client_version(self, jsClientVersion):
+        """Used to specify the version of Temboo JS SDK used for a proxied choreo execution
+
+        jsClientVersion -- the client version string
+
+        """
+        self._jsClientVersion = jsClientVersion
+   
 
 class InputSet(object):
     
     def __init__(self):
         self.inputs = {}
         self.preset_uri = None
+        self.outputs = []
 
     def _set_input(self, name, value):
         """Adds (or replaces) an input variable value in the InputSet
@@ -123,7 +134,7 @@ class InputSet(object):
 
         """
         self.inputs[name] = value
-   
+
     def _set_inputs(self, inputs):
         """Adds (or replaces) the names and values passed in to this InputSet
 
@@ -134,11 +145,18 @@ class InputSet(object):
         """
         self.inputs.update(inputs)
 
-    def set_credential(self, name):
+    def add_output_filter(self, filterName, path, outputVariableName):
+        """
+        Add an output filter to this result set.
+        """
+        self.outputs.append((filterName, path, outputVariableName))
+                
+    def set_profile(self, name):
         """Adds (or replaces) the name of the credential to be used as an input
             to the Choreo execution
         """
         self.preset_uri = name
+    set_credential = set_profile  # Support legacy method name
         
     def format_inputs(self):
         """Formats the JSON body of a choreography execution POST request.
@@ -148,6 +166,12 @@ class InputSet(object):
         all_inputs ={}
         if self.inputs:
             all_inputs['inputs'] = [{'name':name, 'value':self.inputs[name]} for name in self.inputs]
+
+        if self.outputs:
+            all_inputs['outputFilters'] = [
+                    {'name':name, 'path':path, 'variable':varname}
+                    for name, path, varname in self.outputs
+                    ]
 
         if self.preset_uri:
             all_inputs['preset'] = str(self.preset_uri)
@@ -222,7 +246,7 @@ class ResultSet(object):
         return self._exec_data.get('lasterror', None)
 
     @property
-    def results(self):
+    def outputs(self):
         return self._output
 
     def _time_to_UTC(self, millis):
@@ -264,7 +288,7 @@ class ChoreographyExecution(_TembooResource):
         exec_id -- the execution id of the executing choreo
         
         """
-        _TembooResource.__init__(self, temboo_session, exec_id)
+        super(ChoreographyExecution, self).__init__(temboo_session, exec_id)
         self._result_set = None
         self._status = None
         self.choreo_uri = choreo_uri
@@ -282,7 +306,7 @@ class ChoreographyExecution(_TembooResource):
 
 
     def _get_resource_path(self):
-        return ChoreographyExecution.resource_path
+        return self.resource_path
 
 
     @property
@@ -306,3 +330,4 @@ class ChoreographyExecution(_TembooResource):
         msg.append("Execution ID: " + str(self.exec_id))
         msg.append("Status: " + str(self.status))
         return "\n".join(msg)
+

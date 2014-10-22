@@ -5,7 +5,22 @@
 # GetTestRating
 # Returns the Education.com TestRating for a single school or schools within a city or zip code. 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetTestRating(Choreography):
         Create a new instance of the GetTestRating Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/SchoolFinder/GetTestRating')
+        super(GetTestRating, self).__init__(temboo_session, '/Library/SchoolFinder/GetTestRating')
 
 
     def new_input_set(self):
@@ -44,47 +59,47 @@ class GetTestRatingInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) Your School Finder API Key.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetTestRatingInputSet, self)._set_input('APIKey', value)
     def set_City(self, value):
         """
         Set the value of the City input for this Choreo. ((conditional, string) The name of a city. Must also be accompanied by the corresponding state parameter.)
         """
-        InputSet._set_input(self, 'City', value)
+        super(GetTestRatingInputSet, self)._set_input('City', value)
     def set_NCES(self, value):
         """
         Set the value of the NCES input for this Choreo. ((conditional, string) The National Center for Education Statistics (NCES) id of the school.)
         """
-        InputSet._set_input(self, 'NCES', value)
+        super(GetTestRatingInputSet, self)._set_input('NCES', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) Format of the response returned by Education.com. Defaluts to XML. JSON is also possible.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetTestRatingInputSet, self)._set_input('ResponseFormat', value)
     def set_SchoolID(self, value):
         """
         Set the value of the SchoolID input for this Choreo. ((conditional, string) The Education.com id of the school you want to find.)
         """
-        InputSet._set_input(self, 'SchoolID', value)
+        super(GetTestRatingInputSet, self)._set_input('SchoolID', value)
     def set_State(self, value):
         """
         Set the value of the State input for this Choreo. ((conditional, string) The two letter abbreviation of a state e.g. South Caroline should be formatted “SC”.)
         """
-        InputSet._set_input(self, 'State', value)
+        super(GetTestRatingInputSet, self)._set_input('State', value)
     def set_Zip(self, value):
         """
         Set the value of the Zip input for this Choreo. ((conditional, integer) A five digit US postal code.)
         """
-        InputSet._set_input(self, 'Zip', value)
+        super(GetTestRatingInputSet, self)._set_input('Zip', value)
 
 class GetTestRatingResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetTestRating Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Education.com.)
@@ -92,6 +107,6 @@ class GetTestRatingResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetTestRatingChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetTestRatingResultSet(response, path)

@@ -1,4 +1,4 @@
-from ListLocations import *
-from ListIndustryCodes import *
-from ListCountryCodes import *
-from ListNames import *
+from temboo.Library.CorpWatch.Lists.ListCountryCodes import ListCountryCodes, ListCountryCodesInputSet, ListCountryCodesResultSet, ListCountryCodesChoreographyExecution
+from temboo.Library.CorpWatch.Lists.ListIndustryCodes import ListIndustryCodes, ListIndustryCodesInputSet, ListIndustryCodesResultSet, ListIndustryCodesChoreographyExecution
+from temboo.Library.CorpWatch.Lists.ListLocations import ListLocations, ListLocationsInputSet, ListLocationsResultSet, ListLocationsChoreographyExecution
+from temboo.Library.CorpWatch.Lists.ListNames import ListNames, ListNamesInputSet, ListNamesResultSet, ListNamesChoreographyExecution

@@ -1,1 +1,1 @@
-from GetPartners import *
+from temboo.Library.Kiva.Partners.GetPartners import GetPartners, GetPartnersInputSet, GetPartnersResultSet, GetPartnersChoreographyExecution

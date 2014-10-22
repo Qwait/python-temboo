@@ -5,7 +5,22 @@
 # CreateServer
 # Creates a RightScale server instance.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateServer(Choreography):
         Create a new instance of the CreateServer Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/RightScale/CreateServer')
+        super(CreateServer, self).__init__(temboo_session, '/Library/RightScale/CreateServer')
 
 
     def new_input_set(self):
@@ -44,97 +59,102 @@ class CreateServerInputSet(InputSet):
         """
         Set the value of the AKIImage input for this Choreo. ((optional, string) The URL to the AKI image.)
         """
-        InputSet._set_input(self, 'AKIImage', value)
+        super(CreateServerInputSet, self)._set_input('AKIImage', value)
     def set_ARIImage(self, value):
         """
         Set the value of the ARIImage input for this Choreo. ((optional, string) The URL to the ARI Image.)
         """
-        InputSet._set_input(self, 'ARIImage', value)
+        super(CreateServerInputSet, self)._set_input('ARIImage', value)
     def set_AccountID(self, value):
         """
         Set the value of the AccountID input for this Choreo. ((required, integer) The RightScale Account ID.)
         """
-        InputSet._set_input(self, 'AccountID', value)
+        super(CreateServerInputSet, self)._set_input('AccountID', value)
     def set_CloudID(self, value):
         """
         Set the value of the CloudID input for this Choreo. ((optional, integer) The cloud region identifier. If undefined, the default is 1 (us-east).)
         """
-        InputSet._set_input(self, 'CloudID', value)
+        super(CreateServerInputSet, self)._set_input('CloudID', value)
     def set_EC2AvailabilityZone(self, value):
         """
         Set the value of the EC2AvailabilityZone input for this Choreo. ((optional, string) The  EC2 availablity zone, for example: us-east-1a, or any.  Do not set, if also passing the vpc_subnet_href parameter.)
         """
-        InputSet._set_input(self, 'EC2AvailabilityZone', value)
+        super(CreateServerInputSet, self)._set_input('EC2AvailabilityZone', value)
     def set_EC2Image(self, value):
         """
         Set the value of the EC2Image input for this Choreo. ((optional, string) The URL to AMI image.)
         """
-        InputSet._set_input(self, 'EC2Image', value)
+        super(CreateServerInputSet, self)._set_input('EC2Image', value)
     def set_EC2SSHKeyHref(self, value):
         """
         Set the value of the EC2SSHKeyHref input for this Choreo. ((optional, string) The URL to the SSH Key.)
         """
-        InputSet._set_input(self, 'EC2SSHKeyHref', value)
+        super(CreateServerInputSet, self)._set_input('EC2SSHKeyHref', value)
     def set_EC2SecurityGroupsHref(self, value):
         """
         Set the value of the EC2SecurityGroupsHref input for this Choreo. ((optional, string) The URL(s) to security group(s). Do not set, if also passing the vpc_subnet_href parameter.)
         """
-        InputSet._set_input(self, 'EC2SecurityGroupsHref', value)
+        super(CreateServerInputSet, self)._set_input('EC2SecurityGroupsHref', value)
     def set_InstanceType(self, value):
         """
         Set the value of the InstanceType input for this Choreo. ((optional, string) The AWS instance type: small, medium, etc.)
         """
-        InputSet._set_input(self, 'InstanceType', value)
+        super(CreateServerInputSet, self)._set_input('InstanceType', value)
     def set_MaxSpotPrice(self, value):
         """
         Set the value of the MaxSpotPrice input for this Choreo. ((optional, integer) The maximum price (a dollar value) dollars) per hour for the spot server.)
         """
-        InputSet._set_input(self, 'MaxSpotPrice', value)
+        super(CreateServerInputSet, self)._set_input('MaxSpotPrice', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) The RightScale account password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(CreateServerInputSet, self)._set_input('Password', value)
     def set_Pricing(self, value):
         """
         Set the value of the Pricing input for this Choreo. ((optional, string) AWS pricing.  Specify on_demand, or spot.)
         """
-        InputSet._set_input(self, 'Pricing', value)
+        super(CreateServerInputSet, self)._set_input('Pricing', value)
     def set_ServerDeployment(self, value):
         """
         Set the value of the ServerDeployment input for this Choreo. ((required, string) The URL of the deployment that this server wil be added to.)
         """
-        InputSet._set_input(self, 'ServerDeployment', value)
+        super(CreateServerInputSet, self)._set_input('ServerDeployment', value)
     def set_ServerNickname(self, value):
         """
         Set the value of the ServerNickname input for this Choreo. ((required, string) The nickname for the server being created.)
         """
-        InputSet._set_input(self, 'ServerNickname', value)
+        super(CreateServerInputSet, self)._set_input('ServerNickname', value)
     def set_ServerTemplate(self, value):
         """
         Set the value of the ServerTemplate input for this Choreo. ((required, string) The URL to a server template.)
         """
-        InputSet._set_input(self, 'ServerTemplate', value)
+        super(CreateServerInputSet, self)._set_input('ServerTemplate', value)
+    def set_SubDomain(self, value):
+        """
+        Set the value of the SubDomain input for this Choreo. ((conditional, string) The Rightscale sub-domain appropriate for your Rightscale account. Defaults to "my" for legacy accounts. Other sub-domains include: jp-8 (Legacy Cloud Platform), us-3, us-4 (Unified Cloud Platform).)
+        """
+        super(CreateServerInputSet, self)._set_input('SubDomain', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) The username obtained from RightScale.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(CreateServerInputSet, self)._set_input('Username', value)
     def set_VPCSubnet(self, value):
         """
         Set the value of the VPCSubnet input for this Choreo. ((optional, string) The href to the VPC subnet.)
         """
-        InputSet._set_input(self, 'VPCSubnet', value)
+        super(CreateServerInputSet, self)._set_input('VPCSubnet', value)
 
 class CreateServerResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateServer Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Rightscale in XML format.)
@@ -142,6 +162,6 @@ class CreateServerResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateServerChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateServerResultSet(response, path)

@@ -5,7 +5,22 @@
 # FinalizeOAuth
 # Completes the OAuth process by retrieving a LinkedIn access token and access token secret for a user, after they have visited the authorization URL returned by the InitializeOAuth choreo and clicked "allow."
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class FinalizeOAuth(Choreography):
         Create a new instance of the FinalizeOAuth Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LinkedIn/OAuth/FinalizeOAuth')
+        super(FinalizeOAuth, self).__init__(temboo_session, '/Library/LinkedIn/OAuth/FinalizeOAuth')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class FinalizeOAuthInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by LinkedIn (AKA the OAuth Consumer Key).)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(FinalizeOAuthInputSet, self)._set_input('APIKey', value)
     def set_CallbackID(self, value):
         """
         Set the value of the CallbackID input for this Choreo. ((required, string) The callback token returned by the InitializeOAuth Choreo. Used to retrieve the callback data after the user authorizes.)
         """
-        InputSet._set_input(self, 'CallbackID', value)
+        super(FinalizeOAuthInputSet, self)._set_input('CallbackID', value)
     def set_OAuthTokenSecret(self, value):
         """
         Set the value of the OAuthTokenSecret input for this Choreo. ((required, string) The OAuthTokenSecret returned by the InitializeOAuth Choreo.)
         """
-        InputSet._set_input(self, 'OAuthTokenSecret', value)
+        super(FinalizeOAuthInputSet, self)._set_input('OAuthTokenSecret', value)
     def set_SecretKey(self, value):
         """
         Set the value of the SecretKey input for this Choreo. ((required, string) The Secret Key provided by LinkedIn (AKA the OAuth Consumer Secret).)
         """
-        InputSet._set_input(self, 'SecretKey', value)
+        super(FinalizeOAuthInputSet, self)._set_input('SecretKey', value)
     def set_Timeout(self, value):
         """
         Set the value of the Timeout input for this Choreo. ((optional, integer) The amount of time (in seconds) to poll your Temboo callback URL to see if your app's user has allowed or denied the request for access. Defaults to 20. Max is 60.)
         """
-        InputSet._set_input(self, 'Timeout', value)
+        super(FinalizeOAuthInputSet, self)._set_input('Timeout', value)
 
 class FinalizeOAuthResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the FinalizeOAuth Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_AccessTokenSecret(self):
         """
         Retrieve the value for the "AccessTokenSecret" output from this Choreo execution. ((string) The Access Token Secret retrieved during the OAuth process.)
@@ -92,6 +107,6 @@ class FinalizeOAuthResultSet(ResultSet):
         return self._output.get('Expires', None)
 
 class FinalizeOAuthChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return FinalizeOAuthResultSet(response, path)

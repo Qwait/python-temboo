@@ -1,2 +1,2 @@
-from CancelFulfillmentOrder import *
-from ListAllFulfillmentOrders import *
+from temboo.Library.Amazon.Marketplace.OutboundShipments.CancelFulfillmentOrder import CancelFulfillmentOrder, CancelFulfillmentOrderInputSet, CancelFulfillmentOrderResultSet, CancelFulfillmentOrderChoreographyExecution
+from temboo.Library.Amazon.Marketplace.OutboundShipments.ListAllFulfillmentOrders import ListAllFulfillmentOrders, ListAllFulfillmentOrdersInputSet, ListAllFulfillmentOrdersResultSet, ListAllFulfillmentOrdersChoreographyExecution

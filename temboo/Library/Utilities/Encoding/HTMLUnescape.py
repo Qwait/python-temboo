@@ -5,7 +5,22 @@
 # HTMLUnescape
 # Replaces character entity names in the specified text with equivalent HTML markup characters.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class HTMLUnescape(Choreography):
         Create a new instance of the HTMLUnescape Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Encoding/HTMLUnescape')
+        super(HTMLUnescape, self).__init__(temboo_session, '/Library/Utilities/Encoding/HTMLUnescape')
 
 
     def new_input_set(self):
@@ -44,17 +59,17 @@ class HTMLUnescapeInputSet(InputSet):
         """
         Set the value of the EscapedHTML input for this Choreo. ((required, string) The escaped HTML that should be unescaped.)
         """
-        InputSet._set_input(self, 'EscapedHTML', value)
+        super(HTMLUnescapeInputSet, self)._set_input('EscapedHTML', value)
 
 class HTMLUnescapeResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the HTMLUnescape Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_UnescapedHTML(self):
         """
         Retrieve the value for the "UnescapedHTML" output from this Choreo execution. ((string) The unescaped HTML.)
@@ -62,6 +77,6 @@ class HTMLUnescapeResultSet(ResultSet):
         return self._output.get('UnescapedHTML', None)
 
 class HTMLUnescapeChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return HTMLUnescapeResultSet(response, path)

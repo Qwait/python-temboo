@@ -5,7 +5,22 @@
 # XMLToTSV
 # Converts an XML file to TSV format (TAB-separated values).
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class XMLToTSV(Choreography):
         Create a new instance of the XMLToTSV Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/DataConversions/XMLToTSV')
+        super(XMLToTSV, self).__init__(temboo_session, '/Library/Utilities/DataConversions/XMLToTSV')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class XMLToTSVInputSet(InputSet):
         """
         Set the value of the XML input for this Choreo. ((required, xml) The XML file to convert to TSV data.)
         """
-        InputSet._set_input(self, 'XML', value)
+        super(XMLToTSVInputSet, self)._set_input('XML', value)
     def set_Path(self, value):
         """
         Set the value of the Path input for this Choreo. ((optional, string) If your XML is not in "/rowset/row/column_name" format, specify a path to the rows. See documentation for examples.)
         """
-        InputSet._set_input(self, 'Path', value)
+        super(XMLToTSVInputSet, self)._set_input('Path', value)
 
 class XMLToTSVResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the XMLToTSV Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_TSV(self):
         """
         Retrieve the value for the "TSV" output from this Choreo execution. ((multiline) The tab-separated data generated from the XML input.)
@@ -67,6 +82,6 @@ class XMLToTSVResultSet(ResultSet):
         return self._output.get('TSV', None)
 
 class XMLToTSVChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return XMLToTSVResultSet(response, path)

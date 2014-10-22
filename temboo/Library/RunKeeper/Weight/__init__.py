@@ -1,5 +1,5 @@
-from RetrieveEntry import *
-from RetrieveEntries import *
-from UpdateEntry import *
-from DeleteEntry import *
-from CreateEntry import *
+from temboo.Library.RunKeeper.Weight.CreateEntry import CreateEntry, CreateEntryInputSet, CreateEntryResultSet, CreateEntryChoreographyExecution
+from temboo.Library.RunKeeper.Weight.DeleteEntry import DeleteEntry, DeleteEntryInputSet, DeleteEntryResultSet, DeleteEntryChoreographyExecution
+from temboo.Library.RunKeeper.Weight.RetrieveEntries import RetrieveEntries, RetrieveEntriesInputSet, RetrieveEntriesResultSet, RetrieveEntriesChoreographyExecution
+from temboo.Library.RunKeeper.Weight.RetrieveEntry import RetrieveEntry, RetrieveEntryInputSet, RetrieveEntryResultSet, RetrieveEntryChoreographyExecution
+from temboo.Library.RunKeeper.Weight.UpdateEntry import UpdateEntry, UpdateEntryInputSet, UpdateEntryResultSet, UpdateEntryChoreographyExecution

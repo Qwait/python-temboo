@@ -1,3 +1,3 @@
-from ChangePassword import *
-from GetPasswordInfo import *
-from ResetPassword import *
+from temboo.Library.Salesforce.Passwords.ChangePassword import ChangePassword, ChangePasswordInputSet, ChangePasswordResultSet, ChangePasswordChoreographyExecution
+from temboo.Library.Salesforce.Passwords.GetPasswordInfo import GetPasswordInfo, GetPasswordInfoInputSet, GetPasswordInfoResultSet, GetPasswordInfoChoreographyExecution
+from temboo.Library.Salesforce.Passwords.ResetPassword import ResetPassword, ResetPasswordInputSet, ResetPasswordResultSet, ResetPasswordChoreographyExecution

@@ -5,7 +5,22 @@
 # UpdateCollaboration
 # Edits an existing collaboration.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class UpdateCollaboration(Choreography):
         Create a new instance of the UpdateCollaboration Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Box/Collaborations/UpdateCollaboration')
+        super(UpdateCollaboration, self).__init__(temboo_session, '/Library/Box/Collaborations/UpdateCollaboration')
 
 
     def new_input_set(self):
@@ -44,27 +59,32 @@ class UpdateCollaborationInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved during the OAuth2 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(UpdateCollaborationInputSet, self)._set_input('AccessToken', value)
+    def set_AsUser(self, value):
+        """
+        Set the value of the AsUser input for this Choreo. ((optional, string) The ID of the user. Only used for enterprise administrators to make API calls for their managed users.)
+        """
+        super(UpdateCollaborationInputSet, self)._set_input('AsUser', value)
     def set_CollaborationID(self, value):
         """
         Set the value of the CollaborationID input for this Choreo. ((required, string) The id of the collaboration to edit.)
         """
-        InputSet._set_input(self, 'CollaborationID', value)
+        super(UpdateCollaborationInputSet, self)._set_input('CollaborationID', value)
     def set_Fields(self, value):
         """
         Set the value of the Fields input for this Choreo. ((optional, string) A comma-separated list of fields to include in the response.)
         """
-        InputSet._set_input(self, 'Fields', value)
+        super(UpdateCollaborationInputSet, self)._set_input('Fields', value)
     def set_Role(self, value):
         """
         Set the value of the Role input for this Choreo. ((conditional, string) The access level of the collaboration. Valid values are "viewer" or "editor". Defaults to "viewer". This value can only be updated by the owner of the folder.)
         """
-        InputSet._set_input(self, 'Role', value)
+        super(UpdateCollaborationInputSet, self)._set_input('Role', value)
     def set_Status(self, value):
         """
         Set the value of the Status input for this Choreo. ((conditional, string) Whether this collaboration has been accepted. Valid values are: "accepted" or "rejected". This value can only be updated by the user who has been invited to the collaboration.)
         """
-        InputSet._set_input(self, 'Status', value)
+        super(UpdateCollaborationInputSet, self)._set_input('Status', value)
 
 
 class UpdateCollaborationResultSet(ResultSet):
@@ -72,10 +92,10 @@ class UpdateCollaborationResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the UpdateCollaboration Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Box.)
@@ -83,6 +103,6 @@ class UpdateCollaborationResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class UpdateCollaborationChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return UpdateCollaborationResultSet(response, path)

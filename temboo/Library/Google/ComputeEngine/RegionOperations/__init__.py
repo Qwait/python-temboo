@@ -1,3 +1,3 @@
-from DeleteRegionOperation import *
-from GetRegionOperation import *
-from ListRegionOperations import *
+from temboo.Library.Google.ComputeEngine.RegionOperations.DeleteRegionOperation import DeleteRegionOperation, DeleteRegionOperationInputSet, DeleteRegionOperationResultSet, DeleteRegionOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.RegionOperations.GetRegionOperation import GetRegionOperation, GetRegionOperationInputSet, GetRegionOperationResultSet, GetRegionOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.RegionOperations.ListRegionOperations import ListRegionOperations, ListRegionOperationsInputSet, ListRegionOperationsResultSet, ListRegionOperationsChoreographyExecution

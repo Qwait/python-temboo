@@ -5,7 +5,22 @@
 # Query
 # Queries the Story API for stories across all NPR media, including audio, text, images, and web-only content.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Query(Choreography):
         Create a new instance of the Query Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/NPR/StoryFinder/Query')
+        super(Query, self).__init__(temboo_session, '/Library/NPR/StoryFinder/Query')
 
 
     def new_input_set(self):
@@ -42,101 +57,101 @@ class QueryInputSet(InputSet):
     """
     def set_APIKey(self, value):
         """
-        Set the value of the APIKey input for this Choreo. ((required, multiline) The API Key provided by NPR.)
+        Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by NPR.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(QueryInputSet, self)._set_input('APIKey', value)
     def set_DateType(self, value):
         """
         Set the value of the DateType input for this Choreo. ((optional, string) Controls the meaning of StartDate and EndDate. Values can be story or correction.)
         """
-        InputSet._set_input(self, 'DateType', value)
+        super(QueryInputSet, self)._set_input('DateType', value)
     def set_Date(self, value):
         """
         Set the value of the Date input for this Choreo. ((optional, string) The exact date for which stories will be returned. Format: YYYY-MM-DD The special value current is also allowed. Cannot be used with StartDate or EndDate.)
         """
-        InputSet._set_input(self, 'Date', value)
+        super(QueryInputSet, self)._set_input('Date', value)
     def set_EndDate(self, value):
         """
         Set the value of the EndDate input for this Choreo. ((optional, string) The end date for which stories will be returned. Format: YYYY-MM-DD Can be used with StartDate to search a range. Cannot be used with Date. The meaning of this parameter can be modified with DateType.)
         """
-        InputSet._set_input(self, 'EndDate', value)
+        super(QueryInputSet, self)._set_input('EndDate', value)
     def set_Fields(self, value):
         """
         Set the value of the Fields input for this Choreo. ((optional, string) Comma-delimited list of fields to be returned in the output for the results. List of fields can be made up of selectable fields or compilation fields. Defaults to all available fields.)
         """
-        InputSet._set_input(self, 'Fields', value)
+        super(QueryInputSet, self)._set_input('Fields', value)
     def set_IDBoolean(self, value):
         """
         Set the value of the IDBoolean input for this Choreo. ((optional, string) Describes how IDs are searched. Allowed values: and, or, union.)
         """
-        InputSet._set_input(self, 'IDBoolean', value)
+        super(QueryInputSet, self)._set_input('IDBoolean', value)
     def set_ID(self, value):
         """
         Set the value of the ID input for this Choreo. ((optional, string) Comma-delimited list of ID numbers corresponding to topics, music genres, programs, blogs, bios, music artists, and series.)
         """
-        InputSet._set_input(self, 'ID', value)
+        super(QueryInputSet, self)._set_input('ID', value)
     def set_NumResults(self, value):
         """
         Set the value of the NumResults input for this Choreo. ((optional, integer) The number of stories to be returned up to 20 maximum.)
         """
-        InputSet._set_input(self, 'NumResults', value)
+        super(QueryInputSet, self)._set_input('NumResults', value)
     def set_OrgID(self, value):
         """
         Set the value of the OrgID input for this Choreo. ((optional, string) Comma-delimited list of ID numbers of local stations.)
         """
-        InputSet._set_input(self, 'OrgID', value)
+        super(QueryInputSet, self)._set_input('OrgID', value)
     def set_RequiredAssets(self, value):
         """
         Set the value of the RequiredAssets input for this Choreo. ((optional, string) Comma-delimited list that limits the resulting set to contain only stories with a particular type of asset. Allowed values: audio, image, text, and correction.)
         """
-        InputSet._set_input(self, 'RequiredAssets', value)
+        super(QueryInputSet, self)._set_input('RequiredAssets', value)
     def set_ResponseFormat(self, value):
         """
-        Set the value of the ResponseFormat input for this Choreo. ((optional, string) Enter output format. Values accepted: NPRML, RSS, MediaRSS, Podcast, ATOM, JSON, HTML WIdget, Javascript Widget. Default is JSON.)
+        Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are xml (the default), and json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(QueryInputSet, self)._set_input('ResponseFormat', value)
     def set_SearchTerm(self, value):
         """
         Set the value of the SearchTerm input for this Choreo. ((optional, string) Term to search in NPR's search engine. Can be used with SearchType to specify which fields should be searched.)
         """
-        InputSet._set_input(self, 'SearchTerm', value)
+        super(QueryInputSet, self)._set_input('SearchTerm', value)
     def set_SearchType(self, value):
         """
         Set the value of the SearchType input for this Choreo. ((optional, string) Used with SearchTerm to specify which fields should be searched. Default searches all fields. Allowed values: main and full.)
         """
-        InputSet._set_input(self, 'SearchType', value)
+        super(QueryInputSet, self)._set_input('SearchType', value)
     def set_Sort(self, value):
         """
         Set the value of the Sort input for this Choreo. ((optional, string) Determines the order in which the stories will be returned. Default is date descending. Other allowed values: date ascending, editor assigned, and featured.)
         """
-        InputSet._set_input(self, 'Sort', value)
+        super(QueryInputSet, self)._set_input('Sort', value)
     def set_StartDate(self, value):
         """
         Set the value of the StartDate input for this Choreo. ((optional, string) The start date for which stories will be returned. Format: YYYY-MM-DD Can be used with EndDate to search a range. Cannot be used with Date. The meaning of this parameter can be modified with DateType.)
         """
-        InputSet._set_input(self, 'StartDate', value)
+        super(QueryInputSet, self)._set_input('StartDate', value)
     def set_StartNum(self, value):
         """
         Set the value of the StartNum input for this Choreo. ((optional, integer) Determines where in the result set to start returning stories.)
         """
-        InputSet._set_input(self, 'StartNum', value)
+        super(QueryInputSet, self)._set_input('StartNum', value)
 
 class QueryResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Query Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
-        Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from NPR.)
+        Retrieve the value for the "Response" output from this Choreo execution. (The response from NPR.)
         """
         return self._output.get('Response', None)
 
 class QueryChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return QueryResultSet(response, path)

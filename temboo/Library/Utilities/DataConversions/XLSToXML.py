@@ -5,7 +5,22 @@
 # XLSToXML
 # Converts Excel (.xls) formatted data to XML.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class XLSToXML(Choreography):
         Create a new instance of the XLSToXML Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/DataConversions/XLSToXML')
+        super(XLSToXML, self).__init__(temboo_session, '/Library/Utilities/DataConversions/XLSToXML')
 
 
     def new_input_set(self):
@@ -44,7 +59,7 @@ class XLSToXMLInputSet(InputSet):
         """
         Set the value of the XLS input for this Choreo. ((conditional, string) The base64-encoded contents of the Excel file that you want to convert to XML. Compatible with Excel 97-2003.)
         """
-        InputSet._set_input(self, 'XLS', value)
+        super(XLSToXMLInputSet, self)._set_input('XLS', value)
 
 
 class XLSToXMLResultSet(ResultSet):
@@ -52,10 +67,10 @@ class XLSToXMLResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the XLSToXML Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_XML(self):
         """
         Retrieve the value for the "XML" output from this Choreo execution. ((xml) The data in XML format.)
@@ -63,6 +78,6 @@ class XLSToXMLResultSet(ResultSet):
         return self._output.get('XML', None)
 
 class XLSToXMLChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return XLSToXMLResultSet(response, path)

@@ -5,7 +5,22 @@
 # ListOrders
 # Returns orders created during a time frame that you specify.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListOrders(Choreography):
         Create a new instance of the ListOrders Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/Marketplace/Orders/ListOrders')
+        super(ListOrders, self).__init__(temboo_session, '/Library/Amazon/Marketplace/Orders/ListOrders')
 
 
     def new_input_set(self):
@@ -44,79 +59,99 @@ class ListOrdersInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(ListOrdersInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSMarketplaceId(self, value):
         """
         Set the value of the AWSMarketplaceId input for this Choreo. ((required, string) The Marketplace ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSMarketplaceId', value)
+        super(ListOrdersInputSet, self)._set_input('AWSMarketplaceId', value)
     def set_AWSMerchantId(self, value):
         """
         Set the value of the AWSMerchantId input for this Choreo. ((required, string) The Merchant ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSMerchantId', value)
+        super(ListOrdersInputSet, self)._set_input('AWSMerchantId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(ListOrdersInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_CreatedAfter(self, value):
         """
         Set the value of the CreatedAfter input for this Choreo. ((optional, date) A date used for selecting orders created after (or at) a specified time, in ISO 8601 date format (i.e. 2012-01-01). Defaults to today's date if not provided.)
         """
-        InputSet._set_input(self, 'CreatedAfter', value)
+        super(ListOrdersInputSet, self)._set_input('CreatedAfter', value)
     def set_CreatedBefore(self, value):
         """
         Set the value of the CreatedBefore input for this Choreo. ((optional, date) A date used for selecting orders created before (or at) a specified time, in ISO 8601 date format (i.e. 2012-01-01).)
         """
-        InputSet._set_input(self, 'CreatedBefore', value)
+        super(ListOrdersInputSet, self)._set_input('CreatedBefore', value)
     def set_Endpoint(self, value):
         """
         Set the value of the Endpoint input for this Choreo. ((conditional, string) The base URL for the MWS endpoint. Defaults to mws.amazonservices.co.uk.)
         """
-        InputSet._set_input(self, 'Endpoint', value)
+        super(ListOrdersInputSet, self)._set_input('Endpoint', value)
     def set_FullfillmentChannel(self, value):
         """
         Set the value of the FullfillmentChannel input for this Choreo. ((optional, string) A string indicating how an order was fulfilled. Use "AFN" for Amazon fulfilled orders, and "MFN" for seller fulfilled orders.)
         """
-        InputSet._set_input(self, 'FullfillmentChannel', value)
+        super(ListOrdersInputSet, self)._set_input('FullfillmentChannel', value)
+    def set_LastUpdatedAfter(self, value):
+        """
+        Set the value of the LastUpdatedAfter input for this Choreo. ((optional, date) A date used for selecting orders that were last updated after (or at) a specified time, in ISO 8601 date format (i.e. 2012-01-01). Cannot be specified if CreatedAfter is specified.)
+        """
+        super(ListOrdersInputSet, self)._set_input('LastUpdatedAfter', value)
+    def set_LastUpdatedBefore(self, value):
+        """
+        Set the value of the LastUpdatedBefore input for this Choreo. ((optional, date) A date used for selecting orders that were last updated before (or at) a specified time,, in ISO 8601 date format (i.e. 2012-01-01). Cannot be specified if CreatedAfter is specified.)
+        """
+        super(ListOrdersInputSet, self)._set_input('LastUpdatedBefore', value)
     def set_MaxResultsPerPage(self, value):
         """
         Set the value of the MaxResultsPerPage input for this Choreo. ((optional, integer) A number that indicates the maximum number of orders that can be returned per page. Valid values are: 1-100.)
         """
-        InputSet._set_input(self, 'MaxResultsPerPage', value)
+        super(ListOrdersInputSet, self)._set_input('MaxResultsPerPage', value)
     def set_OrderStatus(self, value):
         """
-        Set the value of the OrderStatus input for this Choreo. ((optional, string) An OrderStatus value to select only orders with a certain status. Valid values are: Pending, Unshipped, PartiallyShipped, Shipped, Canceled, Unfulfillable.)
+        Set the value of the OrderStatus input for this Choreo. ((optional, string) One or more OrderStatus values separated by commas. This options selects only orders with a certain status (e.g. Pending, Unshipped, PartiallyShipped, Shipped, Canceled, Unfulfillable, etc).)
         """
-        InputSet._set_input(self, 'OrderStatus', value)
+        super(ListOrdersInputSet, self)._set_input('OrderStatus', value)
+    def set_PageToken(self, value):
+        """
+        Set the value of the PageToken input for this Choreo. ((optional, string) The value returned in the NextPageToken output of this Choreo when there are multiple pages of orders to retrieve.)
+        """
+        super(ListOrdersInputSet, self)._set_input('PageToken', value)
     def set_PaymentMethod(self, value):
         """
-        Set the value of the PaymentMethod input for this Choreo. ((optional, string) Used to select only orders of a certain payment type. Valid values are: COD (cash on delivery), CSV (convenience store payment), or Other (Any payment method other than COD or CVS).)
+        Set the value of the PaymentMethod input for this Choreo. ((optional, string) Used to select only orders of a certain payment type. Valid values are: COD (cash on delivery), CVS (convenience store payment), or Other (Any payment method other than COD or CVS).)
         """
-        InputSet._set_input(self, 'PaymentMethod', value)
+        super(ListOrdersInputSet, self)._set_input('PaymentMethod', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are "xml" (the default) and "json".)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ListOrdersInputSet, self)._set_input('ResponseFormat', value)
 
 class ListOrdersResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListOrders Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
-        Retrieve the value for the "Response" output from this Choreo execution. ((xml) Stores the response from Amazon.)
+        Retrieve the value for the "Response" output from this Choreo execution. (Stores the response from Amazon.)
         """
         return self._output.get('Response', None)
+    def get_NextPageToken(self):
+        """
+        Retrieve the value for the "NextPageToken" output from this Choreo execution. ((string) A token used to retrieve the next page of results. If a token is not returned, there are no more results to retrieve. This token can be passed to the PageToken input of this Choreo.)
+        """
+        return self._output.get('NextPageToken', None)
 
 class ListOrdersChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListOrdersResultSet(response, path)

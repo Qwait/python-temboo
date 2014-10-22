@@ -1,3 +1,3 @@
-from RemoveComment import *
-from LeaveComment import *
-from ListComments import *
+from temboo.Library.Flickr.PhotoComments.LeaveComment import LeaveComment, LeaveCommentInputSet, LeaveCommentResultSet, LeaveCommentChoreographyExecution
+from temboo.Library.Flickr.PhotoComments.ListComments import ListComments, ListCommentsInputSet, ListCommentsResultSet, ListCommentsChoreographyExecution
+from temboo.Library.Flickr.PhotoComments.RemoveComment import RemoveComment, RemoveCommentInputSet, RemoveCommentResultSet, RemoveCommentChoreographyExecution

@@ -5,7 +5,22 @@
 # ListTags
 # Retrieves a list of tags for the specified repository.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListTags(Choreography):
         Create a new instance of the ListTags Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/GitHub/ReposAPI/Repos/ListTags')
+        super(ListTags, self).__init__(temboo_session, '/Library/GitHub/ReposAPI/Repos/ListTags')
 
 
     def new_input_set(self):
@@ -44,27 +59,27 @@ class ListTagsInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(ListTagsInputSet, self)._set_input('AccessToken', value)
     def set_Repo(self, value):
         """
         Set the value of the Repo input for this Choreo. ((required, string) The name of the repo to list tags for.)
         """
-        InputSet._set_input(self, 'Repo', value)
+        super(ListTagsInputSet, self)._set_input('Repo', value)
     def set_User(self, value):
         """
         Set the value of the User input for this Choreo. ((required, string) The GitHub username.)
         """
-        InputSet._set_input(self, 'User', value)
+        super(ListTagsInputSet, self)._set_input('User', value)
 
 class ListTagsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListTags Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from GitHub.)
@@ -82,6 +97,6 @@ class ListTagsResultSet(ResultSet):
         return self._output.get('Remaining', None)
 
 class ListTagsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListTagsResultSet(response, path)

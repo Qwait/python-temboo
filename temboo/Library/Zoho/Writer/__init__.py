@@ -1,5 +1,5 @@
-from ListTrashedDocuments import *
-from ListAllDocuments import *
-from ListSharedDocuments import *
-from ListPublicDocuments import *
-from DownloadDocument import *
+from temboo.Library.Zoho.Writer.DownloadDocument import DownloadDocument, DownloadDocumentInputSet, DownloadDocumentResultSet, DownloadDocumentChoreographyExecution
+from temboo.Library.Zoho.Writer.ListAllDocuments import ListAllDocuments, ListAllDocumentsInputSet, ListAllDocumentsResultSet, ListAllDocumentsChoreographyExecution
+from temboo.Library.Zoho.Writer.ListPublicDocuments import ListPublicDocuments, ListPublicDocumentsInputSet, ListPublicDocumentsResultSet, ListPublicDocumentsChoreographyExecution
+from temboo.Library.Zoho.Writer.ListSharedDocuments import ListSharedDocuments, ListSharedDocumentsInputSet, ListSharedDocumentsResultSet, ListSharedDocumentsChoreographyExecution
+from temboo.Library.Zoho.Writer.ListTrashedDocuments import ListTrashedDocuments, ListTrashedDocumentsInputSet, ListTrashedDocumentsResultSet, ListTrashedDocumentsChoreographyExecution

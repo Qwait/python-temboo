@@ -1,1 +1,1 @@
-from GetResources import *
+from temboo.Library.Salesforce.Resources.GetResources import GetResources, GetResourcesInputSet, GetResourcesResultSet, GetResourcesChoreographyExecution

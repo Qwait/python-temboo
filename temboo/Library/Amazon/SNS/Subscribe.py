@@ -5,7 +5,22 @@
 # Subscribe
 # Sends the endpoint a confirmation message in preparation for subscribing an endpoint.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Subscribe(Choreography):
         Create a new instance of the Subscribe Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/SNS/Subscribe')
+        super(Subscribe, self).__init__(temboo_session, '/Library/Amazon/SNS/Subscribe')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class SubscribeInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(SubscribeInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(SubscribeInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_Endpoint(self, value):
         """
         Set the value of the Endpoint input for this Choreo. ((required, string) The endpoint that will receive the notifications. Can be an email address, URL, or the ARN of an Amazon SQS queue depending on the protocol specified.)
         """
-        InputSet._set_input(self, 'Endpoint', value)
+        super(SubscribeInputSet, self)._set_input('Endpoint', value)
     def set_Protocol(self, value):
         """
         Set the value of the Protocol input for this Choreo. ((required, string) The protocol you want to use. Accepted values are: http, https, email, email-json, or sqs.)
         """
-        InputSet._set_input(self, 'Protocol', value)
+        super(SubscribeInputSet, self)._set_input('Protocol', value)
     def set_TopicArn(self, value):
         """
         Set the value of the TopicArn input for this Choreo. ((required, string) The ARN of the topic you want to subscribe to.)
         """
-        InputSet._set_input(self, 'TopicArn', value)
+        super(SubscribeInputSet, self)._set_input('TopicArn', value)
     def set_UserRegion(self, value):
         """
         Set the value of the UserRegion input for this Choreo. ((optional, string) The AWS region that corresponds to the SNS endpoint you wish to access. The default region is "us-east-1". See description below for valid values.)
         """
-        InputSet._set_input(self, 'UserRegion', value)
+        super(SubscribeInputSet, self)._set_input('UserRegion', value)
 
 class SubscribeResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Subscribe Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Amazon.)
@@ -87,6 +102,6 @@ class SubscribeResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class SubscribeChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return SubscribeResultSet(response, path)

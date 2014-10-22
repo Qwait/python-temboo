@@ -5,7 +5,22 @@
 # GetUserFeed
 # Retrieves the authenticated user's feed.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetUserFeed(Choreography):
         Create a new instance of the GetUserFeed Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Instagram/GetUserFeed')
+        super(GetUserFeed, self).__init__(temboo_session, '/Library/Instagram/GetUserFeed')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetUserFeedInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved during the OAuth 2.0 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(GetUserFeedInputSet, self)._set_input('AccessToken', value)
     def set_Count(self, value):
         """
         Set the value of the Count input for this Choreo. ((optional, integer) The number of results to return.)
         """
-        InputSet._set_input(self, 'Count', value)
+        super(GetUserFeedInputSet, self)._set_input('Count', value)
     def set_MaxID(self, value):
         """
         Set the value of the MaxID input for this Choreo. ((optional, string) Returns media earlier than this max_id.)
         """
-        InputSet._set_input(self, 'MaxID', value)
+        super(GetUserFeedInputSet, self)._set_input('MaxID', value)
     def set_MinID(self, value):
         """
         Set the value of the MinID input for this Choreo. ((optional, string) Returns media later than this min_id.)
         """
-        InputSet._set_input(self, 'MinID', value)
+        super(GetUserFeedInputSet, self)._set_input('MinID', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((optional, string) The ID of the user whose feed to retrieve. Defaults to 'self' indicating that the authenticating user is assumed.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(GetUserFeedInputSet, self)._set_input('UserID', value)
 
 class GetUserFeedResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetUserFeed Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Instagram.)
@@ -82,6 +97,6 @@ class GetUserFeedResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetUserFeedChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetUserFeedResultSet(response, path)

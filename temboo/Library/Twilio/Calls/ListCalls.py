@@ -5,7 +5,22 @@
 # ListCalls
 # Retrieves a list of phone calls made to and from the specified account.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListCalls(Choreography):
         Create a new instance of the ListCalls Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Twilio/Calls/ListCalls')
+        super(ListCalls, self).__init__(temboo_session, '/Library/Twilio/Calls/ListCalls')
 
 
     def new_input_set(self):
@@ -44,67 +59,67 @@ class ListCallsInputSet(InputSet):
         """
         Set the value of the AccountSID input for this Choreo. ((required, string) The AccountSID provided when you signed up for a Twilio account.)
         """
-        InputSet._set_input(self, 'AccountSID', value)
+        super(ListCallsInputSet, self)._set_input('AccountSID', value)
     def set_AuthToken(self, value):
         """
         Set the value of the AuthToken input for this Choreo. ((required, string) The authorization token provided when you signed up for a Twilio account.)
         """
-        InputSet._set_input(self, 'AuthToken', value)
+        super(ListCallsInputSet, self)._set_input('AuthToken', value)
     def set_From(self, value):
         """
         Set the value of the From input for this Choreo. ((optional, string) Filters results for calls from this phone number or Client identifier.)
         """
-        InputSet._set_input(self, 'From', value)
+        super(ListCallsInputSet, self)._set_input('From', value)
     def set_PageSize(self, value):
         """
         Set the value of the PageSize input for this Choreo. ((optional, integer) The number of results per page.)
         """
-        InputSet._set_input(self, 'PageSize', value)
+        super(ListCallsInputSet, self)._set_input('PageSize', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) The page of results to retrieve. Defaults to 0.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(ListCallsInputSet, self)._set_input('Page', value)
     def set_ParentCallSID(self, value):
         """
         Set the value of the ParentCallSID input for this Choreo. ((optional, string) Filters results for calls spawned by the call with this Sid.)
         """
-        InputSet._set_input(self, 'ParentCallSID', value)
+        super(ListCallsInputSet, self)._set_input('ParentCallSID', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: json (the default) and xml.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ListCallsInputSet, self)._set_input('ResponseFormat', value)
     def set_StartTime(self, value):
         """
         Set the value of the StartTime input for this Choreo. ((optional, string) Filters results for calls that started on this date, given as YYYY-MM-DD. Also supports operators such as >= or <=.)
         """
-        InputSet._set_input(self, 'StartTime', value)
+        super(ListCallsInputSet, self)._set_input('StartTime', value)
     def set_Status(self, value):
         """
         Set the value of the Status input for this Choreo. ((optional, string) Fillters results for calls currently in this status. Valid values are: queued, ringing, in-progress, completed, failed, busy, or no-answer.)
         """
-        InputSet._set_input(self, 'Status', value)
+        super(ListCallsInputSet, self)._set_input('Status', value)
     def set_SubAccountSID(self, value):
         """
         Set the value of the SubAccountSID input for this Choreo. ((optional, string) The SID of the subaccount to retrieve calls for. If not specified, the main AccountSID used to authenticate is used in request.)
         """
-        InputSet._set_input(self, 'SubAccountSID', value)
+        super(ListCallsInputSet, self)._set_input('SubAccountSID', value)
     def set_To(self, value):
         """
         Set the value of the To input for this Choreo. ((optional, string) Filters results for calls to this phone number or Client identifier.)
         """
-        InputSet._set_input(self, 'To', value)
+        super(ListCallsInputSet, self)._set_input('To', value)
 
 class ListCallsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListCalls Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Twilio.)
@@ -112,6 +127,6 @@ class ListCallsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListCallsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListCallsResultSet(response, path)

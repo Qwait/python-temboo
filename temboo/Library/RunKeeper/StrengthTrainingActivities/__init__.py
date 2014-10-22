@@ -1,5 +1,5 @@
-from RetrieveActivity import *
-from UpdateActivity import *
-from DeleteActivity import *
-from RetrieveActivities import *
-from RecordActivity import *
+from temboo.Library.RunKeeper.StrengthTrainingActivities.DeleteActivity import DeleteActivity, DeleteActivityInputSet, DeleteActivityResultSet, DeleteActivityChoreographyExecution
+from temboo.Library.RunKeeper.StrengthTrainingActivities.RecordActivity import RecordActivity, RecordActivityInputSet, RecordActivityResultSet, RecordActivityChoreographyExecution
+from temboo.Library.RunKeeper.StrengthTrainingActivities.RetrieveActivities import RetrieveActivities, RetrieveActivitiesInputSet, RetrieveActivitiesResultSet, RetrieveActivitiesChoreographyExecution
+from temboo.Library.RunKeeper.StrengthTrainingActivities.RetrieveActivity import RetrieveActivity, RetrieveActivityInputSet, RetrieveActivityResultSet, RetrieveActivityChoreographyExecution
+from temboo.Library.RunKeeper.StrengthTrainingActivities.UpdateActivity import UpdateActivity, UpdateActivityInputSet, UpdateActivityResultSet, UpdateActivityChoreographyExecution

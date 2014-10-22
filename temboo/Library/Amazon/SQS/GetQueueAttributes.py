@@ -5,7 +5,22 @@
 # GetQueueAttributes
 # Retrieves one or all attributes of a queue.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetQueueAttributes(Choreography):
         Create a new instance of the GetQueueAttributes Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/SQS/GetQueueAttributes')
+        super(GetQueueAttributes, self).__init__(temboo_session, '/Library/Amazon/SQS/GetQueueAttributes')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class GetQueueAttributesInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(GetQueueAttributesInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSAccountId(self, value):
         """
         Set the value of the AWSAccountId input for this Choreo. ((required, integer) The AWS account number of the queue owner. Enter account number omitting any dashes.)
         """
-        InputSet._set_input(self, 'AWSAccountId', value)
+        super(GetQueueAttributesInputSet, self)._set_input('AWSAccountId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(GetQueueAttributesInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_AttributeName(self, value):
         """
         Set the value of the AttributeName input for this Choreo. ((optional, string) The name of the attribute that you want to retrieve for the specified queue. Defaults to 'All'.)
         """
-        InputSet._set_input(self, 'AttributeName', value)
+        super(GetQueueAttributesInputSet, self)._set_input('AttributeName', value)
     def set_QueueName(self, value):
         """
         Set the value of the QueueName input for this Choreo. ((required, string) The name of the queue to retrieve attributes for.)
         """
-        InputSet._set_input(self, 'QueueName', value)
+        super(GetQueueAttributesInputSet, self)._set_input('QueueName', value)
     def set_UserRegion(self, value):
         """
         Set the value of the UserRegion input for this Choreo. ((optional, string) The AWS region that corresponds to the SQS endpoint you wish to access. The default region is "us-east-1". See description below for valid values.)
         """
-        InputSet._set_input(self, 'UserRegion', value)
+        super(GetQueueAttributesInputSet, self)._set_input('UserRegion', value)
 
 class GetQueueAttributesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetQueueAttributes Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Amazon.)
@@ -87,6 +102,6 @@ class GetQueueAttributesResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetQueueAttributesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetQueueAttributesResultSet(response, path)

@@ -6,7 +6,22 @@
 # Allows you to update, merge, or create key/value pairs.
 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -24,7 +39,7 @@ class ObjectUpdate(Choreography):
         Create a new instance of the ObjectUpdate Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/CloudMine/ObjectStorage/ObjectUpdate')
+        super(ObjectUpdate, self).__init__(temboo_session, '/Library/CloudMine/ObjectStorage/ObjectUpdate')
 
 
     def new_input_set(self):
@@ -45,32 +60,32 @@ class ObjectUpdateInputSet(InputSet):
         """
         Set the value of the Data input for this Choreo. ((required, json) A valid JSON object containing key/value pairs.)
         """
-        InputSet._set_input(self, 'Data', value)
+        super(ObjectUpdateInputSet, self)._set_input('Data', value)
     def set_APIKey(self, value):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by CloudMine after registering your app.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(ObjectUpdateInputSet, self)._set_input('APIKey', value)
     def set_ApplicationIdentifier(self, value):
         """
         Set the value of the ApplicationIdentifier input for this Choreo. ((required, string) The application identifier provided by CloudMine after registering your app.)
         """
-        InputSet._set_input(self, 'ApplicationIdentifier', value)
+        super(ObjectUpdateInputSet, self)._set_input('ApplicationIdentifier', value)
     def set_SessionToken(self, value):
         """
         Set the value of the SessionToken input for this Choreo. ((conditional, string) The session token for an existing user (returned by the AccountLogin Choreo). This is only required if your app is performing this operation on behalf of another user.)
         """
-        InputSet._set_input(self, 'SessionToken', value)
+        super(ObjectUpdateInputSet, self)._set_input('SessionToken', value)
 
 class ObjectUpdateResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ObjectUpdate Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from CloudMine.)
@@ -78,6 +93,6 @@ class ObjectUpdateResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ObjectUpdateChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ObjectUpdateResultSet(response, path)

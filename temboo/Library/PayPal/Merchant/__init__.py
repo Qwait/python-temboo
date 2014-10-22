@@ -1,7 +1,7 @@
-from AddressVerify import *
-from GetBalance import *
-from MakeIndividualPayment import *
-from GetTransactionDetails import *
-from RefundTransaction import *
-from TransactionSearch import *
-from MassPayments import *
+from temboo.Library.PayPal.Merchant.AddressVerify import AddressVerify, AddressVerifyInputSet, AddressVerifyResultSet, AddressVerifyChoreographyExecution
+from temboo.Library.PayPal.Merchant.GetBalance import GetBalance, GetBalanceInputSet, GetBalanceResultSet, GetBalanceChoreographyExecution
+from temboo.Library.PayPal.Merchant.GetTransactionDetails import GetTransactionDetails, GetTransactionDetailsInputSet, GetTransactionDetailsResultSet, GetTransactionDetailsChoreographyExecution
+from temboo.Library.PayPal.Merchant.MakeIndividualPayment import MakeIndividualPayment, MakeIndividualPaymentInputSet, MakeIndividualPaymentResultSet, MakeIndividualPaymentChoreographyExecution
+from temboo.Library.PayPal.Merchant.MassPayments import MassPayments, MassPaymentsInputSet, MassPaymentsResultSet, MassPaymentsChoreographyExecution
+from temboo.Library.PayPal.Merchant.RefundTransaction import RefundTransaction, RefundTransactionInputSet, RefundTransactionResultSet, RefundTransactionChoreographyExecution
+from temboo.Library.PayPal.Merchant.TransactionSearch import TransactionSearch, TransactionSearchInputSet, TransactionSearchResultSet, TransactionSearchChoreographyExecution

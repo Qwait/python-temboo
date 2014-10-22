@@ -5,7 +5,22 @@
 # GetBestSellerHistory
 # Retrieves information about New York Times best-sellers that match a specified search criteria.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetBestSellerHistory(Choreography):
         Create a new instance of the GetBestSellerHistory Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/NYTimes/BestSellers/GetBestSellerHistory')
+        super(GetBestSellerHistory, self).__init__(temboo_session, '/Library/NYTimes/BestSellers/GetBestSellerHistory')
 
 
     def new_input_set(self):
@@ -44,72 +59,72 @@ class GetBestSellerHistoryInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by NY Times.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('APIKey', value)
     def set_AgeGroup(self, value):
         """
         Set the value of the AgeGroup input for this Choreo. ((optional, string) The target age group for the best seller.)
         """
-        InputSet._set_input(self, 'AgeGroup', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('AgeGroup', value)
     def set_Author(self, value):
         """
         Set the value of the Author input for this Choreo. ((optional, string) The author of the best seller.)
         """
-        InputSet._set_input(self, 'Author', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Author', value)
     def set_Contributor(self, value):
         """
         Set the value of the Contributor input for this Choreo. ((optional, string) The author of the best seller, as well as other contributors such as the illustrator.)
         """
-        InputSet._set_input(self, 'Contributor', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Contributor', value)
     def set_ISBN(self, value):
         """
         Set the value of the ISBN input for this Choreo. ((optional, string) International Standard Book Number, 10 or 13 digits.)
         """
-        InputSet._set_input(self, 'ISBN', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('ISBN', value)
     def set_Offset(self, value):
         """
         Set the value of the Offset input for this Choreo. ((optional, integer) The first 20 results are shown by default. To page through the results, set Offset to the appropriate value.)
         """
-        InputSet._set_input(self, 'Offset', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Offset', value)
     def set_Price(self, value):
         """
         Set the value of the Price input for this Choreo. ((optional, decimal) The publisher's list price of the best seller, including decimal point.)
         """
-        InputSet._set_input(self, 'Price', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Price', value)
     def set_Publisher(self, value):
         """
         Set the value of the Publisher input for this Choreo. ((optional, string) The standardized name of the publisher.)
         """
-        InputSet._set_input(self, 'Publisher', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Publisher', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should bein. Valid values are: json (the default), and xml.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('ResponseFormat', value)
     def set_SortBy(self, value):
         """
         Set the value of the SortBy input for this Choreo. ((optional, string) The column name to sort by. Valid values are: age-group, author, contributor, isbn, price, publisher, and title.)
         """
-        InputSet._set_input(self, 'SortBy', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('SortBy', value)
     def set_SortOrder(self, value):
         """
         Set the value of the SortOrder input for this Choreo. ((optional, string) The sort order. Valid values are: ASC and DESC.)
         """
-        InputSet._set_input(self, 'SortOrder', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('SortOrder', value)
     def set_Title(self, value):
         """
         Set the value of the Title input for this Choreo. ((conditional, string) The title of the best seller to retrieve data for.)
         """
-        InputSet._set_input(self, 'Title', value)
+        super(GetBestSellerHistoryInputSet, self)._set_input('Title', value)
 
 class GetBestSellerHistoryResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetBestSellerHistory Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from the NY Times API.)
@@ -117,6 +132,6 @@ class GetBestSellerHistoryResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetBestSellerHistoryChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetBestSellerHistoryResultSet(response, path)

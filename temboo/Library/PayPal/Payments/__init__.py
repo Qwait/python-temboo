@@ -1,7 +1,7 @@
-from LookupPayment import *
-from ListPayments import *
-from ExecutePayment import *
-from VerifyPayPalPayment import *
-from AcceptPayPalPayment import *
-from VerifyAllPayments import *
-from VerifyCreditCardPayment import *
+from temboo.Library.PayPal.Payments.AcceptPayPalPayment import AcceptPayPalPayment, AcceptPayPalPaymentInputSet, AcceptPayPalPaymentResultSet, AcceptPayPalPaymentChoreographyExecution
+from temboo.Library.PayPal.Payments.ExecutePayment import ExecutePayment, ExecutePaymentInputSet, ExecutePaymentResultSet, ExecutePaymentChoreographyExecution
+from temboo.Library.PayPal.Payments.ListPayments import ListPayments, ListPaymentsInputSet, ListPaymentsResultSet, ListPaymentsChoreographyExecution
+from temboo.Library.PayPal.Payments.LookupPayment import LookupPayment, LookupPaymentInputSet, LookupPaymentResultSet, LookupPaymentChoreographyExecution
+from temboo.Library.PayPal.Payments.VerifyAllPayments import VerifyAllPayments, VerifyAllPaymentsInputSet, VerifyAllPaymentsResultSet, VerifyAllPaymentsChoreographyExecution
+from temboo.Library.PayPal.Payments.VerifyCreditCardPayment import VerifyCreditCardPayment, VerifyCreditCardPaymentInputSet, VerifyCreditCardPaymentResultSet, VerifyCreditCardPaymentChoreographyExecution
+from temboo.Library.PayPal.Payments.VerifyPayPalPayment import VerifyPayPalPayment, VerifyPayPalPaymentInputSet, VerifyPayPalPaymentResultSet, VerifyPayPalPaymentChoreographyExecution

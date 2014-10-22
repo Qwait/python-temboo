@@ -5,7 +5,22 @@
 # CreateTicketNewRequester
 # Creates a new ticket as well as a new requester account.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateTicketNewRequester(Choreography):
         Create a new instance of the CreateTicketNewRequester Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zendesk/Tickets/CreateTicketNewRequester')
+        super(CreateTicketNewRequester, self).__init__(temboo_session, '/Library/Zendesk/Tickets/CreateTicketNewRequester')
 
 
     def new_input_set(self):
@@ -44,57 +59,57 @@ class CreateTicketNewRequesterInputSet(InputSet):
         """
         Set the value of the Comment input for this Choreo. ((required, string) The comment for the ticket that is being created.)
         """
-        InputSet._set_input(self, 'Comment', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Comment', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address you use to login to your Zendesk account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Email', value)
     def set_LocaleID(self, value):
         """
         Set the value of the LocaleID input for this Choreo. ((required, integer) LocaleID for the new requester. Indicate 1 for English, 8 for Deutsch, etc.)
         """
-        InputSet._set_input(self, 'LocaleID', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('LocaleID', value)
     def set_Name(self, value):
         """
         Set the value of the Name input for this Choreo. ((required, string) Name of new requester.)
         """
-        InputSet._set_input(self, 'Name', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Name', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) Your Zendesk password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Password', value)
     def set_RequesterEmail(self, value):
         """
         Set the value of the RequesterEmail input for this Choreo. ((required, string) Email of new requester.)
         """
-        InputSet._set_input(self, 'RequesterEmail', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('RequesterEmail', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) Your Zendesk domain and subdomain (e.g., temboocare.zendesk.com).)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Server', value)
     def set_Subject(self, value):
         """
         Set the value of the Subject input for this Choreo. ((required, string) The subject for the ticket that is being created.)
         """
-        InputSet._set_input(self, 'Subject', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Subject', value)
     def set_Token(self, value):
         """
         Set the value of the Token input for this Choreo. ((optional, string) The token associated with an upload to attach to this ticket. Note that tokens can be retrieved by running the UploadFile Choreo.)
         """
-        InputSet._set_input(self, 'Token', value)
+        super(CreateTicketNewRequesterInputSet, self)._set_input('Token', value)
 
 class CreateTicketNewRequesterResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateTicketNewRequester Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Zendesk.)
@@ -102,6 +117,6 @@ class CreateTicketNewRequesterResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateTicketNewRequesterChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateTicketNewRequesterResultSet(response, path)

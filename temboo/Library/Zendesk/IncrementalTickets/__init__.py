@@ -1,1 +1,1 @@
-from ExportIncrementalTickets import *
+from temboo.Library.Zendesk.IncrementalTickets.ExportIncrementalTickets import ExportIncrementalTickets, ExportIncrementalTicketsInputSet, ExportIncrementalTicketsResultSet, ExportIncrementalTicketsChoreographyExecution

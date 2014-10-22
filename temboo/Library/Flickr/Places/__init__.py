@@ -1,3 +1,3 @@
-from FindByCoordinates import *
-from FindByKeyword import *
-from FindByURL import *
+from temboo.Library.Flickr.Places.FindByCoordinates import FindByCoordinates, FindByCoordinatesInputSet, FindByCoordinatesResultSet, FindByCoordinatesChoreographyExecution
+from temboo.Library.Flickr.Places.FindByKeyword import FindByKeyword, FindByKeywordInputSet, FindByKeywordResultSet, FindByKeywordChoreographyExecution
+from temboo.Library.Flickr.Places.FindByURL import FindByURL, FindByURLInputSet, FindByURLResultSet, FindByURLChoreographyExecution

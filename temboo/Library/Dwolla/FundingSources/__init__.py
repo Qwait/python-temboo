@@ -1,2 +1,2 @@
-from FundingSourcesListing import *
-from FundingSourcesByID import *
+from temboo.Library.Dwolla.FundingSources.FundingSourcesByID import FundingSourcesByID, FundingSourcesByIDInputSet, FundingSourcesByIDResultSet, FundingSourcesByIDChoreographyExecution
+from temboo.Library.Dwolla.FundingSources.FundingSourcesListing import FundingSourcesListing, FundingSourcesListingInputSet, FundingSourcesListingResultSet, FundingSourcesListingChoreographyExecution

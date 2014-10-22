@@ -5,7 +5,22 @@
 # CreateTicket
 # Creates a new ticket.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateTicket(Choreography):
         Create a new instance of the CreateTicket Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zendesk/Tickets/CreateTicket')
+        super(CreateTicket, self).__init__(temboo_session, '/Library/Zendesk/Tickets/CreateTicket')
 
 
     def new_input_set(self):
@@ -44,47 +59,47 @@ class CreateTicketInputSet(InputSet):
         """
         Set the value of the Comment input for this Choreo. ((conditional, string) The comment for the ticket that is being created.)
         """
-        InputSet._set_input(self, 'Comment', value)
+        super(CreateTicketInputSet, self)._set_input('Comment', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address you use to login to your Zendesk account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(CreateTicketInputSet, self)._set_input('Email', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) Your Zendesk password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(CreateTicketInputSet, self)._set_input('Password', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) Your Zendesk domain and subdomain (i.e. temboocare.zendesk.com).)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(CreateTicketInputSet, self)._set_input('Server', value)
     def set_Subject(self, value):
         """
         Set the value of the Subject input for this Choreo. ((conditional, string) The subject for the ticket that is being created.)
         """
-        InputSet._set_input(self, 'Subject', value)
+        super(CreateTicketInputSet, self)._set_input('Subject', value)
     def set_TicketData(self, value):
         """
         Set the value of the TicketData input for this Choreo. ((optional, json) A JSON-formatted string containing the ticket properties you wish to set. This can be used as an alternative to setting individual inputs representing ticket properties.)
         """
-        InputSet._set_input(self, 'TicketData', value)
+        super(CreateTicketInputSet, self)._set_input('TicketData', value)
     def set_Token(self, value):
         """
         Set the value of the Token input for this Choreo. ((optional, string) The token associated with an upload to attach to this ticket. Note that tokens can be retrieved by running the UploadFile Choreo.)
         """
-        InputSet._set_input(self, 'Token', value)
+        super(CreateTicketInputSet, self)._set_input('Token', value)
 
 class CreateTicketResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateTicket Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Zendesk.)
@@ -92,6 +107,6 @@ class CreateTicketResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateTicketChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateTicketResultSet(response, path)

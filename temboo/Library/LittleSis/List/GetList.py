@@ -5,7 +5,22 @@
 # GetList
 # Retrieves information about a List in LittleSis according to its ID.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetList(Choreography):
         Create a new instance of the GetList Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LittleSis/List/GetList')
+        super(GetList, self).__init__(temboo_session, '/Library/LittleSis/List/GetList')
 
 
     def new_input_set(self):
@@ -44,47 +59,47 @@ class GetListInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key obtained from LittleSis.org.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetListInputSet, self)._set_input('APIKey', value)
     def set_Entities(self, value):
         """
         Set the value of the Entities input for this Choreo. ((optional, string) Indicate "entities" to retrieve records of the entities that belong to the list. Otherwise, only a basic record about the list will be returned.)
         """
-        InputSet._set_input(self, 'Entities', value)
+        super(GetListInputSet, self)._set_input('Entities', value)
     def set_ListID(self, value):
         """
         Set the value of the ListID input for this Choreo. ((required, integer) The ID of the list record to be returned.)
         """
-        InputSet._set_input(self, 'ListID', value)
+        super(GetListInputSet, self)._set_input('ListID', value)
     def set_Number(self, value):
         """
         Set the value of the Number input for this Choreo. ((optional, integer) Specifies what number of results to show. Used in conjunction with Page parameter, a Nnumber of 20 and a Page of 6 will show results 100-120.)
         """
-        InputSet._set_input(self, 'Number', value)
+        super(GetListInputSet, self)._set_input('Number', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) Specifies what page of results to show. Used in conjunction with Number parameter. A number of 20 and a Page of 6 will show results 100-120.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(GetListInputSet, self)._set_input('Page', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) Format of the response returned by LittleSis.org. Acceptable inputs: xml or json. Defaults to xml)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetListInputSet, self)._set_input('ResponseFormat', value)
     def set_TypeID(self, value):
         """
         Set the value of the TypeID input for this Choreo. ((optional, integer) When the Entities parameter is activated, you can specify type IDs limiting the entities returned to those having the specified types (as a comma-delimited list).)
         """
-        InputSet._set_input(self, 'TypeID', value)
+        super(GetListInputSet, self)._set_input('TypeID', value)
 
 class GetListResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetList Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from LittleSis.org.)
@@ -92,6 +107,6 @@ class GetListResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetListChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetListResultSet(response, path)

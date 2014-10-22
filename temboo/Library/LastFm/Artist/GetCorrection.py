@@ -5,7 +5,22 @@
 # GetCorrection
 # Allows you to check whether the supplied artist has a correction to a canonical artist.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetCorrection(Choreography):
         Create a new instance of the GetCorrection Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LastFm/Artist/GetCorrection')
+        super(GetCorrection, self).__init__(temboo_session, '/Library/LastFm/Artist/GetCorrection')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class GetCorrectionInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((string) Your Last.fm API Key.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetCorrectionInputSet, self)._set_input('APIKey', value)
     def set_Artist(self, value):
         """
         Set the value of the Artist input for this Choreo. ((string) The artist name to correct.)
         """
-        InputSet._set_input(self, 'Artist', value)
+        super(GetCorrectionInputSet, self)._set_input('Artist', value)
 
 class GetCorrectionResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetCorrection Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((XML) The response from Last.fm.)
@@ -67,6 +82,6 @@ class GetCorrectionResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetCorrectionChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetCorrectionResultSet(response, path)

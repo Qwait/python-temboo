@@ -1,4 +1,4 @@
-from CandidateSearch import *
-from CandidateLeadersByCategory import *
-from NewCandidates import *
-from CandidateDetails import *
+from temboo.Library.NYTimes.CampaignFinance.Candidates.CandidateDetails import CandidateDetails, CandidateDetailsInputSet, CandidateDetailsResultSet, CandidateDetailsChoreographyExecution
+from temboo.Library.NYTimes.CampaignFinance.Candidates.CandidateLeadersByCategory import CandidateLeadersByCategory, CandidateLeadersByCategoryInputSet, CandidateLeadersByCategoryResultSet, CandidateLeadersByCategoryChoreographyExecution
+from temboo.Library.NYTimes.CampaignFinance.Candidates.CandidateSearch import CandidateSearch, CandidateSearchInputSet, CandidateSearchResultSet, CandidateSearchChoreographyExecution
+from temboo.Library.NYTimes.CampaignFinance.Candidates.NewCandidates import NewCandidates, NewCandidatesInputSet, NewCandidatesResultSet, NewCandidatesChoreographyExecution

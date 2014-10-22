@@ -5,7 +5,22 @@
 # CreateThread
 # Creates a new thread.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateThread(Choreography):
         Create a new instance of the CreateThread Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Disqus/Threads/CreateThread')
+        super(CreateThread, self).__init__(temboo_session, '/Library/Disqus/Threads/CreateThread')
 
 
     def new_input_set(self):
@@ -44,57 +59,57 @@ class CreateThreadInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) A valid OAuth 2.0 access token.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(CreateThreadInputSet, self)._set_input('AccessToken', value)
     def set_Category(self, value):
         """
         Set the value of the Category input for this Choreo. ((optional, string) The id of a category associated with the thread being created.)
         """
-        InputSet._set_input(self, 'Category', value)
+        super(CreateThreadInputSet, self)._set_input('Category', value)
     def set_Date(self, value):
         """
         Set the value of the Date input for this Choreo. ((optional, date) The date to be associated with this thread (as a unix timestamp or ISO datetime format).)
         """
-        InputSet._set_input(self, 'Date', value)
+        super(CreateThreadInputSet, self)._set_input('Date', value)
     def set_Forum(self, value):
         """
-        Set the value of the Forum input for this Choreo. ((required, string) The ID of an existing forum (AKA the forum short name).)
+        Set the value of the Forum input for this Choreo. ((required, string) Forum Short Name (i.e., the subdomain of the Disqus Site URL).)
         """
-        InputSet._set_input(self, 'Forum', value)
+        super(CreateThreadInputSet, self)._set_input('Forum', value)
     def set_Identifier(self, value):
         """
         Set the value of the Identifier input for this Choreo. ((optional, string) An optional string identifier for the thread. Maximum length is 300.)
         """
-        InputSet._set_input(self, 'Identifier', value)
+        super(CreateThreadInputSet, self)._set_input('Identifier', value)
     def set_Message(self, value):
         """
         Set the value of the Message input for this Choreo. ((optional, string) A message for the new thread.)
         """
-        InputSet._set_input(self, 'Message', value)
+        super(CreateThreadInputSet, self)._set_input('Message', value)
     def set_PublicKey(self, value):
         """
         Set the value of the PublicKey input for this Choreo. ((required, string) The Public Key provided by Disqus (AKA the API Key).)
         """
-        InputSet._set_input(self, 'PublicKey', value)
+        super(CreateThreadInputSet, self)._set_input('PublicKey', value)
     def set_Title(self, value):
         """
         Set the value of the Title input for this Choreo. ((required, string) The title of the thread.)
         """
-        InputSet._set_input(self, 'Title', value)
+        super(CreateThreadInputSet, self)._set_input('Title', value)
     def set_URL(self, value):
         """
         Set the value of the URL input for this Choreo. ((optional, string) A URL to be associated with the thread. Maximum length is 500.)
         """
-        InputSet._set_input(self, 'URL', value)
+        super(CreateThreadInputSet, self)._set_input('URL', value)
 
 class CreateThreadResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateThread Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) )
@@ -102,6 +117,6 @@ class CreateThreadResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateThreadChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateThreadResultSet(response, path)

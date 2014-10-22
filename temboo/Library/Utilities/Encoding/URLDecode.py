@@ -5,7 +5,22 @@
 # URLDecode
 # Removes URL encoding from the specified text string.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class URLDecode(Choreography):
         Create a new instance of the URLDecode Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Encoding/URLDecode')
+        super(URLDecode, self).__init__(temboo_session, '/Library/Utilities/Encoding/URLDecode')
 
 
     def new_input_set(self):
@@ -44,17 +59,17 @@ class URLDecodeInputSet(InputSet):
         """
         Set the value of the Text input for this Choreo. ((required, string) The text that should be URL decoded.)
         """
-        InputSet._set_input(self, 'Text', value)
+        super(URLDecodeInputSet, self)._set_input('Text', value)
 
 class URLDecodeResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the URLDecode Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_URLDecodedText(self):
         """
         Retrieve the value for the "URLDecodedText" output from this Choreo execution. ((string) The URL decoded text.)
@@ -62,6 +77,6 @@ class URLDecodeResultSet(ResultSet):
         return self._output.get('URLDecodedText', None)
 
 class URLDecodeChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return URLDecodeResultSet(response, path)

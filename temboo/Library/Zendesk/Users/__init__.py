@@ -1,12 +1,12 @@
-from ListAllUsers import *
-from ListUsersByGroup import *
-from SuspendUser import *
-from SearchUsers import *
-from DeleteUser import *
-from ShowCurrentUser import *
-from CreateManyUsers import *
-from CreateUser import *
-from ListUsersByOrganization import *
-from UpdateUserImage import *
-from ShowUser import *
-from UpdateUser import *
+from temboo.Library.Zendesk.Users.CreateManyUsers import CreateManyUsers, CreateManyUsersInputSet, CreateManyUsersResultSet, CreateManyUsersChoreographyExecution
+from temboo.Library.Zendesk.Users.CreateUser import CreateUser, CreateUserInputSet, CreateUserResultSet, CreateUserChoreographyExecution
+from temboo.Library.Zendesk.Users.DeleteUser import DeleteUser, DeleteUserInputSet, DeleteUserResultSet, DeleteUserChoreographyExecution
+from temboo.Library.Zendesk.Users.ListAllUsers import ListAllUsers, ListAllUsersInputSet, ListAllUsersResultSet, ListAllUsersChoreographyExecution
+from temboo.Library.Zendesk.Users.ListUsersByGroup import ListUsersByGroup, ListUsersByGroupInputSet, ListUsersByGroupResultSet, ListUsersByGroupChoreographyExecution
+from temboo.Library.Zendesk.Users.ListUsersByOrganization import ListUsersByOrganization, ListUsersByOrganizationInputSet, ListUsersByOrganizationResultSet, ListUsersByOrganizationChoreographyExecution
+from temboo.Library.Zendesk.Users.SearchUsers import SearchUsers, SearchUsersInputSet, SearchUsersResultSet, SearchUsersChoreographyExecution
+from temboo.Library.Zendesk.Users.ShowCurrentUser import ShowCurrentUser, ShowCurrentUserInputSet, ShowCurrentUserResultSet, ShowCurrentUserChoreographyExecution
+from temboo.Library.Zendesk.Users.ShowUser import ShowUser, ShowUserInputSet, ShowUserResultSet, ShowUserChoreographyExecution
+from temboo.Library.Zendesk.Users.SuspendUser import SuspendUser, SuspendUserInputSet, SuspendUserResultSet, SuspendUserChoreographyExecution
+from temboo.Library.Zendesk.Users.UpdateUser import UpdateUser, UpdateUserInputSet, UpdateUserResultSet, UpdateUserChoreographyExecution
+from temboo.Library.Zendesk.Users.UpdateUserImage import UpdateUserImage, UpdateUserImageInputSet, UpdateUserImageResultSet, UpdateUserImageChoreographyExecution

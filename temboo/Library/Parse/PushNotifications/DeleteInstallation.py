@@ -5,7 +5,22 @@
 # DeleteInstallation
 # Deletes an installation object.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class DeleteInstallation(Choreography):
         Create a new instance of the DeleteInstallation Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Parse/PushNotifications/DeleteInstallation')
+        super(DeleteInstallation, self).__init__(temboo_session, '/Library/Parse/PushNotifications/DeleteInstallation')
 
 
     def new_input_set(self):
@@ -42,29 +57,29 @@ class DeleteInstallationInputSet(InputSet):
     """
     def set_ObjectID(self, value):
         """
-        Set the value of the ObjectID input for this Choreo. ((required, string) The ID of the installation to retrieve.)
+        Set the value of the ObjectID input for this Choreo. ((required, string) The ID of the installation to delete.)
         """
-        InputSet._set_input(self, 'ObjectID', value)
+        super(DeleteInstallationInputSet, self)._set_input('ObjectID', value)
     def set_ApplicationID(self, value):
         """
         Set the value of the ApplicationID input for this Choreo. ((required, string) The Application ID provided by Parse.)
         """
-        InputSet._set_input(self, 'ApplicationID', value)
+        super(DeleteInstallationInputSet, self)._set_input('ApplicationID', value)
     def set_MasterKey(self, value):
         """
         Set the value of the MasterKey input for this Choreo. ((required, string) The Master Key provided by Parse.)
         """
-        InputSet._set_input(self, 'MasterKey', value)
+        super(DeleteInstallationInputSet, self)._set_input('MasterKey', value)
 
 class DeleteInstallationResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the DeleteInstallation Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Parse.)
@@ -72,6 +87,6 @@ class DeleteInstallationResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class DeleteInstallationChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return DeleteInstallationResultSet(response, path)

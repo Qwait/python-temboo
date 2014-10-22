@@ -1,3 +1,3 @@
-from ByFoursquare import *
-from ByAddress import *
-from ByCoordinates import *
+from temboo.Library.Labs.GetWeather.ByAddress import ByAddress, ByAddressInputSet, ByAddressResultSet, ByAddressChoreographyExecution
+from temboo.Library.Labs.GetWeather.ByCoordinates import ByCoordinates, ByCoordinatesInputSet, ByCoordinatesResultSet, ByCoordinatesChoreographyExecution
+from temboo.Library.Labs.GetWeather.ByFoursquare import ByFoursquare, ByFoursquareInputSet, ByFoursquareResultSet, ByFoursquareChoreographyExecution

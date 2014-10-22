@@ -5,7 +5,22 @@
 # CompareCommits
 # Retrieves a comparison between two commits.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CompareCommits(Choreography):
         Create a new instance of the CompareCommits Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/GitHub/ReposAPI/Commits/CompareCommits')
+        super(CompareCommits, self).__init__(temboo_session, '/Library/GitHub/ReposAPI/Commits/CompareCommits')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class CompareCommitsInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((conditional, string) The Access Token retrieved during the OAuth process. Required when accessing a protected resource.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(CompareCommitsInputSet, self)._set_input('AccessToken', value)
     def set_Base(self, value):
         """
         Set the value of the Base input for this Choreo. ((required, string) The base commit (i.e. "master").)
         """
-        InputSet._set_input(self, 'Base', value)
+        super(CompareCommitsInputSet, self)._set_input('Base', value)
     def set_Head(self, value):
         """
         Set the value of the Head input for this Choreo. ((required, string) The head commit.)
         """
-        InputSet._set_input(self, 'Head', value)
+        super(CompareCommitsInputSet, self)._set_input('Head', value)
     def set_Repo(self, value):
         """
         Set the value of the Repo input for this Choreo. ((required, string) The name of the repository.)
         """
-        InputSet._set_input(self, 'Repo', value)
+        super(CompareCommitsInputSet, self)._set_input('Repo', value)
     def set_User(self, value):
         """
         Set the value of the User input for this Choreo. ((required, string) The GitHub username.)
         """
-        InputSet._set_input(self, 'User', value)
+        super(CompareCommitsInputSet, self)._set_input('User', value)
 
 class CompareCommitsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CompareCommits Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from GitHub.)
@@ -92,6 +107,6 @@ class CompareCommitsResultSet(ResultSet):
         return self._output.get('Remaining', None)
 
 class CompareCommitsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CompareCommitsResultSet(response, path)

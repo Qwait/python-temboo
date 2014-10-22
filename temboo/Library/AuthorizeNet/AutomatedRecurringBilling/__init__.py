@@ -1,2 +1,2 @@
-from GetSubscriptionStatus import *
-from CancelSubscription import *
+from temboo.Library.AuthorizeNet.AutomatedRecurringBilling.CancelSubscription import CancelSubscription, CancelSubscriptionInputSet, CancelSubscriptionResultSet, CancelSubscriptionChoreographyExecution
+from temboo.Library.AuthorizeNet.AutomatedRecurringBilling.GetSubscriptionStatus import GetSubscriptionStatus, GetSubscriptionStatusInputSet, GetSubscriptionStatusResultSet, GetSubscriptionStatusChoreographyExecution

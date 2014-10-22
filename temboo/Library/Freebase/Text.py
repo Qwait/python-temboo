@@ -5,7 +5,22 @@
 # Text
 # Access Freebase topic and schema descriptions.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Text(Choreography):
         Create a new instance of the Text Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Freebase/Text')
+        super(Text, self).__init__(temboo_session, '/Library/Freebase/Text')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class TextInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by Freebase.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(TextInputSet, self)._set_input('APIKey', value)
     def set_Format(self, value):
         """
         Set the value of the Format input for this Choreo. ((optional, boolean) Specify the retrieved results format.  Enter, html, plan, or raw. Default is set to: raw)
         """
-        InputSet._set_input(self, 'Format', value)
+        super(TextInputSet, self)._set_input('Format', value)
     def set_ID(self, value):
         """
         Set the value of the ID input for this Choreo. ((required, string) Enter the ID of the entity for which description information will be retrieved. IDs and MIDs can be obtained by running the Search Choreo in this bundle. Example input: /en/bob_dylan)
         """
-        InputSet._set_input(self, 'ID', value)
+        super(TextInputSet, self)._set_input('ID', value)
     def set_Language(self, value):
         """
         Set the value of the Language input for this Choreo. ((optional, string) Specify the language in which the searches will be performed. Default is set to English: /lang/en)
         """
-        InputSet._set_input(self, 'Language', value)
+        super(TextInputSet, self)._set_input('Language', value)
     def set_MaximumLength(self, value):
         """
         Set the value of the MaximumLength input for this Choreo. ((optional, integer) Enter the max number of characters to return with the rage of 0 - 4,294,967,295. Valid only for plan Format. Default is to: 200)
         """
-        InputSet._set_input(self, 'MaximumLength', value)
+        super(TextInputSet, self)._set_input('MaximumLength', value)
 
 class TextResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Text Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from the Freebase Text API in JSON.)
@@ -82,6 +97,6 @@ class TextResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class TextChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return TextResultSet(response, path)

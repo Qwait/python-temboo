@@ -4,17 +4,16 @@
 #
 # Class for establishing HTTP access to the Temboo REST API.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
 #
+# Copyright 2014, Temboo Inc.
 #
-# Copyright 2013, Temboo Inc.
-# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
@@ -25,9 +24,16 @@
 
 
 import base64
-import httplib
 import json
-from urllib import urlencode
+
+try:
+    from httplib import HTTPConnection
+    from httplib import HTTPSConnection
+    from urllib import urlencode
+except ImportError:
+    from http.client import HTTPConnection
+    from http.client import HTTPSConnection
+    from urllib.parse import urlencode
 
 from temboo.core.exception import TembooError
 from temboo.core.exception import TembooHTTPError
@@ -39,10 +45,10 @@ class TembooSession(object):
     """
     Provides basic facilities for communicating with the Temboo servers.
     """
-    
+
     SESSION_BASE_PATH = '/arcturus-web/api-1.0'
-    SOURCE_ID="PythonSDK_1.76"
-    
+    SOURCE_ID="PythonSDK_2.5.1"
+
     def __init__(self, organization, appkeyname, appkey, domain='master', base_host='temboolive.com', port="443", secure=True):
         """Construct a new TembooSession
     
@@ -66,7 +72,7 @@ class TembooSession(object):
                         False = use unsecure (http) connections.
 
         """
-        
+
         organization = organization.strip()
         domain = domain.strip()
         appkeyname = appkeyname.strip()
@@ -78,24 +84,22 @@ class TembooSession(object):
             self._host = '{0}:{1}'.format(base_host, str(port))
         else:
             self._host = '{0}.{1}:{2}'.format(organization, base_host, str(port))
-        self._session_base_path = TembooSession.SESSION_BASE_PATH
+        self._session_base_path = self.SESSION_BASE_PATH
         self._headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'x-temboo-domain': '{0}/{1}'.format(organization, domain),
-            'Authorization':'Basic {0}'.format(base64.b64encode(appkeyname + ':' + appkey))
+            'Authorization':'Basic {0}'.format(base64.b64encode((appkeyname + ':' + appkey).encode()).decode('utf-8'))
         }
-
- 
 
     def _do_request(self, http_method, path, body=None, parameters=None):
         """
         Generic HTTP/S connection method.
-        
+
         """
 
         full_path = self._session_base_path + path
-        
+
         #If any parameters were given, tack them on to the end of the path.
         if parameters:
             full_path += '?' + urlencode(parameters)
@@ -105,9 +109,9 @@ class TembooSession(object):
         try:
             #TO DO: Rewrite to facilitate connection pooling.
             if self._secure:
-                conn = httplib.HTTPSConnection(self._host)
+                conn = HTTPSConnection(self._host)
             else:
-                conn = httplib.HTTPConnection(self._host)
+                conn = HTTPConnection(self._host)
 
             try:
                 conn.request(http_method, full_path, body, self._headers)
@@ -115,8 +119,8 @@ class TembooSession(object):
                 raise TembooError('An error occurred connecting to the Temboo server. Verify that your Temboo Account Name is correct, and that you have a functioning network connection')
 
             response = conn.getresponse()
-            body = response.read()
-           
+            body = response.read().decode('utf-8')
+
             #Any 200-series response means success.
             if 200 <= response.status < 300:
                 return json.loads(body)
@@ -179,5 +183,6 @@ class TembooSession(object):
 
         """
         return self._do_request('POST', path, body, parameters)
+
 
 

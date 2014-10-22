@@ -1,4 +1,4 @@
-from Phrases import *
-from FullTextSearch import *
-from Dates import *
-from TopPhraseSources import *
+from temboo.Library.SunlightLabs.CapitolWords.Dates import Dates, DatesInputSet, DatesResultSet, DatesChoreographyExecution
+from temboo.Library.SunlightLabs.CapitolWords.FullTextSearch import FullTextSearch, FullTextSearchInputSet, FullTextSearchResultSet, FullTextSearchChoreographyExecution
+from temboo.Library.SunlightLabs.CapitolWords.Phrases import Phrases, PhrasesInputSet, PhrasesResultSet, PhrasesChoreographyExecution
+from temboo.Library.SunlightLabs.CapitolWords.TopPhraseSources import TopPhraseSources, TopPhraseSourcesInputSet, TopPhraseSourcesResultSet, TopPhraseSourcesChoreographyExecution

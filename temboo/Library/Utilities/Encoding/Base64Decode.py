@@ -5,7 +5,22 @@
 # Base64Decode
 # Returns the specified Base64 encoded string as decoded text.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Base64Decode(Choreography):
         Create a new instance of the Base64Decode Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Encoding/Base64Decode')
+        super(Base64Decode, self).__init__(temboo_session, '/Library/Utilities/Encoding/Base64Decode')
 
 
     def new_input_set(self):
@@ -44,17 +59,17 @@ class Base64DecodeInputSet(InputSet):
         """
         Set the value of the Base64EncodedText input for this Choreo. ((required, string) The Base64 encoded text to decode. Note that Base64 encoded binary data is not allowed.)
         """
-        InputSet._set_input(self, 'Base64EncodedText', value)
+        super(Base64DecodeInputSet, self)._set_input('Base64EncodedText', value)
 
 class Base64DecodeResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Base64Decode Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Text(self):
         """
         Retrieve the value for the "Text" output from this Choreo execution. ((string) The decoded text.)
@@ -62,6 +77,6 @@ class Base64DecodeResultSet(ResultSet):
         return self._output.get('Text', None)
 
 class Base64DecodeChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return Base64DecodeResultSet(response, path)

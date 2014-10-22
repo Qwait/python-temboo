@@ -1,67 +1,67 @@
-from ListInstanceProfilesForRole import *
-from DeleteLoginProfile import *
-from ListAccountAliases import *
-from DeleteGroup import *
-from UpdateGroup import *
-from UpdateUser import *
-from ListSigningCertificates import *
-from CreateAccessKey import *
-from ListServerCertificates import *
-from DeleteVirtualMFADevice import *
-from CreateGroup import *
-from GetAccountPasswordPolicy import *
-from UpdateSigningCertificate import *
-from RemoveUserFromGroup import *
-from ListGroupPolicies import *
-from CreateLoginProfile import *
-from EnableMFADevice import *
-from ListUserPolicies import *
-from DeleteAccountAlias import *
-from AddRoleToInstanceProfile import *
-from DeleteAccountPasswordPolicy import *
-from DeleteServerCertificate import *
-from ChangePassword import *
-from UpdateLoginProfile import *
-from UpdateAccountPasswordPolicy import *
-from RemoveRoleFromInstanceProfile import *
-from DeleteInstanceProfile import *
-from DeleteRolePolicy import *
-from PutGroupPolicy import *
-from UploadSigningCertificate import *
-from GetInstanceProfile import *
-from ListAccessKeys import *
-from ListInstanceProfiles import *
-from CreateVirtualMFADevice import *
-from ListGroupsForUser import *
-from GetUserPolicy import *
-from GetGroup import *
-from PutRolePolicy import *
-from GetGroupPolicy import *
-from DeleteAccessKey import *
-from ListVirtualMFADevices import *
-from ListMFADevices import *
-from GetUser import *
-from ListRolePolicies import *
-from UpdateServerCertificate import *
-from GetServerCertificate import *
-from DeleteUserPolicy import *
-from UpdateAccessKey import *
-from CreateInstanceProfile import *
-from DeleteGroupPolicy import *
-from DeleteRole import *
-from ResyncMFADevice import *
-from DeactivateMFADevice import *
-from CreateAccountAlias import *
-from CreateUser import *
-from GetRolePolicy import *
-from ListUsers import *
-from GetRole import *
-from PutUserPolicy import *
-from GetLoginProfile import *
-from DeleteUser import *
-from ListGroups import *
-from ListRoles import *
-from DeleteSigningCertificate import *
-from AddUserToGroup import *
-from GetAccountSummary import *
-from UploadServerCertificate import *
+from temboo.Library.Amazon.IAM.AddRoleToInstanceProfile import AddRoleToInstanceProfile, AddRoleToInstanceProfileInputSet, AddRoleToInstanceProfileResultSet, AddRoleToInstanceProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.AddUserToGroup import AddUserToGroup, AddUserToGroupInputSet, AddUserToGroupResultSet, AddUserToGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.ChangePassword import ChangePassword, ChangePasswordInputSet, ChangePasswordResultSet, ChangePasswordChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateAccessKey import CreateAccessKey, CreateAccessKeyInputSet, CreateAccessKeyResultSet, CreateAccessKeyChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateAccountAlias import CreateAccountAlias, CreateAccountAliasInputSet, CreateAccountAliasResultSet, CreateAccountAliasChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateGroup import CreateGroup, CreateGroupInputSet, CreateGroupResultSet, CreateGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateInstanceProfile import CreateInstanceProfile, CreateInstanceProfileInputSet, CreateInstanceProfileResultSet, CreateInstanceProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateLoginProfile import CreateLoginProfile, CreateLoginProfileInputSet, CreateLoginProfileResultSet, CreateLoginProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateUser import CreateUser, CreateUserInputSet, CreateUserResultSet, CreateUserChoreographyExecution
+from temboo.Library.Amazon.IAM.CreateVirtualMFADevice import CreateVirtualMFADevice, CreateVirtualMFADeviceInputSet, CreateVirtualMFADeviceResultSet, CreateVirtualMFADeviceChoreographyExecution
+from temboo.Library.Amazon.IAM.DeactivateMFADevice import DeactivateMFADevice, DeactivateMFADeviceInputSet, DeactivateMFADeviceResultSet, DeactivateMFADeviceChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteAccessKey import DeleteAccessKey, DeleteAccessKeyInputSet, DeleteAccessKeyResultSet, DeleteAccessKeyChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteAccountAlias import DeleteAccountAlias, DeleteAccountAliasInputSet, DeleteAccountAliasResultSet, DeleteAccountAliasChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteAccountPasswordPolicy import DeleteAccountPasswordPolicy, DeleteAccountPasswordPolicyInputSet, DeleteAccountPasswordPolicyResultSet, DeleteAccountPasswordPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteGroup import DeleteGroup, DeleteGroupInputSet, DeleteGroupResultSet, DeleteGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteGroupPolicy import DeleteGroupPolicy, DeleteGroupPolicyInputSet, DeleteGroupPolicyResultSet, DeleteGroupPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteInstanceProfile import DeleteInstanceProfile, DeleteInstanceProfileInputSet, DeleteInstanceProfileResultSet, DeleteInstanceProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteLoginProfile import DeleteLoginProfile, DeleteLoginProfileInputSet, DeleteLoginProfileResultSet, DeleteLoginProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteRole import DeleteRole, DeleteRoleInputSet, DeleteRoleResultSet, DeleteRoleChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteRolePolicy import DeleteRolePolicy, DeleteRolePolicyInputSet, DeleteRolePolicyResultSet, DeleteRolePolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteServerCertificate import DeleteServerCertificate, DeleteServerCertificateInputSet, DeleteServerCertificateResultSet, DeleteServerCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteSigningCertificate import DeleteSigningCertificate, DeleteSigningCertificateInputSet, DeleteSigningCertificateResultSet, DeleteSigningCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteUser import DeleteUser, DeleteUserInputSet, DeleteUserResultSet, DeleteUserChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteUserPolicy import DeleteUserPolicy, DeleteUserPolicyInputSet, DeleteUserPolicyResultSet, DeleteUserPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.DeleteVirtualMFADevice import DeleteVirtualMFADevice, DeleteVirtualMFADeviceInputSet, DeleteVirtualMFADeviceResultSet, DeleteVirtualMFADeviceChoreographyExecution
+from temboo.Library.Amazon.IAM.EnableMFADevice import EnableMFADevice, EnableMFADeviceInputSet, EnableMFADeviceResultSet, EnableMFADeviceChoreographyExecution
+from temboo.Library.Amazon.IAM.GetAccountPasswordPolicy import GetAccountPasswordPolicy, GetAccountPasswordPolicyInputSet, GetAccountPasswordPolicyResultSet, GetAccountPasswordPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.GetAccountSummary import GetAccountSummary, GetAccountSummaryInputSet, GetAccountSummaryResultSet, GetAccountSummaryChoreographyExecution
+from temboo.Library.Amazon.IAM.GetGroup import GetGroup, GetGroupInputSet, GetGroupResultSet, GetGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.GetGroupPolicy import GetGroupPolicy, GetGroupPolicyInputSet, GetGroupPolicyResultSet, GetGroupPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.GetInstanceProfile import GetInstanceProfile, GetInstanceProfileInputSet, GetInstanceProfileResultSet, GetInstanceProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.GetLoginProfile import GetLoginProfile, GetLoginProfileInputSet, GetLoginProfileResultSet, GetLoginProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.GetRole import GetRole, GetRoleInputSet, GetRoleResultSet, GetRoleChoreographyExecution
+from temboo.Library.Amazon.IAM.GetRolePolicy import GetRolePolicy, GetRolePolicyInputSet, GetRolePolicyResultSet, GetRolePolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.GetServerCertificate import GetServerCertificate, GetServerCertificateInputSet, GetServerCertificateResultSet, GetServerCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.GetUser import GetUser, GetUserInputSet, GetUserResultSet, GetUserChoreographyExecution
+from temboo.Library.Amazon.IAM.GetUserPolicy import GetUserPolicy, GetUserPolicyInputSet, GetUserPolicyResultSet, GetUserPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.ListAccessKeys import ListAccessKeys, ListAccessKeysInputSet, ListAccessKeysResultSet, ListAccessKeysChoreographyExecution
+from temboo.Library.Amazon.IAM.ListAccountAliases import ListAccountAliases, ListAccountAliasesInputSet, ListAccountAliasesResultSet, ListAccountAliasesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListGroupPolicies import ListGroupPolicies, ListGroupPoliciesInputSet, ListGroupPoliciesResultSet, ListGroupPoliciesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListGroups import ListGroups, ListGroupsInputSet, ListGroupsResultSet, ListGroupsChoreographyExecution
+from temboo.Library.Amazon.IAM.ListGroupsForUser import ListGroupsForUser, ListGroupsForUserInputSet, ListGroupsForUserResultSet, ListGroupsForUserChoreographyExecution
+from temboo.Library.Amazon.IAM.ListInstanceProfiles import ListInstanceProfiles, ListInstanceProfilesInputSet, ListInstanceProfilesResultSet, ListInstanceProfilesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListInstanceProfilesForRole import ListInstanceProfilesForRole, ListInstanceProfilesForRoleInputSet, ListInstanceProfilesForRoleResultSet, ListInstanceProfilesForRoleChoreographyExecution
+from temboo.Library.Amazon.IAM.ListMFADevices import ListMFADevices, ListMFADevicesInputSet, ListMFADevicesResultSet, ListMFADevicesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListRolePolicies import ListRolePolicies, ListRolePoliciesInputSet, ListRolePoliciesResultSet, ListRolePoliciesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListRoles import ListRoles, ListRolesInputSet, ListRolesResultSet, ListRolesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListServerCertificates import ListServerCertificates, ListServerCertificatesInputSet, ListServerCertificatesResultSet, ListServerCertificatesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListSigningCertificates import ListSigningCertificates, ListSigningCertificatesInputSet, ListSigningCertificatesResultSet, ListSigningCertificatesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListUserPolicies import ListUserPolicies, ListUserPoliciesInputSet, ListUserPoliciesResultSet, ListUserPoliciesChoreographyExecution
+from temboo.Library.Amazon.IAM.ListUsers import ListUsers, ListUsersInputSet, ListUsersResultSet, ListUsersChoreographyExecution
+from temboo.Library.Amazon.IAM.ListVirtualMFADevices import ListVirtualMFADevices, ListVirtualMFADevicesInputSet, ListVirtualMFADevicesResultSet, ListVirtualMFADevicesChoreographyExecution
+from temboo.Library.Amazon.IAM.PutGroupPolicy import PutGroupPolicy, PutGroupPolicyInputSet, PutGroupPolicyResultSet, PutGroupPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.PutRolePolicy import PutRolePolicy, PutRolePolicyInputSet, PutRolePolicyResultSet, PutRolePolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.PutUserPolicy import PutUserPolicy, PutUserPolicyInputSet, PutUserPolicyResultSet, PutUserPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.RemoveRoleFromInstanceProfile import RemoveRoleFromInstanceProfile, RemoveRoleFromInstanceProfileInputSet, RemoveRoleFromInstanceProfileResultSet, RemoveRoleFromInstanceProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.RemoveUserFromGroup import RemoveUserFromGroup, RemoveUserFromGroupInputSet, RemoveUserFromGroupResultSet, RemoveUserFromGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.ResyncMFADevice import ResyncMFADevice, ResyncMFADeviceInputSet, ResyncMFADeviceResultSet, ResyncMFADeviceChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateAccessKey import UpdateAccessKey, UpdateAccessKeyInputSet, UpdateAccessKeyResultSet, UpdateAccessKeyChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateAccountPasswordPolicy import UpdateAccountPasswordPolicy, UpdateAccountPasswordPolicyInputSet, UpdateAccountPasswordPolicyResultSet, UpdateAccountPasswordPolicyChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateGroup import UpdateGroup, UpdateGroupInputSet, UpdateGroupResultSet, UpdateGroupChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateLoginProfile import UpdateLoginProfile, UpdateLoginProfileInputSet, UpdateLoginProfileResultSet, UpdateLoginProfileChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateServerCertificate import UpdateServerCertificate, UpdateServerCertificateInputSet, UpdateServerCertificateResultSet, UpdateServerCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateSigningCertificate import UpdateSigningCertificate, UpdateSigningCertificateInputSet, UpdateSigningCertificateResultSet, UpdateSigningCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.UpdateUser import UpdateUser, UpdateUserInputSet, UpdateUserResultSet, UpdateUserChoreographyExecution
+from temboo.Library.Amazon.IAM.UploadServerCertificate import UploadServerCertificate, UploadServerCertificateInputSet, UploadServerCertificateResultSet, UploadServerCertificateChoreographyExecution
+from temboo.Library.Amazon.IAM.UploadSigningCertificate import UploadSigningCertificate, UploadSigningCertificateInputSet, UploadSigningCertificateResultSet, UploadSigningCertificateChoreographyExecution

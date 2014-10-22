@@ -1,4 +1,4 @@
-from ReadWantsToReads import *
-from UpdateWantsToRead import *
-from DeleteWantsToRead import *
-from CreateWantsToRead import *
+from temboo.Library.Facebook.Actions.Books.WantsToRead.CreateWantsToRead import CreateWantsToRead, CreateWantsToReadInputSet, CreateWantsToReadResultSet, CreateWantsToReadChoreographyExecution
+from temboo.Library.Facebook.Actions.Books.WantsToRead.DeleteWantsToRead import DeleteWantsToRead, DeleteWantsToReadInputSet, DeleteWantsToReadResultSet, DeleteWantsToReadChoreographyExecution
+from temboo.Library.Facebook.Actions.Books.WantsToRead.ReadWantsToReads import ReadWantsToReads, ReadWantsToReadsInputSet, ReadWantsToReadsResultSet, ReadWantsToReadsChoreographyExecution
+from temboo.Library.Facebook.Actions.Books.WantsToRead.UpdateWantsToRead import UpdateWantsToRead, UpdateWantsToReadInputSet, UpdateWantsToReadResultSet, UpdateWantsToReadChoreographyExecution

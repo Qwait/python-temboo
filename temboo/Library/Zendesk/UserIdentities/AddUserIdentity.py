@@ -5,7 +5,22 @@
 # AddUserIdentity
 # Allows an agent to add new identities for a given user ID. 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class AddUserIdentity(Choreography):
         Create a new instance of the AddUserIdentity Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Zendesk/UserIdentities/AddUserIdentity')
+        super(AddUserIdentity, self).__init__(temboo_session, '/Library/Zendesk/UserIdentities/AddUserIdentity')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class AddUserIdentityInputSet(InputSet):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address you use to login to your Zendesk account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(AddUserIdentityInputSet, self)._set_input('Email', value)
     def set_ID(self, value):
         """
         Set the value of the ID input for this Choreo. ((conditional, string) The ID of the user.)
         """
-        InputSet._set_input(self, 'ID', value)
+        super(AddUserIdentityInputSet, self)._set_input('ID', value)
     def set_Identity(self, value):
         """
         Set the value of the Identity input for this Choreo. ((required, string) The unique idenity (e.g.  test@test.com, test@gmail.com, screen_name))
         """
-        InputSet._set_input(self, 'Identity', value)
+        super(AddUserIdentityInputSet, self)._set_input('Identity', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) Your Zendesk password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(AddUserIdentityInputSet, self)._set_input('Password', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) Your Zendesk domain and subdomain (e.g., temboocare.zendesk.com).)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(AddUserIdentityInputSet, self)._set_input('Server', value)
     def set_Type(self, value):
         """
         Set the value of the Type input for this Choreo. ((conditional, string) Type of identity to add (e.g. email, facebook, twitter, google))
         """
-        InputSet._set_input(self, 'Type', value)
+        super(AddUserIdentityInputSet, self)._set_input('Type', value)
 
 class AddUserIdentityResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the AddUserIdentity Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Zendesk.)
@@ -87,6 +102,6 @@ class AddUserIdentityResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class AddUserIdentityChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return AddUserIdentityResultSet(response, path)

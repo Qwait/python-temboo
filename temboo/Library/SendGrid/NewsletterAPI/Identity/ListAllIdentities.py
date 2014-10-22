@@ -5,7 +5,22 @@
 # ListAllIdentities
 # Retrieve information about a specified Identity.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListAllIdentities(Choreography):
         Create a new instance of the ListAllIdentities Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/SendGrid/NewsletterAPI/Identity/ListAllIdentities')
+        super(ListAllIdentities, self).__init__(temboo_session, '/Library/SendGrid/NewsletterAPI/Identity/ListAllIdentities')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class ListAllIdentitiesInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key obtained from SendGrid.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(ListAllIdentitiesInputSet, self)._set_input('APIKey', value)
     def set_APIUser(self, value):
         """
         Set the value of the APIUser input for this Choreo. ((required, string) The username registered with SendGrid. )
         """
-        InputSet._set_input(self, 'APIUser', value)
+        super(ListAllIdentitiesInputSet, self)._set_input('APIUser', value)
     def set_Identity(self, value):
         """
         Set the value of the Identity input for this Choreo. ((optional, string) The identity for which info will be retrieved. Leave it empty to list all Identities in this account.)
         """
-        InputSet._set_input(self, 'Identity', value)
+        super(ListAllIdentitiesInputSet, self)._set_input('Identity', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format of the response from SendGrid. Specify json, or xml.  Default is set to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ListAllIdentitiesInputSet, self)._set_input('ResponseFormat', value)
 
 
 class ListAllIdentitiesResultSet(ResultSet):
@@ -67,10 +82,10 @@ class ListAllIdentitiesResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the ListAllIdentities Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from SendGrid. The format corresponds to the ResponseFormat input. Default is json.)
@@ -78,6 +93,6 @@ class ListAllIdentitiesResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListAllIdentitiesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListAllIdentitiesResultSet(response, path)

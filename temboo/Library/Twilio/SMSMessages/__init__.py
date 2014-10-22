@@ -1,6 +1,6 @@
-from SendSMS import *
-from GetMessagesThatContain import *
-from GetLastMessageFromNumber import *
-from GetMessage import *
-from GetLastMessageThatContains import *
-from ListMessages import *
+from temboo.Library.Twilio.SMSMessages.GetLastMessageFromNumber import GetLastMessageFromNumber, GetLastMessageFromNumberInputSet, GetLastMessageFromNumberResultSet, GetLastMessageFromNumberChoreographyExecution
+from temboo.Library.Twilio.SMSMessages.GetLastMessageThatContains import GetLastMessageThatContains, GetLastMessageThatContainsInputSet, GetLastMessageThatContainsResultSet, GetLastMessageThatContainsChoreographyExecution
+from temboo.Library.Twilio.SMSMessages.GetMessage import GetMessage, GetMessageInputSet, GetMessageResultSet, GetMessageChoreographyExecution
+from temboo.Library.Twilio.SMSMessages.GetMessagesThatContain import GetMessagesThatContain, GetMessagesThatContainInputSet, GetMessagesThatContainResultSet, GetMessagesThatContainChoreographyExecution
+from temboo.Library.Twilio.SMSMessages.ListMessages import ListMessages, ListMessagesInputSet, ListMessagesResultSet, ListMessagesChoreographyExecution
+from temboo.Library.Twilio.SMSMessages.SendSMS import SendSMS, SendSMSInputSet, SendSMSResultSet, SendSMSChoreographyExecution

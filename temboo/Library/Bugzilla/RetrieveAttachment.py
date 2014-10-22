@@ -3,9 +3,24 @@
 ###############################################################################
 #
 # RetrieveAttachment
-# Retrieve attachments associated with a specifig Bug ID.
+# Retrieves a bug attachment by ID.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class RetrieveAttachment(Choreography):
         Create a new instance of the RetrieveAttachment Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Bugzilla/RetrieveAttachment')
+        super(RetrieveAttachment, self).__init__(temboo_session, '/Library/Bugzilla/RetrieveAttachment')
 
 
     def new_input_set(self):
@@ -42,39 +57,39 @@ class RetrieveAttachmentInputSet(InputSet):
     """
     def set_AttachmentID(self, value):
         """
-        Set the value of the AttachmentID input for this Choreo. ((required, integer) Enter an attachment ID, for which information will be retrieved.)
+        Set the value of the AttachmentID input for this Choreo. ((required, integer) The ID of the attachment to retrieve.)
         """
-        InputSet._set_input(self, 'AttachmentID', value)
+        super(RetrieveAttachmentInputSet, self)._set_input('AttachmentID', value)
     def set_AttachmentsWithData(self, value):
         """
         Set the value of the AttachmentsWithData input for this Choreo. ((optional, integer) Enter 1 to obtain full bug attachments data.  If null, only attachments fields will be returned with no associated data.)
         """
-        InputSet._set_input(self, 'AttachmentsWithData', value)
+        super(RetrieveAttachmentInputSet, self)._set_input('AttachmentsWithData', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((optional, password) Your Bugzilla password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(RetrieveAttachmentInputSet, self)._set_input('Password', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((optional, string) The base URL for the Bugzilla server to access. Defaults to https://api-dev.bugzilla.mozilla.org/latest. To access the test server, set to https://api-dev.bugzilla.mozilla.org/test/latest.)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(RetrieveAttachmentInputSet, self)._set_input('Server', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((optional, string) Your Bugzilla username.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(RetrieveAttachmentInputSet, self)._set_input('Username', value)
 
 class RetrieveAttachmentResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the RetrieveAttachment Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Bugzilla.)
@@ -82,6 +97,6 @@ class RetrieveAttachmentResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class RetrieveAttachmentChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return RetrieveAttachmentResultSet(response, path)

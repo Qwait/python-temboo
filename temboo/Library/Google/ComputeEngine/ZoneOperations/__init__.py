@@ -1,3 +1,3 @@
-from GetZoneOperation import *
-from ListZoneOperations import *
-from DeleteZoneOperation import *
+from temboo.Library.Google.ComputeEngine.ZoneOperations.DeleteZoneOperation import DeleteZoneOperation, DeleteZoneOperationInputSet, DeleteZoneOperationResultSet, DeleteZoneOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.ZoneOperations.GetZoneOperation import GetZoneOperation, GetZoneOperationInputSet, GetZoneOperationResultSet, GetZoneOperationChoreographyExecution
+from temboo.Library.Google.ComputeEngine.ZoneOperations.ListZoneOperations import ListZoneOperations, ListZoneOperationsInputSet, ListZoneOperationsResultSet, ListZoneOperationsChoreographyExecution

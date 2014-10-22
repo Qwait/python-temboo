@@ -1,8 +1,8 @@
-from ListAllRequests import *
-from GetRequest import *
-from UpdateRequest import *
-from ListComments import *
-from ListUserRequests import *
-from ListOrganizationRequests import *
-from GetComment import *
-from CreateRequest import *
+from temboo.Library.Zendesk.Requests.CreateRequest import CreateRequest, CreateRequestInputSet, CreateRequestResultSet, CreateRequestChoreographyExecution
+from temboo.Library.Zendesk.Requests.GetComment import GetComment, GetCommentInputSet, GetCommentResultSet, GetCommentChoreographyExecution
+from temboo.Library.Zendesk.Requests.GetRequest import GetRequest, GetRequestInputSet, GetRequestResultSet, GetRequestChoreographyExecution
+from temboo.Library.Zendesk.Requests.ListAllRequests import ListAllRequests, ListAllRequestsInputSet, ListAllRequestsResultSet, ListAllRequestsChoreographyExecution
+from temboo.Library.Zendesk.Requests.ListComments import ListComments, ListCommentsInputSet, ListCommentsResultSet, ListCommentsChoreographyExecution
+from temboo.Library.Zendesk.Requests.ListOrganizationRequests import ListOrganizationRequests, ListOrganizationRequestsInputSet, ListOrganizationRequestsResultSet, ListOrganizationRequestsChoreographyExecution
+from temboo.Library.Zendesk.Requests.ListUserRequests import ListUserRequests, ListUserRequestsInputSet, ListUserRequestsResultSet, ListUserRequestsChoreographyExecution
+from temboo.Library.Zendesk.Requests.UpdateRequest import UpdateRequest, UpdateRequestInputSet, UpdateRequestResultSet, UpdateRequestChoreographyExecution

@@ -5,7 +5,22 @@
 # UpdateUser
 # Updates an existing user.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class UpdateUser(Choreography):
         Create a new instance of the UpdateUser Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/OneLogin/Users/UpdateUser')
+        super(UpdateUser, self).__init__(temboo_session, '/Library/OneLogin/Users/UpdateUser')
 
 
     def new_input_set(self):
@@ -44,62 +59,62 @@ class UpdateUserInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by OneLogin.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(UpdateUserInputSet, self)._set_input('APIKey', value)
     def set_Address(self, value):
         """
         Set the value of the Address input for this Choreo. ((conditional, string) The street address for the new account.)
         """
-        InputSet._set_input(self, 'Address', value)
+        super(UpdateUserInputSet, self)._set_input('Address', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((conditional, string) The email address for the new user.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(UpdateUserInputSet, self)._set_input('Email', value)
     def set_FirstName(self, value):
         """
         Set the value of the FirstName input for this Choreo. ((conditional, string) The first name of the new user.)
         """
-        InputSet._set_input(self, 'FirstName', value)
+        super(UpdateUserInputSet, self)._set_input('FirstName', value)
     def set_GroupID(self, value):
         """
         Set the value of the GroupID input for this Choreo. ((optional, string) The group id associated with the new user.)
         """
-        InputSet._set_input(self, 'GroupID', value)
+        super(UpdateUserInputSet, self)._set_input('GroupID', value)
     def set_ID(self, value):
         """
         Set the value of the ID input for this Choreo. ((required, integer) The id of the user you want to update.)
         """
-        InputSet._set_input(self, 'ID', value)
+        super(UpdateUserInputSet, self)._set_input('ID', value)
     def set_LastName(self, value):
         """
         Set the value of the LastName input for this Choreo. ((conditional, string) The last name of the new user.)
         """
-        InputSet._set_input(self, 'LastName', value)
+        super(UpdateUserInputSet, self)._set_input('LastName', value)
     def set_OpenIDName(self, value):
         """
         Set the value of the OpenIDName input for this Choreo. ((conditional, string) The open id name.)
         """
-        InputSet._set_input(self, 'OpenIDName', value)
+        super(UpdateUserInputSet, self)._set_input('OpenIDName', value)
     def set_Phone(self, value):
         """
         Set the value of the Phone input for this Choreo. ((conditional, string) The phone number of the new user.)
         """
-        InputSet._set_input(self, 'Phone', value)
+        super(UpdateUserInputSet, self)._set_input('Phone', value)
     def set_Role(self, value):
         """
         Set the value of the Role input for this Choreo. ((optional, string) Updates a user's role.)
         """
-        InputSet._set_input(self, 'Role', value)
+        super(UpdateUserInputSet, self)._set_input('Role', value)
 
 class UpdateUserResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the UpdateUser Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from OneLogin.)
@@ -107,6 +122,6 @@ class UpdateUserResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class UpdateUserChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return UpdateUserResultSet(response, path)

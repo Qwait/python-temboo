@@ -5,7 +5,22 @@
 # OpenThread
 # Open a thread.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class OpenThread(Choreography):
         Create a new instance of the OpenThread Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Disqus/Threads/OpenThread')
+        super(OpenThread, self).__init__(temboo_session, '/Library/Disqus/Threads/OpenThread')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class OpenThreadInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) A valid OAuth 2.0 access token.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(OpenThreadInputSet, self)._set_input('AccessToken', value)
     def set_Forum(self, value):
         """
-        Set the value of the Forum input for this Choreo. ((optional, integer) The forum ID of the thread that is to be opened.  Required if setting either ThreadByIdentification, or ThreadByLink.)
+        Set the value of the Forum input for this Choreo. ((optional, string) Forum Short Name (i.e., the subdomain of the Disqus Site URL).  Required if setting either ThreadByIdentification, or ThreadByLink.)
         """
-        InputSet._set_input(self, 'Forum', value)
+        super(OpenThreadInputSet, self)._set_input('Forum', value)
     def set_PublicKey(self, value):
         """
         Set the value of the PublicKey input for this Choreo. ((required, string) The Public Key provided by Disqus (AKA the API Key).)
         """
-        InputSet._set_input(self, 'PublicKey', value)
+        super(OpenThreadInputSet, self)._set_input('PublicKey', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: json (the default) and jsonp.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(OpenThreadInputSet, self)._set_input('ResponseFormat', value)
     def set_ThreadID(self, value):
         """
         Set the value of the ThreadID input for this Choreo. ((conditional, integer) The ID of a thread. Required unless specifying ThreadIdentifier or ThreadLink. If using this parameter, ThreadIdentifier cannot be set.)
         """
-        InputSet._set_input(self, 'ThreadID', value)
+        super(OpenThreadInputSet, self)._set_input('ThreadID', value)
     def set_ThreadIdentifier(self, value):
         """
         Set the value of the ThreadIdentifier input for this Choreo. ((conditional, string) The identifier of the thread that is to be opened. Note that a Forum must also be provided when using this parameter. If set, ThreadID and ThreadLink cannot be used.)
         """
-        InputSet._set_input(self, 'ThreadIdentifier', value)
+        super(OpenThreadInputSet, self)._set_input('ThreadIdentifier', value)
     def set_ThreadLink(self, value):
         """
         Set the value of the ThreadLink input for this Choreo. ((conditional, string) A link pointing to the thread that is to be opened. Note that a Forum must also be provided when using this parameter. If set, ThreadID and ThreadIdentifier cannot be set.)
         """
-        InputSet._set_input(self, 'ThreadLink', value)
+        super(OpenThreadInputSet, self)._set_input('ThreadLink', value)
 
 
 class OpenThreadResultSet(ResultSet):
@@ -82,10 +97,10 @@ class OpenThreadResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the OpenThread Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Disqus.)
@@ -93,6 +108,6 @@ class OpenThreadResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class OpenThreadChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return OpenThreadResultSet(response, path)

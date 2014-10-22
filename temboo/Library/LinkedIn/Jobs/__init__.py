@@ -1,8 +1,8 @@
-from GetSuggestedJobs import *
-from GetBookmarkedJobs import *
-from SearchJobsByJobTitle import *
-from SearchJobsByZipcodeAndCountryCode import *
-from GetJobs import *
-from DeleteJobBookmark import *
-from BookmarkAJob import *
-from SearchJobsByKeywords import *
+from temboo.Library.LinkedIn.Jobs.BookmarkAJob import BookmarkAJob, BookmarkAJobInputSet, BookmarkAJobResultSet, BookmarkAJobChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.DeleteJobBookmark import DeleteJobBookmark, DeleteJobBookmarkInputSet, DeleteJobBookmarkResultSet, DeleteJobBookmarkChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.GetBookmarkedJobs import GetBookmarkedJobs, GetBookmarkedJobsInputSet, GetBookmarkedJobsResultSet, GetBookmarkedJobsChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.GetJobs import GetJobs, GetJobsInputSet, GetJobsResultSet, GetJobsChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.GetSuggestedJobs import GetSuggestedJobs, GetSuggestedJobsInputSet, GetSuggestedJobsResultSet, GetSuggestedJobsChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.SearchJobsByJobTitle import SearchJobsByJobTitle, SearchJobsByJobTitleInputSet, SearchJobsByJobTitleResultSet, SearchJobsByJobTitleChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.SearchJobsByKeywords import SearchJobsByKeywords, SearchJobsByKeywordsInputSet, SearchJobsByKeywordsResultSet, SearchJobsByKeywordsChoreographyExecution
+from temboo.Library.LinkedIn.Jobs.SearchJobsByZipcodeAndCountryCode import SearchJobsByZipcodeAndCountryCode, SearchJobsByZipcodeAndCountryCodeInputSet, SearchJobsByZipcodeAndCountryCodeResultSet, SearchJobsByZipcodeAndCountryCodeChoreographyExecution

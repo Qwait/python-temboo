@@ -1,3 +1,3 @@
-from DeleteBloodPressureLog import *
-from LogBloodPressure import *
-from GetBloodPressure import *
+from temboo.Library.Fitbit.BloodPressure.DeleteBloodPressureLog import DeleteBloodPressureLog, DeleteBloodPressureLogInputSet, DeleteBloodPressureLogResultSet, DeleteBloodPressureLogChoreographyExecution
+from temboo.Library.Fitbit.BloodPressure.GetBloodPressure import GetBloodPressure, GetBloodPressureInputSet, GetBloodPressureResultSet, GetBloodPressureChoreographyExecution
+from temboo.Library.Fitbit.BloodPressure.LogBloodPressure import LogBloodPressure, LogBloodPressureInputSet, LogBloodPressureResultSet, LogBloodPressureChoreographyExecution

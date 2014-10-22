@@ -1,4 +1,4 @@
-from DeleteListen import *
-from CreateListen import *
-from UpdateListen import *
-from ReadListens import *
+from temboo.Library.Facebook.Actions.Music.Listens.CreateListen import CreateListen, CreateListenInputSet, CreateListenResultSet, CreateListenChoreographyExecution
+from temboo.Library.Facebook.Actions.Music.Listens.DeleteListen import DeleteListen, DeleteListenInputSet, DeleteListenResultSet, DeleteListenChoreographyExecution
+from temboo.Library.Facebook.Actions.Music.Listens.ReadListens import ReadListens, ReadListensInputSet, ReadListensResultSet, ReadListensChoreographyExecution
+from temboo.Library.Facebook.Actions.Music.Listens.UpdateListen import UpdateListen, UpdateListenInputSet, UpdateListenResultSet, UpdateListenChoreographyExecution

@@ -1,6 +1,6 @@
-from ListPlaylistsByChannel import *
-from UpdatePlaylist import *
-from ListMyPlaylists import *
-from InsertPlaylist import *
-from ListPlaylistsByID import *
-from DeletePlaylist import *
+from temboo.Library.YouTube.Playlists.DeletePlaylist import DeletePlaylist, DeletePlaylistInputSet, DeletePlaylistResultSet, DeletePlaylistChoreographyExecution
+from temboo.Library.YouTube.Playlists.InsertPlaylist import InsertPlaylist, InsertPlaylistInputSet, InsertPlaylistResultSet, InsertPlaylistChoreographyExecution
+from temboo.Library.YouTube.Playlists.ListMyPlaylists import ListMyPlaylists, ListMyPlaylistsInputSet, ListMyPlaylistsResultSet, ListMyPlaylistsChoreographyExecution
+from temboo.Library.YouTube.Playlists.ListPlaylistsByChannel import ListPlaylistsByChannel, ListPlaylistsByChannelInputSet, ListPlaylistsByChannelResultSet, ListPlaylistsByChannelChoreographyExecution
+from temboo.Library.YouTube.Playlists.ListPlaylistsByID import ListPlaylistsByID, ListPlaylistsByIDInputSet, ListPlaylistsByIDResultSet, ListPlaylistsByIDChoreographyExecution
+from temboo.Library.YouTube.Playlists.UpdatePlaylist import UpdatePlaylist, UpdatePlaylistInputSet, UpdatePlaylistResultSet, UpdatePlaylistChoreographyExecution

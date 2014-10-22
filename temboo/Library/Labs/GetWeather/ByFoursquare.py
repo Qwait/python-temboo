@@ -5,7 +5,22 @@
 # ByFoursquare
 # Retrieves weather and UV index data based on coordinates returned from a Foursquare recent check-in.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ByFoursquare(Choreography):
         Create a new instance of the ByFoursquare Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Labs/GetWeather/ByFoursquare')
+        super(ByFoursquare, self).__init__(temboo_session, '/Library/Labs/GetWeather/ByFoursquare')
 
 
     def new_input_set(self):
@@ -44,27 +59,27 @@ class ByFoursquareInputSet(InputSet):
         """
         Set the value of the APICredentials input for this Choreo. ((required, json) A JSON dictionary containing your Foursquare and Yahoo credentials. See Choreo documentation for formatting examples.)
         """
-        InputSet._set_input(self, 'APICredentials', value)
+        super(ByFoursquareInputSet, self)._set_input('APICredentials', value)
     def set_Shout(self, value):
         """
         Set the value of the Shout input for this Choreo. ((optional, string) A message about your check-in. The maximum length of this field is 140 characters.)
         """
-        InputSet._set_input(self, 'Shout', value)
+        super(ByFoursquareInputSet, self)._set_input('Shout', value)
     def set_VenueID(self, value):
         """
         Set the value of the VenueID input for this Choreo. ((optional, string) The venue where the user is checking in. Required if creating a Foursquare checkin.)
         """
-        InputSet._set_input(self, 'VenueID', value)
+        super(ByFoursquareInputSet, self)._set_input('VenueID', value)
 
 class ByFoursquareResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ByFoursquare Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) Contains weather information based on the coordinates returned from the Foursquare checkin.)
@@ -72,6 +87,6 @@ class ByFoursquareResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ByFoursquareChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ByFoursquareResultSet(response, path)

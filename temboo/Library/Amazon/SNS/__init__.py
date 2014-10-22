@@ -1,13 +1,13 @@
-from Subscribe import *
-from DeleteTopic import *
-from Unsubscribe import *
-from SetTopicAttributes import *
-from RemovePermission import *
-from AddPermission import *
-from GetTopicAttributes import *
-from ConfirmSubscription import *
-from ListTopics import *
-from CreateTopic import *
-from ListSubscriptions import *
-from Publish import *
-from ListSubscriptionsByTopic import *
+from temboo.Library.Amazon.SNS.AddPermission import AddPermission, AddPermissionInputSet, AddPermissionResultSet, AddPermissionChoreographyExecution
+from temboo.Library.Amazon.SNS.ConfirmSubscription import ConfirmSubscription, ConfirmSubscriptionInputSet, ConfirmSubscriptionResultSet, ConfirmSubscriptionChoreographyExecution
+from temboo.Library.Amazon.SNS.CreateTopic import CreateTopic, CreateTopicInputSet, CreateTopicResultSet, CreateTopicChoreographyExecution
+from temboo.Library.Amazon.SNS.DeleteTopic import DeleteTopic, DeleteTopicInputSet, DeleteTopicResultSet, DeleteTopicChoreographyExecution
+from temboo.Library.Amazon.SNS.GetTopicAttributes import GetTopicAttributes, GetTopicAttributesInputSet, GetTopicAttributesResultSet, GetTopicAttributesChoreographyExecution
+from temboo.Library.Amazon.SNS.ListSubscriptions import ListSubscriptions, ListSubscriptionsInputSet, ListSubscriptionsResultSet, ListSubscriptionsChoreographyExecution
+from temboo.Library.Amazon.SNS.ListSubscriptionsByTopic import ListSubscriptionsByTopic, ListSubscriptionsByTopicInputSet, ListSubscriptionsByTopicResultSet, ListSubscriptionsByTopicChoreographyExecution
+from temboo.Library.Amazon.SNS.ListTopics import ListTopics, ListTopicsInputSet, ListTopicsResultSet, ListTopicsChoreographyExecution
+from temboo.Library.Amazon.SNS.Publish import Publish, PublishInputSet, PublishResultSet, PublishChoreographyExecution
+from temboo.Library.Amazon.SNS.RemovePermission import RemovePermission, RemovePermissionInputSet, RemovePermissionResultSet, RemovePermissionChoreographyExecution
+from temboo.Library.Amazon.SNS.SetTopicAttributes import SetTopicAttributes, SetTopicAttributesInputSet, SetTopicAttributesResultSet, SetTopicAttributesChoreographyExecution
+from temboo.Library.Amazon.SNS.Subscribe import Subscribe, SubscribeInputSet, SubscribeResultSet, SubscribeChoreographyExecution
+from temboo.Library.Amazon.SNS.Unsubscribe import Unsubscribe, UnsubscribeInputSet, UnsubscribeResultSet, UnsubscribeChoreographyExecution

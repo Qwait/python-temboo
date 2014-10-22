@@ -5,7 +5,22 @@
 # GetObjectACL
 # Returns the access control list (ACL) of a file or object.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetObjectACL(Choreography):
         Create a new instance of the GetObjectACL Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/S3/GetObjectACL')
+        super(GetObjectACL, self).__init__(temboo_session, '/Library/Amazon/S3/GetObjectACL')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetObjectACLInputSet(InputSet):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(GetObjectACLInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(GetObjectACLInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_BucketName(self, value):
         """
         Set the value of the BucketName input for this Choreo. ((required, string) The name of the bucket associated with the ACL you want to retrieve.)
         """
-        InputSet._set_input(self, 'BucketName', value)
+        super(GetObjectACLInputSet, self)._set_input('BucketName', value)
     def set_FileName(self, value):
         """
         Set the value of the FileName input for this Choreo. ((required, string) Name of the file or object you wish to retrieve the ACL for. Ex.: filename.txt or folder/filename.txt.)
         """
-        InputSet._set_input(self, 'FileName', value)
+        super(GetObjectACLInputSet, self)._set_input('FileName', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Can be set to xml or json. Defaults to xml.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(GetObjectACLInputSet, self)._set_input('ResponseFormat', value)
 
 class GetObjectACLResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetObjectACL Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Amazon.)
@@ -82,6 +97,6 @@ class GetObjectACLResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetObjectACLChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetObjectACLResultSet(response, path)

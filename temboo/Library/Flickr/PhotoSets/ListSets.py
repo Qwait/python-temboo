@@ -5,7 +5,22 @@
 # ListSets
 # Returns the photosets belonging to the specified user.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListSets(Choreography):
         Create a new instance of the ListSets Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Flickr/PhotoSets/ListSets')
+        super(ListSets, self).__init__(temboo_session, '/Library/Flickr/PhotoSets/ListSets')
 
 
     def new_input_set(self):
@@ -44,52 +59,52 @@ class ListSetsInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by Flickr (AKA the OAuth Consumer Key).)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(ListSetsInputSet, self)._set_input('APIKey', value)
     def set_APISecret(self, value):
         """
         Set the value of the APISecret input for this Choreo. ((conditional, string) The API Secret provided by Flickr (AKA the OAuth Consumer Secret). Required when accessing a protected resource or when UserID is not provided.)
         """
-        InputSet._set_input(self, 'APISecret', value)
+        super(ListSetsInputSet, self)._set_input('APISecret', value)
     def set_AccessTokenSecret(self, value):
         """
         Set the value of the AccessTokenSecret input for this Choreo. ((conditional, string) The Access Token Secret retrieved during the OAuth process. Required when accessing a protected resource or when UserID is not provided.)
         """
-        InputSet._set_input(self, 'AccessTokenSecret', value)
+        super(ListSetsInputSet, self)._set_input('AccessTokenSecret', value)
     def set_AccessToken(self, value):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process. Required when accessing a protected resource or when UserID is not provided.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(ListSetsInputSet, self)._set_input('AccessToken', value)
     def set_Page(self, value):
         """
         Set the value of the Page input for this Choreo. ((optional, integer) The page of results to get. Currently, if this is not provided, all sets are returned, but this behaviour may change in future.)
         """
-        InputSet._set_input(self, 'Page', value)
+        super(ListSetsInputSet, self)._set_input('Page', value)
     def set_PerPage(self, value):
         """
         Set the value of the PerPage input for this Choreo. ((optional, integer) The number of sets to get per page. If paging is enabled, the maximum number of sets per page is 500.)
         """
-        InputSet._set_input(self, 'PerPage', value)
+        super(ListSetsInputSet, self)._set_input('PerPage', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: xml and json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ListSetsInputSet, self)._set_input('ResponseFormat', value)
     def set_UserID(self, value):
         """
         Set the value of the UserID input for this Choreo. ((conditional, string) The NSID of the user to get a photoset list for. When OAuth parameters are passed, the authenticated user is assumed.)
         """
-        InputSet._set_input(self, 'UserID', value)
+        super(ListSetsInputSet, self)._set_input('UserID', value)
 
 class ListSetsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListSets Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Flickr.)
@@ -97,6 +112,6 @@ class ListSetsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListSetsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListSetsResultSet(response, path)

@@ -5,7 +5,22 @@
 # ByAddress
 # Retrieves weather and UV index data for a given Geo point using the Yahoo Weather and EnviroFacts APIs.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ByAddress(Choreography):
         Create a new instance of the ByAddress Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Labs/GetWeather/ByAddress')
+        super(ByAddress, self).__init__(temboo_session, '/Library/Labs/GetWeather/ByAddress')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class ByAddressInputSet(InputSet):
         """
         Set the value of the APICredentials input for this Choreo. ((optional, json) A JSON dictionary containing a Yahoo App ID. See Choreo documentation for formatting examples.)
         """
-        InputSet._set_input(self, 'APICredentials', value)
+        super(ByAddressInputSet, self)._set_input('APICredentials', value)
     def set_Address(self, value):
         """
         Set the value of the Address input for this Choreo. ((required, string) The street address of the location to get weather for.)
         """
-        InputSet._set_input(self, 'Address', value)
+        super(ByAddressInputSet, self)._set_input('Address', value)
 
 class ByAddressResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ByAddress Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) Contains combined weather data from Yahoo Weather and EnviroFacts.)
@@ -67,6 +82,6 @@ class ByAddressResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ByAddressChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ByAddressResultSet(response, path)

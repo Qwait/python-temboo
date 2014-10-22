@@ -5,7 +5,22 @@
 # RecentCheckins
 # Returns a list of recent friends' check-ins.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class RecentCheckins(Choreography):
         Create a new instance of the RecentCheckins Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Foursquare/Checkins/RecentCheckins')
+        super(RecentCheckins, self).__init__(temboo_session, '/Library/Foursquare/Checkins/RecentCheckins')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class RecentCheckinsInputSet(InputSet):
         """
         Set the value of the AfterTimeStamp input for this Choreo. ((optional, integer) Seconds after which to look for check-ins, e.g. for looking for new check-ins since the last fetch.)
         """
-        InputSet._set_input(self, 'AfterTimeStamp', value)
+        super(RecentCheckinsInputSet, self)._set_input('AfterTimeStamp', value)
     def set_Latitude(self, value):
         """
         Set the value of the Latitude input for this Choreo. ((optional, decimal) The latitude point of the user's location.)
         """
-        InputSet._set_input(self, 'Latitude', value)
+        super(RecentCheckinsInputSet, self)._set_input('Latitude', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) Number of results to return, up to 100.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(RecentCheckinsInputSet, self)._set_input('Limit', value)
     def set_Longitude(self, value):
         """
         Set the value of the Longitude input for this Choreo. ((optional, decimal) The longitude point of the user's location.)
         """
-        InputSet._set_input(self, 'Longitude', value)
+        super(RecentCheckinsInputSet, self)._set_input('Longitude', value)
     def set_OauthToken(self, value):
         """
         Set the value of the OauthToken input for this Choreo. ((required, string) The FourSquare API Oauth token string.)
         """
-        InputSet._set_input(self, 'OauthToken', value)
+        super(RecentCheckinsInputSet, self)._set_input('OauthToken', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(RecentCheckinsInputSet, self)._set_input('ResponseFormat', value)
 
 class RecentCheckinsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the RecentCheckins Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Foursquare. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -87,6 +102,6 @@ class RecentCheckinsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class RecentCheckinsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return RecentCheckinsResultSet(response, path)

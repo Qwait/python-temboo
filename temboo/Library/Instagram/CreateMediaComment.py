@@ -5,7 +5,22 @@
 # CreateMediaComment
 # Creates a comment on a specified media object. 
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateMediaComment(Choreography):
         Create a new instance of the CreateMediaComment Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Instagram/CreateMediaComment')
+        super(CreateMediaComment, self).__init__(temboo_session, '/Library/Instagram/CreateMediaComment')
 
 
     def new_input_set(self):
@@ -44,27 +59,27 @@ class CreateMediaCommentInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved during the OAuth 2.0 process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(CreateMediaCommentInputSet, self)._set_input('AccessToken', value)
     def set_MediaID(self, value):
         """
         Set the value of the MediaID input for this Choreo. ((required, string) The ID of the media object to leave a comment on.)
         """
-        InputSet._set_input(self, 'MediaID', value)
+        super(CreateMediaCommentInputSet, self)._set_input('MediaID', value)
     def set_Text(self, value):
         """
         Set the value of the Text input for this Choreo. ((required, string) The text to post as a comment on the media.)
         """
-        InputSet._set_input(self, 'Text', value)
+        super(CreateMediaCommentInputSet, self)._set_input('Text', value)
 
 class CreateMediaCommentResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateMediaComment Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Instagram.)
@@ -72,6 +87,6 @@ class CreateMediaCommentResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateMediaCommentChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateMediaCommentResultSet(response, path)

@@ -5,7 +5,22 @@
 # GetCompanyByCWID
 # Returns basic information for a specifiied company.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetCompanyByCWID(Choreography):
         Create a new instance of the GetCompanyByCWID Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/CorpWatch/Company/GetCompanyByCWID')
+        super(GetCompanyByCWID, self).__init__(temboo_session, '/Library/CorpWatch/Company/GetCompanyByCWID')
 
 
     def new_input_set(self):
@@ -44,32 +59,32 @@ class GetCompanyByCWIDInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((optional, string) The APIKey from CorpWatch if you have one.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(GetCompanyByCWIDInputSet, self)._set_input('APIKey', value)
     def set_CWID(self, value):
         """
         Set the value of the CWID input for this Choreo. ((required, string) CoprWatch ID for the company. Format looks like: cw_8484.)
         """
-        InputSet._set_input(self, 'CWID', value)
+        super(GetCompanyByCWIDInputSet, self)._set_input('CWID', value)
     def set_ResponseType(self, value):
         """
         Set the value of the ResponseType input for this Choreo. ((optional, string) Specify json or xml for the type of response to be returned. Defaults to xml.)
         """
-        InputSet._set_input(self, 'ResponseType', value)
+        super(GetCompanyByCWIDInputSet, self)._set_input('ResponseType', value)
     def set_Year(self, value):
         """
         Set the value of the Year input for this Choreo. ((optional, integer) Specify the year for which you want company information. When none is specified, returns the most recent record available for that company.)
         """
-        InputSet._set_input(self, 'Year', value)
+        super(GetCompanyByCWIDInputSet, self)._set_input('Year', value)
 
 class GetCompanyByCWIDResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetCompanyByCWID Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from CorpWatch.)
@@ -77,6 +92,6 @@ class GetCompanyByCWIDResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetCompanyByCWIDChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetCompanyByCWIDResultSet(response, path)

@@ -1,2 +1,2 @@
-from FinalizeOAuth import *
-from InitializeOAuth import *
+from temboo.Library.Utilities.Authentication.OAuth1.FinalizeOAuth import FinalizeOAuth, FinalizeOAuthInputSet, FinalizeOAuthResultSet, FinalizeOAuthChoreographyExecution
+from temboo.Library.Utilities.Authentication.OAuth1.InitializeOAuth import InitializeOAuth, InitializeOAuthInputSet, InitializeOAuthResultSet, InitializeOAuthChoreographyExecution

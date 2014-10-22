@@ -1,4 +1,4 @@
-from UpdateWantsToWatch import *
-from DeleteWantsToWatch import *
-from ReadWantsToWatch import *
-from CreateWantsToWatch import *
+from temboo.Library.Facebook.Actions.Video.WantsToWatch.CreateWantsToWatch import CreateWantsToWatch, CreateWantsToWatchInputSet, CreateWantsToWatchResultSet, CreateWantsToWatchChoreographyExecution
+from temboo.Library.Facebook.Actions.Video.WantsToWatch.DeleteWantsToWatch import DeleteWantsToWatch, DeleteWantsToWatchInputSet, DeleteWantsToWatchResultSet, DeleteWantsToWatchChoreographyExecution
+from temboo.Library.Facebook.Actions.Video.WantsToWatch.ReadWantsToWatch import ReadWantsToWatch, ReadWantsToWatchInputSet, ReadWantsToWatchResultSet, ReadWantsToWatchChoreographyExecution
+from temboo.Library.Facebook.Actions.Video.WantsToWatch.UpdateWantsToWatch import UpdateWantsToWatch, UpdateWantsToWatchInputSet, UpdateWantsToWatchResultSet, UpdateWantsToWatchChoreographyExecution

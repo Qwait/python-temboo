@@ -1,2 +1,2 @@
-from ListGalleries import *
-from CreatePhotoGallery import *
+from temboo.Library.Flickr.Galleries.CreatePhotoGallery import CreatePhotoGallery, CreatePhotoGalleryInputSet, CreatePhotoGalleryResultSet, CreatePhotoGalleryChoreographyExecution
+from temboo.Library.Flickr.Galleries.ListGalleries import ListGalleries, ListGalleriesInputSet, ListGalleriesResultSet, ListGalleriesChoreographyExecution

@@ -5,7 +5,22 @@
 # RegenerateKey
 # Allows you to regenerate a new key with the same attributes and permissions as a previous key.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class RegenerateKey(Choreography):
         Create a new instance of the RegenerateKey Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Xively/APIKeys/RegenerateKey')
+        super(RegenerateKey, self).__init__(temboo_session, '/Library/Xively/APIKeys/RegenerateKey')
 
 
     def new_input_set(self):
@@ -44,22 +59,22 @@ class RegenerateKeyInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key you would like to regenerate. On successful regeneration, this API Key will no longer be valid.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(RegenerateKeyInputSet, self)._set_input('APIKey', value)
     def set_MasterAPIKey(self, value):
         """
         Set the value of the MasterAPIKey input for this Choreo. ((optional, string) Specify a MasterAPIKey with sufficient permissions if the APIKey you would like to regenerate does not have the permissions to do so.)
         """
-        InputSet._set_input(self, 'MasterAPIKey', value)
+        super(RegenerateKeyInputSet, self)._set_input('MasterAPIKey', value)
 
 class RegenerateKeyResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the RegenerateKey Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_APIKeyLocation(self):
         """
         Retrieve the value for the "APIKeyLocation" output from this Choreo execution. ((string) The URL of the newly regenerated APIKey.)
@@ -72,6 +87,6 @@ class RegenerateKeyResultSet(ResultSet):
         return self._output.get('NewAPIKey', None)
 
 class RegenerateKeyChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return RegenerateKeyResultSet(response, path)

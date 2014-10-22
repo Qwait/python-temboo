@@ -5,7 +5,22 @@
 # GetUnreadMailWithLabel
 # Allows you to access a read-only Gmail feed that contains a list of unread emails with the specified label.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetUnreadMailWithLabel(Choreography):
         Create a new instance of the GetUnreadMailWithLabel Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Google/Gmail/GetUnreadMailWithLabel')
+        super(GetUnreadMailWithLabel, self).__init__(temboo_session, '/Library/Google/Gmail/GetUnreadMailWithLabel')
 
 
     def new_input_set(self):
@@ -44,44 +59,44 @@ class GetUnreadMailWithLabelInputSet(InputSet):
         """
         Set the value of the Label input for this Choreo. ((required, string) The name of a Gmail Label to retrieve messages from (e.g., important, starred, sent, junk-e-mail, all).)
         """
-        InputSet._set_input(self, 'Label', value)
+        super(GetUnreadMailWithLabelInputSet, self)._set_input('Label', value)
     def set_Password(self, value):
         """
-        Set the value of the Password input for this Choreo. ((required, password) Your Gmail password.)
+        Set the value of the Password input for this Choreo. ((required, password) A Google App-specific password that you've generated after enabling 2-Step Verification. See the Gmailv2 bundle for OAuth.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(GetUnreadMailWithLabelInputSet, self)._set_input('Password', value)
     def set_ResponseMode(self, value):
         """
         Set the value of the ResponseMode input for this Choreo. ((optional, string) Used to simplify the response. Valid values are: simple and verbose. When set to simple, only the message string is returned. Verbose mode returns the full object. Defaults to "simple".)
         """
-        InputSet._set_input(self, 'ResponseMode', value)
+        super(GetUnreadMailWithLabelInputSet, self)._set_input('ResponseMode', value)
     def set_Username(self, value):
         """
-        Set the value of the Username input for this Choreo. ((required, string) Your full Google email address e.g., martha.temboo@gmail.com.)
+        Set the value of the Username input for this Choreo. ((required, string) Your full Google email address e.g., martha.temboo@gmail.com. See the Gmailv2 bundle for OAuth.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(GetUnreadMailWithLabelInputSet, self)._set_input('Username', value)
 
 class GetUnreadMailWithLabelResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetUnreadMailWithLabel Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
-    def get_FullCount(self):
-        """
-        Retrieve the value for the "FullCount" output from this Choreo execution. ((integer) The number of unread messages. This is parsed from the Google XML response. Note the full count element may be 0 because this Choreography retrieves Gmail messages by a particular Label.)
-        """
-        return self._output.get('FullCount', None)
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Google.)
         """
         return self._output.get('Response', None)
+    def get_FullCount(self):
+        """
+        Retrieve the value for the "FullCount" output from this Choreo execution. ((integer) The number of unread messages. This is parsed from the Google XML response. Note the full count element may be 0 because this Choreography retrieves Gmail messages by a particular Label.)
+        """
+        return self._output.get('FullCount', None)
 
 class GetUnreadMailWithLabelChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetUnreadMailWithLabelResultSet(response, path)

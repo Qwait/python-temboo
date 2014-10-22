@@ -1,7 +1,7 @@
-from PasswordChange import *
-from GetUsers import *
-from CreateAccount import *
-from AccountLogin import *
-from PasswordReset import *
-from SearchUsers import *
-from AccountLogout import *
+from temboo.Library.CloudMine.UserAccountManagement.AccountLogin import AccountLogin, AccountLoginInputSet, AccountLoginResultSet, AccountLoginChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.AccountLogout import AccountLogout, AccountLogoutInputSet, AccountLogoutResultSet, AccountLogoutChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.CreateAccount import CreateAccount, CreateAccountInputSet, CreateAccountResultSet, CreateAccountChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.GetUsers import GetUsers, GetUsersInputSet, GetUsersResultSet, GetUsersChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.PasswordChange import PasswordChange, PasswordChangeInputSet, PasswordChangeResultSet, PasswordChangeChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.PasswordReset import PasswordReset, PasswordResetInputSet, PasswordResetResultSet, PasswordResetChoreographyExecution
+from temboo.Library.CloudMine.UserAccountManagement.SearchUsers import SearchUsers, SearchUsersInputSet, SearchUsersResultSet, SearchUsersChoreographyExecution

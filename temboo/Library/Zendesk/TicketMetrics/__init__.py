@@ -1,2 +1,2 @@
-from GetTicketMetrics import *
-from ListTicketMetrics import *
+from temboo.Library.Zendesk.TicketMetrics.GetTicketMetrics import GetTicketMetrics, GetTicketMetricsInputSet, GetTicketMetricsResultSet, GetTicketMetricsChoreographyExecution
+from temboo.Library.Zendesk.TicketMetrics.ListTicketMetrics import ListTicketMetrics, ListTicketMetricsInputSet, ListTicketMetricsResultSet, ListTicketMetricsChoreographyExecution

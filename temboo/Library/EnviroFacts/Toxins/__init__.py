@@ -1,4 +1,4 @@
-from ChemActivityByFacility import *
-from ToxinReleaseByFacility import *
-from FacilitiesSearchByZip import *
-from ChemicalSearch import *
+from temboo.Library.EnviroFacts.Toxins.ChemActivityByFacility import ChemActivityByFacility, ChemActivityByFacilityInputSet, ChemActivityByFacilityResultSet, ChemActivityByFacilityChoreographyExecution
+from temboo.Library.EnviroFacts.Toxins.ChemicalSearch import ChemicalSearch, ChemicalSearchInputSet, ChemicalSearchResultSet, ChemicalSearchChoreographyExecution
+from temboo.Library.EnviroFacts.Toxins.FacilitiesSearchByZip import FacilitiesSearchByZip, FacilitiesSearchByZipInputSet, FacilitiesSearchByZipResultSet, FacilitiesSearchByZipChoreographyExecution
+from temboo.Library.EnviroFacts.Toxins.ToxinReleaseByFacility import ToxinReleaseByFacility, ToxinReleaseByFacilityInputSet, ToxinReleaseByFacilityResultSet, ToxinReleaseByFacilityChoreographyExecution

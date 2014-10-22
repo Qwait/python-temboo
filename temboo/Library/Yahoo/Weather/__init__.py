@@ -1,3 +1,3 @@
-from GetWeatherByAddress import *
-from GetWeatherByCoordinates import *
-from GetWeather import *
+from temboo.Library.Yahoo.Weather.GetWeather import GetWeather, GetWeatherInputSet, GetWeatherResultSet, GetWeatherChoreographyExecution
+from temboo.Library.Yahoo.Weather.GetWeatherByAddress import GetWeatherByAddress, GetWeatherByAddressInputSet, GetWeatherByAddressResultSet, GetWeatherByAddressChoreographyExecution
+from temboo.Library.Yahoo.Weather.GetWeatherByCoordinates import GetWeatherByCoordinates, GetWeatherByCoordinatesInputSet, GetWeatherByCoordinatesResultSet, GetWeatherByCoordinatesChoreographyExecution

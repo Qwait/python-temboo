@@ -5,7 +5,22 @@
 # SendEmail
 # Sends an email using a specified email server.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class SendEmail(Choreography):
         Create a new instance of the SendEmail Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Email/SendEmail')
+        super(SendEmail, self).__init__(temboo_session, '/Library/Utilities/Email/SendEmail')
 
 
     def new_input_set(self):
@@ -44,72 +59,72 @@ class SendEmailInputSet(InputSet):
         """
         Set the value of the AttachmentName input for this Choreo. ((optional, string) The name of the file to attach to the email.)
         """
-        InputSet._set_input(self, 'AttachmentName', value)
+        super(SendEmailInputSet, self)._set_input('AttachmentName', value)
     def set_AttachmentURL(self, value):
         """
         Set the value of the AttachmentURL input for this Choreo. ((optional, string) URL of a hosted file that you wish to add as an attachment.  Use this instead of a normal Attachment.)
         """
-        InputSet._set_input(self, 'AttachmentURL', value)
+        super(SendEmailInputSet, self)._set_input('AttachmentURL', value)
     def set_Attachment(self, value):
         """
         Set the value of the Attachment input for this Choreo. ((optional, string) The Base64 encoded contents of the file to attach to the email.  Use this instead of AttachmentURL.)
         """
-        InputSet._set_input(self, 'Attachment', value)
+        super(SendEmailInputSet, self)._set_input('Attachment', value)
     def set_BCC(self, value):
         """
         Set the value of the BCC input for this Choreo. ((optional, string) An email address to BCC on the email you're sending. Can be a comma separated list of email addresses.)
         """
-        InputSet._set_input(self, 'BCC', value)
+        super(SendEmailInputSet, self)._set_input('BCC', value)
     def set_CC(self, value):
         """
         Set the value of the CC input for this Choreo. ((optional, string) An email address to CC on the email you're sending. Can be a comma separated list of email addresses.)
         """
-        InputSet._set_input(self, 'CC', value)
+        super(SendEmailInputSet, self)._set_input('CC', value)
     def set_FromAddress(self, value):
         """
         Set the value of the FromAddress input for this Choreo. ((conditional, string) The name and email address that the message is being sent from.)
         """
-        InputSet._set_input(self, 'FromAddress', value)
+        super(SendEmailInputSet, self)._set_input('FromAddress', value)
     def set_MessageBody(self, value):
         """
         Set the value of the MessageBody input for this Choreo. ((required, string) The message body for the email.)
         """
-        InputSet._set_input(self, 'MessageBody', value)
+        super(SendEmailInputSet, self)._set_input('MessageBody', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) The password for your email account.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(SendEmailInputSet, self)._set_input('Password', value)
     def set_Port(self, value):
         """
         Set the value of the Port input for this Choreo. ((required, integer) Specify the port number (i.e. 25 or 465).)
         """
-        InputSet._set_input(self, 'Port', value)
+        super(SendEmailInputSet, self)._set_input('Port', value)
     def set_Server(self, value):
         """
         Set the value of the Server input for this Choreo. ((required, string) The name or IP address of the email server.)
         """
-        InputSet._set_input(self, 'Server', value)
+        super(SendEmailInputSet, self)._set_input('Server', value)
     def set_Subject(self, value):
         """
         Set the value of the Subject input for this Choreo. ((required, string) The subject line of the email.)
         """
-        InputSet._set_input(self, 'Subject', value)
+        super(SendEmailInputSet, self)._set_input('Subject', value)
     def set_ToAddress(self, value):
         """
         Set the value of the ToAddress input for this Choreo. ((required, string) The email address that you want to send an email to. Can be a comma separated list of email addresses.)
         """
-        InputSet._set_input(self, 'ToAddress', value)
+        super(SendEmailInputSet, self)._set_input('ToAddress', value)
     def set_UseSSL(self, value):
         """
         Set the value of the UseSSL input for this Choreo. ((optional, boolean) Set to 1 to connect over SSL. Set to 0 for no SSL. Defaults to 1.)
         """
-        InputSet._set_input(self, 'UseSSL', value)
+        super(SendEmailInputSet, self)._set_input('UseSSL', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) Your username for your email account.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(SendEmailInputSet, self)._set_input('Username', value)
 
 class SendEmailResultSet(ResultSet):
     """
@@ -119,6 +134,6 @@ class SendEmailResultSet(ResultSet):
     pass
 
 class SendEmailChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return SendEmailResultSet(response, path)

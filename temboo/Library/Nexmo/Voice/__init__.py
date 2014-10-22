@@ -1,3 +1,3 @@
-from CaptureTextToSpeechPrompt import *
-from ConfirmTextToSpeechPrompt import *
-from TextToSpeech import *
+from temboo.Library.Nexmo.Voice.CaptureTextToSpeechPrompt import CaptureTextToSpeechPrompt, CaptureTextToSpeechPromptInputSet, CaptureTextToSpeechPromptResultSet, CaptureTextToSpeechPromptChoreographyExecution
+from temboo.Library.Nexmo.Voice.ConfirmTextToSpeechPrompt import ConfirmTextToSpeechPrompt, ConfirmTextToSpeechPromptInputSet, ConfirmTextToSpeechPromptResultSet, ConfirmTextToSpeechPromptChoreographyExecution
+from temboo.Library.Nexmo.Voice.TextToSpeech import TextToSpeech, TextToSpeechInputSet, TextToSpeechResultSet, TextToSpeechChoreographyExecution

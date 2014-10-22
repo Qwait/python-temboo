@@ -5,7 +5,22 @@
 # ListAllOperationalArrayInstances
 # List all operational instances in an array.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListAllOperationalArrayInstances(Choreography):
         Create a new instance of the ListAllOperationalArrayInstances Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/RightScale/ListAllOperationalArrayInstances')
+        super(ListAllOperationalArrayInstances, self).__init__(temboo_session, '/Library/RightScale/ListAllOperationalArrayInstances')
 
 
     def new_input_set(self):
@@ -44,32 +59,37 @@ class ListAllOperationalArrayInstancesInputSet(InputSet):
         """
         Set the value of the AccountID input for this Choreo. ((required, string) The RightScale Account ID.)
         """
-        InputSet._set_input(self, 'AccountID', value)
+        super(ListAllOperationalArrayInstancesInputSet, self)._set_input('AccountID', value)
     def set_Password(self, value):
         """
         Set the value of the Password input for this Choreo. ((required, password) The RightScale account password.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(ListAllOperationalArrayInstancesInputSet, self)._set_input('Password', value)
     def set_ServerArrayID(self, value):
         """
         Set the value of the ServerArrayID input for this Choreo. ((required, integer) The ID of a server array.)
         """
-        InputSet._set_input(self, 'ServerArrayID', value)
+        super(ListAllOperationalArrayInstancesInputSet, self)._set_input('ServerArrayID', value)
+    def set_SubDomain(self, value):
+        """
+        Set the value of the SubDomain input for this Choreo. ((conditional, string) The Rightscale sub-domain appropriate for your Rightscale account. Defaults to "my" for legacy accounts. Other sub-domains include: jp-8 (Legacy Cloud Platform), us-3, us-4 (Unified Cloud Platform).)
+        """
+        super(ListAllOperationalArrayInstancesInputSet, self)._set_input('SubDomain', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) The RightScale username.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(ListAllOperationalArrayInstancesInputSet, self)._set_input('Username', value)
 
 class ListAllOperationalArrayInstancesResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListAllOperationalArrayInstances Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from Rightscale in XML format.)
@@ -77,6 +97,6 @@ class ListAllOperationalArrayInstancesResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListAllOperationalArrayInstancesChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListAllOperationalArrayInstancesResultSet(response, path)

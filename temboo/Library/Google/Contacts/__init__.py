@@ -1,7 +1,7 @@
-from GetContactsWithQuery import *
-from DeleteContact import *
-from GetAllContacts import *
-from GetContactById import *
-from GetAllGroups import *
-from UpdateContact import *
-from CreateContact import *
+from temboo.Library.Google.Contacts.CreateContact import CreateContact, CreateContactInputSet, CreateContactResultSet, CreateContactChoreographyExecution
+from temboo.Library.Google.Contacts.DeleteContact import DeleteContact, DeleteContactInputSet, DeleteContactResultSet, DeleteContactChoreographyExecution
+from temboo.Library.Google.Contacts.GetAllContacts import GetAllContacts, GetAllContactsInputSet, GetAllContactsResultSet, GetAllContactsChoreographyExecution
+from temboo.Library.Google.Contacts.GetAllGroups import GetAllGroups, GetAllGroupsInputSet, GetAllGroupsResultSet, GetAllGroupsChoreographyExecution
+from temboo.Library.Google.Contacts.GetContactById import GetContactById, GetContactByIdInputSet, GetContactByIdResultSet, GetContactByIdChoreographyExecution
+from temboo.Library.Google.Contacts.GetContactsWithQuery import GetContactsWithQuery, GetContactsWithQueryInputSet, GetContactsWithQueryResultSet, GetContactsWithQueryChoreographyExecution
+from temboo.Library.Google.Contacts.UpdateContact import UpdateContact, UpdateContactInputSet, UpdateContactResultSet, UpdateContactChoreographyExecution

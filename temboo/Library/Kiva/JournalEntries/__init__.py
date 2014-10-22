@@ -1,2 +1,2 @@
-from GetComments import *
-from SearchJournalEntries import *
+from temboo.Library.Kiva.JournalEntries.GetComments import GetComments, GetCommentsInputSet, GetCommentsResultSet, GetCommentsChoreographyExecution
+from temboo.Library.Kiva.JournalEntries.SearchJournalEntries import SearchJournalEntries, SearchJournalEntriesInputSet, SearchJournalEntriesResultSet, SearchJournalEntriesChoreographyExecution

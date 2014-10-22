@@ -1,5 +1,5 @@
-from AddCallerID import *
-from UpdateCallerID import *
-from ListCallerIDs import *
-from DeleteCallerID import *
-from GetCallerID import *
+from temboo.Library.Twilio.OutgoingCallerIDs.AddCallerID import AddCallerID, AddCallerIDInputSet, AddCallerIDResultSet, AddCallerIDChoreographyExecution
+from temboo.Library.Twilio.OutgoingCallerIDs.DeleteCallerID import DeleteCallerID, DeleteCallerIDInputSet, DeleteCallerIDResultSet, DeleteCallerIDChoreographyExecution
+from temboo.Library.Twilio.OutgoingCallerIDs.GetCallerID import GetCallerID, GetCallerIDInputSet, GetCallerIDResultSet, GetCallerIDChoreographyExecution
+from temboo.Library.Twilio.OutgoingCallerIDs.ListCallerIDs import ListCallerIDs, ListCallerIDsInputSet, ListCallerIDsResultSet, ListCallerIDsChoreographyExecution
+from temboo.Library.Twilio.OutgoingCallerIDs.UpdateCallerID import UpdateCallerID, UpdateCallerIDInputSet, UpdateCallerIDResultSet, UpdateCallerIDChoreographyExecution

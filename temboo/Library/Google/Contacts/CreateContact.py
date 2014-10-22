@@ -5,7 +5,22 @@
 # CreateContact
 # Create a new contact.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateContact(Choreography):
         Create a new instance of the CreateContact Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Google/Contacts/CreateContact')
+        super(CreateContact, self).__init__(temboo_session, '/Library/Google/Contacts/CreateContact')
 
 
     def new_input_set(self):
@@ -44,69 +59,69 @@ class CreateContactInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((optional, string) The access token retrieved in the last step of the OAuth process. Access tokens that are expired will be refreshed and returned in the Choreo output.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(CreateContactInputSet, self)._set_input('AccessToken', value)
     def set_ClientID(self, value):
         """
         Set the value of the ClientID input for this Choreo. ((conditional, string) The OAuth client ID provided by Google when you register your application.)
         """
-        InputSet._set_input(self, 'ClientID', value)
+        super(CreateContactInputSet, self)._set_input('ClientID', value)
     def set_ClientSecret(self, value):
         """
         Set the value of the ClientSecret input for this Choreo. ((conditional, string) The OAuth client secret provided by Google when you registered your application.)
         """
-        InputSet._set_input(self, 'ClientSecret', value)
+        super(CreateContactInputSet, self)._set_input('ClientSecret', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((conditional, string) The new contact's email address.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(CreateContactInputSet, self)._set_input('Email', value)
     def set_FirstName(self, value):
         """
         Set the value of the FirstName input for this Choreo. ((conditional, string) The new contact's first name.)
         """
-        InputSet._set_input(self, 'FirstName', value)
+        super(CreateContactInputSet, self)._set_input('FirstName', value)
     def set_LastName(self, value):
         """
         Set the value of the LastName input for this Choreo. ((conditional, string) The new contact's last name.)
         """
-        InputSet._set_input(self, 'LastName', value)
+        super(CreateContactInputSet, self)._set_input('LastName', value)
     def set_Phone(self, value):
         """
         Set the value of the Phone input for this Choreo. ((optional, string) The phone number for the new contact. It's best to use the "(555) 123-4567" format.)
         """
-        InputSet._set_input(self, 'Phone', value)
+        super(CreateContactInputSet, self)._set_input('Phone', value)
     def set_RefreshToken(self, value):
         """
         Set the value of the RefreshToken input for this Choreo. ((conditional, string) The refresh token retrieved in the last step of the OAuth process. This is used when an access token is expired or not provided.)
         """
-        InputSet._set_input(self, 'RefreshToken', value)
+        super(CreateContactInputSet, self)._set_input('RefreshToken', value)
 
 class CreateContactResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateContact Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
-    def get_ContactID(self):
-        """
-        Retrieve the value for the "ContactID" output from this Choreo execution. ((string) The unique ID supplied by Google for the new user.)
-        """
-        return self._output.get('ContactID', None)
-    def get_AccessToken(self):
-        """
-        Retrieve the value for the "AccessToken" output from this Choreo execution. ((optional, string) The access token retrieved in the last step of the OAuth process. Access tokens that are expired will be refreshed and returned in the Choreo output.)
-        """
-        return self._output.get('AccessToken', None)
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from the API.)
         """
         return self._output.get('Response', None)
+    def get_AccessToken(self):
+        """
+        Retrieve the value for the "AccessToken" output from this Choreo execution. ((optional, string) The access token retrieved in the last step of the OAuth process. Access tokens that are expired will be refreshed and returned in the Choreo output.)
+        """
+        return self._output.get('AccessToken', None)
+    def get_ContactID(self):
+        """
+        Retrieve the value for the "ContactID" output from this Choreo execution. ((string) The unique ID supplied by Google for the new user.)
+        """
+        return self._output.get('ContactID', None)
 
 class CreateContactChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateContactResultSet(response, path)

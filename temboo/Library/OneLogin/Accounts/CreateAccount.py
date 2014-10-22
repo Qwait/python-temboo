@@ -5,7 +5,22 @@
 # CreateAccount
 # Creates a new account.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class CreateAccount(Choreography):
         Create a new instance of the CreateAccount Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/OneLogin/Accounts/CreateAccount')
+        super(CreateAccount, self).__init__(temboo_session, '/Library/OneLogin/Accounts/CreateAccount')
 
 
     def new_input_set(self):
@@ -44,72 +59,72 @@ class CreateAccountInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by OneLogin.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(CreateAccountInputSet, self)._set_input('APIKey', value)
     def set_AccountName(self, value):
         """
         Set the value of the AccountName input for this Choreo. ((required, string) The account name.)
         """
-        InputSet._set_input(self, 'AccountName', value)
+        super(CreateAccountInputSet, self)._set_input('AccountName', value)
     def set_Address(self, value):
         """
         Set the value of the Address input for this Choreo. ((optional, string) The street address for the new account.)
         """
-        InputSet._set_input(self, 'Address', value)
+        super(CreateAccountInputSet, self)._set_input('Address', value)
     def set_City(self, value):
         """
         Set the value of the City input for this Choreo. ((optional, string) The city associated with the address.)
         """
-        InputSet._set_input(self, 'City', value)
+        super(CreateAccountInputSet, self)._set_input('City', value)
     def set_Country(self, value):
         """
         Set the value of the Country input for this Choreo. ((optional, string) The country associated with the address of the new account.)
         """
-        InputSet._set_input(self, 'Country', value)
+        super(CreateAccountInputSet, self)._set_input('Country', value)
     def set_Email(self, value):
         """
         Set the value of the Email input for this Choreo. ((required, string) The email address for the new account.)
         """
-        InputSet._set_input(self, 'Email', value)
+        super(CreateAccountInputSet, self)._set_input('Email', value)
     def set_FirstName(self, value):
         """
         Set the value of the FirstName input for this Choreo. ((required, string) The first name on the new account.)
         """
-        InputSet._set_input(self, 'FirstName', value)
+        super(CreateAccountInputSet, self)._set_input('FirstName', value)
     def set_LastName(self, value):
         """
         Set the value of the LastName input for this Choreo. ((required, string) The last name on the new account.)
         """
-        InputSet._set_input(self, 'LastName', value)
+        super(CreateAccountInputSet, self)._set_input('LastName', value)
     def set_Phone(self, value):
         """
         Set the value of the Phone input for this Choreo. ((optional, string) The phone number for the new account.)
         """
-        InputSet._set_input(self, 'Phone', value)
+        super(CreateAccountInputSet, self)._set_input('Phone', value)
     def set_Plan(self, value):
         """
         Set the value of the Plan input for this Choreo. ((required, string) Indicates which plan the new account has (i.e. enterprise).)
         """
-        InputSet._set_input(self, 'Plan', value)
+        super(CreateAccountInputSet, self)._set_input('Plan', value)
     def set_State(self, value):
         """
         Set the value of the State input for this Choreo. ((optional, string) The state associated with the address of the new account.)
         """
-        InputSet._set_input(self, 'State', value)
+        super(CreateAccountInputSet, self)._set_input('State', value)
     def set_Zip(self, value):
         """
         Set the value of the Zip input for this Choreo. ((optional, string) The postal code associated with the address of the new account.)
         """
-        InputSet._set_input(self, 'Zip', value)
+        super(CreateAccountInputSet, self)._set_input('Zip', value)
 
 class CreateAccountResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the CreateAccount Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((xml) The response from OneLogin.)
@@ -117,6 +132,6 @@ class CreateAccountResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class CreateAccountChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return CreateAccountResultSet(response, path)

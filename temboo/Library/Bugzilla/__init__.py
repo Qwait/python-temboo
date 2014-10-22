@@ -1,8 +1,8 @@
-from ListAttachmentsForBug import *
-from ListBugHistory import *
-from RetrieveBug import *
-from SearchForUsers import *
-from RetrieveAttachment import *
-from ListBugComments import *
-from SearchForBugs import *
-from RetrieveUser import *
+from temboo.Library.Bugzilla.ListAttachmentsForBug import ListAttachmentsForBug, ListAttachmentsForBugInputSet, ListAttachmentsForBugResultSet, ListAttachmentsForBugChoreographyExecution
+from temboo.Library.Bugzilla.ListBugComments import ListBugComments, ListBugCommentsInputSet, ListBugCommentsResultSet, ListBugCommentsChoreographyExecution
+from temboo.Library.Bugzilla.ListBugHistory import ListBugHistory, ListBugHistoryInputSet, ListBugHistoryResultSet, ListBugHistoryChoreographyExecution
+from temboo.Library.Bugzilla.RetrieveAttachment import RetrieveAttachment, RetrieveAttachmentInputSet, RetrieveAttachmentResultSet, RetrieveAttachmentChoreographyExecution
+from temboo.Library.Bugzilla.RetrieveBug import RetrieveBug, RetrieveBugInputSet, RetrieveBugResultSet, RetrieveBugChoreographyExecution
+from temboo.Library.Bugzilla.RetrieveUser import RetrieveUser, RetrieveUserInputSet, RetrieveUserResultSet, RetrieveUserChoreographyExecution
+from temboo.Library.Bugzilla.SearchForBugs import SearchForBugs, SearchForBugsInputSet, SearchForBugsResultSet, SearchForBugsChoreographyExecution
+from temboo.Library.Bugzilla.SearchForUsers import SearchForUsers, SearchForUsersInputSet, SearchForUsersResultSet, SearchForUsersChoreographyExecution

@@ -1,4 +1,4 @@
-from UpdateAccount import *
-from CreateAccount import *
-from ShowAccount import *
-from ListAll import *
+from temboo.Library.OneLogin.Accounts.CreateAccount import CreateAccount, CreateAccountInputSet, CreateAccountResultSet, CreateAccountChoreographyExecution
+from temboo.Library.OneLogin.Accounts.ListAll import ListAll, ListAllInputSet, ListAllResultSet, ListAllChoreographyExecution
+from temboo.Library.OneLogin.Accounts.ShowAccount import ShowAccount, ShowAccountInputSet, ShowAccountResultSet, ShowAccountChoreographyExecution
+from temboo.Library.OneLogin.Accounts.UpdateAccount import UpdateAccount, UpdateAccountInputSet, UpdateAccountResultSet, UpdateAccountChoreographyExecution

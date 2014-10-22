@@ -5,7 +5,22 @@
 # WriteDatastreamMetadata
 # Allows you to easily update the metadata of your datastream.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class WriteDatastreamMetadata(Choreography):
         Create a new instance of the WriteDatastreamMetadata Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Xively/ReadWriteData/WriteDatastreamMetadata')
+        super(WriteDatastreamMetadata, self).__init__(temboo_session, '/Library/Xively/ReadWriteData/WriteDatastreamMetadata')
 
 
     def new_input_set(self):
@@ -44,62 +59,67 @@ class WriteDatastreamMetadataInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by Xively.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('APIKey', value)
+    def set_CurrentValue(self, value):
+        """
+        Set the value of the CurrentValue input for this Choreo. ((optional, string) The current value of the datastream. Leave empty to keep existing  CurrentValue. Type "BLANK" to clear existing value.)
+        """
+        super(WriteDatastreamMetadataInputSet, self)._set_input('CurrentValue', value)
     def set_CustomDatastreamData(self, value):
         """
-        Set the value of the CustomDatastreamData input for this Choreo. ((optional, json) Custom data body for the updated datastream in JSON. See documentation for how to construct your own datastream feed. If custom DatastreamData is used, all other optional inputs are ignored.)
+        Set the value of the CustomDatastreamData input for this Choreo. ((optional, json) Custom datastream formatted as a JSON array. See documentation for how to construct your own datastream feed. If custom DatastreamData is used, all other optional inputs are ignored.)
         """
-        InputSet._set_input(self, 'CustomDatastreamData', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('CustomDatastreamData', value)
     def set_DatastreamID(self, value):
         """
         Set the value of the DatastreamID input for this Choreo. ((required, string) The ID of the Datastream you would like to add metadata to. Required unless you are using CustomDatastreamData.)
         """
-        InputSet._set_input(self, 'DatastreamID', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('DatastreamID', value)
     def set_FeedID(self, value):
         """
         Set the value of the FeedID input for this Choreo. ((required, integer) The ID for the feed that you would like to update.)
         """
-        InputSet._set_input(self, 'FeedID', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('FeedID', value)
     def set_MaxValue(self, value):
         """
         Set the value of the MaxValue input for this Choreo. ((optional, string) The maximum value since the last reset. Leave empty to keep existing MaxValue. Type "BLANK" to clear existing value.)
         """
-        InputSet._set_input(self, 'MaxValue', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('MaxValue', value)
     def set_MinValue(self, value):
         """
         Set the value of the MinValue input for this Choreo. ((optional, string) The minimum value since the last reset. Leave empty to keep existing MinValue. Type "BLANK" to clear existing value.)
         """
-        InputSet._set_input(self, 'MinValue', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('MinValue', value)
     def set_Tags(self, value):
         """
         Set the value of the Tags input for this Choreo. ((optional, string) Comma-separated list of searchable tags (the characters ', ", and commas are not allowed). Tags input overwrites previous tags, enter "BLANK" to clear all tags. Ex: "power,energy".)
         """
-        InputSet._set_input(self, 'Tags', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('Tags', value)
     def set_UnitSymbol(self, value):
         """
         Set the value of the UnitSymbol input for this Choreo. ((optional, string) The symbol of the Unit. Leave empty to keep existing UnitSymbol. Type "BLANK" to clear existing value. Ex: "C".)
         """
-        InputSet._set_input(self, 'UnitSymbol', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('UnitSymbol', value)
     def set_UnitType(self, value):
         """
         Set the value of the UnitType input for this Choreo. ((optional, string) The type of Unit. Leave empty to keep existing UnitType. Type "BLANK" to clear existing value. Ex: "basicSI".)
         """
-        InputSet._set_input(self, 'UnitType', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('UnitType', value)
     def set_Units(self, value):
         """
         Set the value of the Units input for this Choreo. ((optional, string) The units of the datastream. Leave empty to keep existing Units. Type "BLANK" to clear existing Units. Ex: "Celsius".)
         """
-        InputSet._set_input(self, 'Units', value)
+        super(WriteDatastreamMetadataInputSet, self)._set_input('Units', value)
 
 class WriteDatastreamMetadataResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the WriteDatastreamMetadata Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_ResponseStatusCode(self):
         """
         Retrieve the value for the "ResponseStatusCode" output from this Choreo execution. ((integer) The response status code returned from Xively. For a successful datastream update, the code should be 200.)
@@ -107,6 +127,6 @@ class WriteDatastreamMetadataResultSet(ResultSet):
         return self._output.get('ResponseStatusCode', None)
 
 class WriteDatastreamMetadataChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return WriteDatastreamMetadataResultSet(response, path)

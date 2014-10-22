@@ -5,7 +5,22 @@
 # UploadPhoto
 # Uploads a photo to a given album.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class UploadPhoto(Choreography):
         Create a new instance of the UploadPhoto Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Facebook/Publishing/UploadPhoto')
+        super(UploadPhoto, self).__init__(temboo_session, '/Library/Facebook/Publishing/UploadPhoto')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class UploadPhotoInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((required, string) The access token retrieved from the final step of the OAuth process.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(UploadPhotoInputSet, self)._set_input('AccessToken', value)
     def set_AlbumID(self, value):
         """
-        Set the value of the AlbumID input for this Choreo. ((required, string) The id of the album to upload the photo to.)
+        Set the value of the AlbumID input for this Choreo. ((optional, string) The id of the album to upload the photo to.)
         """
-        InputSet._set_input(self, 'AlbumID', value)
+        super(UploadPhotoInputSet, self)._set_input('AlbumID', value)
     def set_Message(self, value):
         """
         Set the value of the Message input for this Choreo. ((optional, string) A message to attach to the photo.)
         """
-        InputSet._set_input(self, 'Message', value)
+        super(UploadPhotoInputSet, self)._set_input('Message', value)
     def set_Photo(self, value):
         """
         Set the value of the Photo input for this Choreo. ((conditional, string) The Base64 encoded image to upload. This is required unless using the URL input to publish the photo.)
         """
-        InputSet._set_input(self, 'Photo', value)
+        super(UploadPhotoInputSet, self)._set_input('Photo', value)
     def set_Place(self, value):
         """
         Set the value of the Place input for this Choreo. ((optional, string) The ID of a location where the photo was taken.)
         """
-        InputSet._set_input(self, 'Place', value)
+        super(UploadPhotoInputSet, self)._set_input('Place', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Can be set to xml or json. Defaults to json.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(UploadPhotoInputSet, self)._set_input('ResponseFormat', value)
     def set_Source(self, value):
         """
         Set the value of the Source input for this Choreo. ((optional, string) Deprecated (retained for backward compatibility only).)
         """
-        InputSet._set_input(self, 'Source', value)
+        super(UploadPhotoInputSet, self)._set_input('Source', value)
     def set_URL(self, value):
         """
         Set the value of the URL input for this Choreo. ((optional, string) A URL to a hosted photo that should be uploaded. This is required unless providing a Base64 encoded image for the Photo input.)
         """
-        InputSet._set_input(self, 'URL', value)
+        super(UploadPhotoInputSet, self)._set_input('URL', value)
 
 
 class UploadPhotoResultSet(ResultSet):
@@ -87,10 +102,10 @@ class UploadPhotoResultSet(ResultSet):
     A ResultSet with methods tailored to the values returned by the UploadPhoto Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Facebook. Corresponds to the ResponseFormat input. Defaults to JSON.)
@@ -98,6 +113,6 @@ class UploadPhotoResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class UploadPhotoChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return UploadPhotoResultSet(response, path)

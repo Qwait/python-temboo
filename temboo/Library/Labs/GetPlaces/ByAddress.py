@@ -5,7 +5,22 @@
 # ByAddress
 # Retrieves information from multiple APIs about places near a specified street address.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ByAddress(Choreography):
         Create a new instance of the ByAddress Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Labs/GetPlaces/ByAddress')
+        super(ByAddress, self).__init__(temboo_session, '/Library/Labs/GetPlaces/ByAddress')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class ByAddressInputSet(InputSet):
         """
         Set the value of the APICredentials input for this Choreo. ((conditional, json) )
         """
-        InputSet._set_input(self, 'APICredentials', value)
+        super(ByAddressInputSet, self)._set_input('APICredentials', value)
     def set_Address(self, value):
         """
         Set the value of the Address input for this Choreo. ((required, string) The street address to use in the search. This can be a single address, or an array of addresses. See documentation for formatting examples.)
         """
-        InputSet._set_input(self, 'Address', value)
+        super(ByAddressInputSet, self)._set_input('Address', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) Limits the number of Foursquare venues results.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(ByAddressInputSet, self)._set_input('Limit', value)
     def set_Query(self, value):
         """
         Set the value of the Query input for this Choreo. ((optional, string) This keyword input can be used to narrow search results for Google Places and Foursquare.)
         """
-        InputSet._set_input(self, 'Query', value)
+        super(ByAddressInputSet, self)._set_input('Query', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are json (the default) and xml.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ByAddressInputSet, self)._set_input('ResponseFormat', value)
     def set_Type(self, value):
         """
         Set the value of the Type input for this Choreo. ((optional, string) Filters results by type of place, such as: bar, dentist, etc. This is used to filter results for Google Places and Yelp.)
         """
-        InputSet._set_input(self, 'Type', value)
+        super(ByAddressInputSet, self)._set_input('Type', value)
 
 class ByAddressResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ByAddress Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (Contains the merged results for search.)
@@ -87,6 +102,6 @@ class ByAddressResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ByAddressChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ByAddressResultSet(response, path)

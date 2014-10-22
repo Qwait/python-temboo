@@ -5,7 +5,22 @@
 # ListThreads
 # Returns a list of trending threads.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class ListThreads(Choreography):
         Create a new instance of the ListThreads Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Disqus/Trends/ListThreads')
+        super(ListThreads, self).__init__(temboo_session, '/Library/Disqus/Trends/ListThreads')
 
 
     def new_input_set(self):
@@ -44,47 +59,47 @@ class ListThreadsInputSet(InputSet):
         """
         Set the value of the AccessToken input for this Choreo. ((optional, string) A valid OAuth 2.0 access token.)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(ListThreadsInputSet, self)._set_input('AccessToken', value)
     def set_Callback(self, value):
         """
         Set the value of the Callback input for this Choreo. ((optional, string) The name of a callback function to wrap the respone in. Used when setting ResponseFormat to "jsonp".)
         """
-        InputSet._set_input(self, 'Callback', value)
+        super(ListThreadsInputSet, self)._set_input('Callback', value)
     def set_Forum(self, value):
         """
         Set the value of the Forum input for this Choreo. ((optional, string) Allows you to look up a forum by ID (aka the short name).)
         """
-        InputSet._set_input(self, 'Forum', value)
+        super(ListThreadsInputSet, self)._set_input('Forum', value)
     def set_Limit(self, value):
         """
         Set the value of the Limit input for this Choreo. ((optional, integer) The number of records to return. Defaults to 10.)
         """
-        InputSet._set_input(self, 'Limit', value)
+        super(ListThreadsInputSet, self)._set_input('Limit', value)
     def set_PublicKey(self, value):
         """
         Set the value of the PublicKey input for this Choreo. ((required, string) The Public Key provided by Disqus (AKA the API Key).)
         """
-        InputSet._set_input(self, 'PublicKey', value)
+        super(ListThreadsInputSet, self)._set_input('PublicKey', value)
     def set_Related(self, value):
         """
         Set the value of the Related input for this Choreo. ((optional, string) Indicates the relations to include with your response. Valid values are: forum, author, category.)
         """
-        InputSet._set_input(self, 'Related', value)
+        super(ListThreadsInputSet, self)._set_input('Related', value)
     def set_ResponseFormat(self, value):
         """
         Set the value of the ResponseFormat input for this Choreo. ((optional, string) The format that the response should be in. Valid values are: json (the default), jsonp, or rss.)
         """
-        InputSet._set_input(self, 'ResponseFormat', value)
+        super(ListThreadsInputSet, self)._set_input('ResponseFormat', value)
 
 class ListThreadsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the ListThreads Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (The response from Disqus.)
@@ -92,6 +107,6 @@ class ListThreadsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ListThreadsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ListThreadsResultSet(response, path)

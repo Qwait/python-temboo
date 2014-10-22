@@ -5,7 +5,22 @@
 # PutBucketTagging
 # Adds a set of billing tags to an existing bucket.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class PutBucketTagging(Choreography):
         Create a new instance of the PutBucketTagging Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Amazon/S3/PutBucketTagging')
+        super(PutBucketTagging, self).__init__(temboo_session, '/Library/Amazon/S3/PutBucketTagging')
 
 
     def new_input_set(self):
@@ -44,42 +59,42 @@ class PutBucketTaggingInputSet(InputSet):
         """
         Set the value of the Tags input for this Choreo. ((optional, xml) An XML file describing the key/values for the tag set. Note - if you use this input, the Key and Value input variables will be ignored.)
         """
-        InputSet._set_input(self, 'Tags', value)
+        super(PutBucketTaggingInputSet, self)._set_input('Tags', value)
     def set_AWSAccessKeyId(self, value):
         """
         Set the value of the AWSAccessKeyId input for this Choreo. ((required, string) The Access Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSAccessKeyId', value)
+        super(PutBucketTaggingInputSet, self)._set_input('AWSAccessKeyId', value)
     def set_AWSSecretKeyId(self, value):
         """
         Set the value of the AWSSecretKeyId input for this Choreo. ((required, string) The Secret Key ID provided by Amazon Web Services.)
         """
-        InputSet._set_input(self, 'AWSSecretKeyId', value)
+        super(PutBucketTaggingInputSet, self)._set_input('AWSSecretKeyId', value)
     def set_BucketName(self, value):
         """
         Set the value of the BucketName input for this Choreo. ((required, string) The name of the bucket to add tags to.)
         """
-        InputSet._set_input(self, 'BucketName', value)
+        super(PutBucketTaggingInputSet, self)._set_input('BucketName', value)
     def set_Key(self, value):
         """
         Set the value of the Key input for this Choreo. ((conditional, string) The tag name.)
         """
-        InputSet._set_input(self, 'Key', value)
+        super(PutBucketTaggingInputSet, self)._set_input('Key', value)
     def set_Value(self, value):
         """
         Set the value of the Value input for this Choreo. ((conditional, string) The tag value.)
         """
-        InputSet._set_input(self, 'Value', value)
+        super(PutBucketTaggingInputSet, self)._set_input('Value', value)
 
 class PutBucketTaggingResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the PutBucketTagging Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. (Stores the response from Amazon. Note that for a successful execution, no content is returned and this output variable should be empty.)
@@ -87,6 +102,6 @@ class PutBucketTaggingResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class PutBucketTaggingChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return PutBucketTaggingResultSet(response, path)

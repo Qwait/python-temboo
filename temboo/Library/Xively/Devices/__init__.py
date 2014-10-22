@@ -1,6 +1,6 @@
-from DeleteDevice import *
-from ListAllDevices import *
-from UpdateDevice import *
-from ReadDevice import *
-from ActivateDevice import *
-from CreateDevice import *
+from temboo.Library.Xively.Devices.ActivateDevice import ActivateDevice, ActivateDeviceInputSet, ActivateDeviceResultSet, ActivateDeviceChoreographyExecution
+from temboo.Library.Xively.Devices.CreateDevice import CreateDevice, CreateDeviceInputSet, CreateDeviceResultSet, CreateDeviceChoreographyExecution
+from temboo.Library.Xively.Devices.DeleteDevice import DeleteDevice, DeleteDeviceInputSet, DeleteDeviceResultSet, DeleteDeviceChoreographyExecution
+from temboo.Library.Xively.Devices.ListAllDevices import ListAllDevices, ListAllDevicesInputSet, ListAllDevicesResultSet, ListAllDevicesChoreographyExecution
+from temboo.Library.Xively.Devices.ReadDevice import ReadDevice, ReadDeviceInputSet, ReadDeviceResultSet, ReadDeviceChoreographyExecution
+from temboo.Library.Xively.Devices.UpdateDevice import UpdateDevice, UpdateDeviceInputSet, UpdateDeviceResultSet, UpdateDeviceChoreographyExecution

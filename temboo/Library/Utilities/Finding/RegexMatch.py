@@ -5,7 +5,22 @@
 # RegexMatch
 # Returns the first substring that matches the specified regular expression pattern in the specified string.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class RegexMatch(Choreography):
         Create a new instance of the RegexMatch Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Utilities/Finding/RegexMatch')
+        super(RegexMatch, self).__init__(temboo_session, '/Library/Utilities/Finding/RegexMatch')
 
 
     def new_input_set(self):
@@ -42,24 +57,24 @@ class RegexMatchInputSet(InputSet):
     """
     def set_Pattern(self, value):
         """
-        Set the value of the Pattern input for this Choreo. ((conditional, string) A regular experession.)
+        Set the value of the Pattern input for this Choreo. ((conditional, string) A regular expression.)
         """
-        InputSet._set_input(self, 'Pattern', value)
+        super(RegexMatchInputSet, self)._set_input('Pattern', value)
     def set_Text(self, value):
         """
         Set the value of the Text input for this Choreo. ((conditional, string) The text on which to perform a regex match.)
         """
-        InputSet._set_input(self, 'Text', value)
+        super(RegexMatchInputSet, self)._set_input('Text', value)
 
 class RegexMatchResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the RegexMatch Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Result(self):
         """
         Retrieve the value for the "Result" output from this Choreo execution. ((string) The result of the match.)
@@ -67,6 +82,6 @@ class RegexMatchResultSet(ResultSet):
         return self._output.get('Result', None)
 
 class RegexMatchChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return RegexMatchResultSet(response, path)

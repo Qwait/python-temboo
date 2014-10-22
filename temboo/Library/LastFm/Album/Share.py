@@ -5,7 +5,22 @@
 # Share
 # Allows you to share an album with one or more Last.fm users or other friends.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class Share(Choreography):
         Create a new instance of the Share Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LastFm/Album/Share')
+        super(Share, self).__init__(temboo_session, '/Library/LastFm/Album/Share')
 
 
     def new_input_set(self):
@@ -44,52 +59,52 @@ class ShareInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((string) Your Last.fm API Key.)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(ShareInputSet, self)._set_input('APIKey', value)
     def set_APISecret(self, value):
         """
         Set the value of the APISecret input for this Choreo. ((string) Your Last.fm API Secret.)
         """
-        InputSet._set_input(self, 'APISecret', value)
+        super(ShareInputSet, self)._set_input('APISecret', value)
     def set_Album(self, value):
         """
         Set the value of the Album input for this Choreo. ((string) The album name.)
         """
-        InputSet._set_input(self, 'Album', value)
+        super(ShareInputSet, self)._set_input('Album', value)
     def set_Artist(self, value):
         """
         Set the value of the Artist input for this Choreo. ((string) The artist name.)
         """
-        InputSet._set_input(self, 'Artist', value)
+        super(ShareInputSet, self)._set_input('Artist', value)
     def set_Message(self, value):
         """
         Set the value of the Message input for this Choreo. ((optional, string) An optional message to send with the recommendation. If not supplied a default message will be used.)
         """
-        InputSet._set_input(self, 'Message', value)
+        super(ShareInputSet, self)._set_input('Message', value)
     def set_Public(self, value):
         """
         Set the value of the Public input for this Choreo. ((optional, boolean) Optionally show in the sharing users activity feed. Defaults to 0 (false).)
         """
-        InputSet._set_input(self, 'Public', value)
+        super(ShareInputSet, self)._set_input('Public', value)
     def set_Recipient(self, value):
         """
         Set the value of the Recipient input for this Choreo. ((string) A comma delimited list of email addresses or Last.fm usernames. Maximum is 10.)
         """
-        InputSet._set_input(self, 'Recipient', value)
+        super(ShareInputSet, self)._set_input('Recipient', value)
     def set_SessionKey(self, value):
         """
         Set the value of the SessionKey input for this Choreo. ((string) The session key retrieved in the last step of the authorization process.)
         """
-        InputSet._set_input(self, 'SessionKey', value)
+        super(ShareInputSet, self)._set_input('SessionKey', value)
 
 class ShareResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the Share Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((XML) The response from Last.fm.)
@@ -97,6 +112,6 @@ class ShareResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class ShareChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return ShareResultSet(response, path)

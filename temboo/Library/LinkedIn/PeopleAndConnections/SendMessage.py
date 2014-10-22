@@ -5,7 +5,22 @@
 # SendMessage
 # Sends a message to a connected member given the member's personID.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class SendMessage(Choreography):
         Create a new instance of the SendMessage Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/LinkedIn/PeopleAndConnections/SendMessage')
+        super(SendMessage, self).__init__(temboo_session, '/Library/LinkedIn/PeopleAndConnections/SendMessage')
 
 
     def new_input_set(self):
@@ -44,47 +59,47 @@ class SendMessageInputSet(InputSet):
         """
         Set the value of the APIKey input for this Choreo. ((required, string) The API Key provided by LinkedIn (AKA the OAuth Consumer Key).)
         """
-        InputSet._set_input(self, 'APIKey', value)
+        super(SendMessageInputSet, self)._set_input('APIKey', value)
     def set_AccessTokenSecret(self, value):
         """
-        Set the value of the AccessTokenSecret input for this Choreo. ((required, string) The Access Token Secret retrieved during the OAuth process.)
+        Set the value of the AccessTokenSecret input for this Choreo. ((required, string) The Access Token Secret retrieved during the OAuth process (AKA the OAuth User Secret).)
         """
-        InputSet._set_input(self, 'AccessTokenSecret', value)
+        super(SendMessageInputSet, self)._set_input('AccessTokenSecret', value)
     def set_AccessToken(self, value):
         """
-        Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process.)
+        Set the value of the AccessToken input for this Choreo. ((required, string) The Access Token retrieved during the OAuth process (AKA the OAuth User Token).)
         """
-        InputSet._set_input(self, 'AccessToken', value)
+        super(SendMessageInputSet, self)._set_input('AccessToken', value)
     def set_Body(self, value):
         """
         Set the value of the Body input for this Choreo. ((required, multiline) Message body. Cannot contain any HTML.)
         """
-        InputSet._set_input(self, 'Body', value)
+        super(SendMessageInputSet, self)._set_input('Body', value)
     def set_Recipients(self, value):
         """
         Set the value of the Recipients input for this Choreo. ((required, string) Comma-separated list of recipients by personID. For sending to 'self', put in a tilda (~). Ex.: "~",  "~,XtdrgWytGD".)
         """
-        InputSet._set_input(self, 'Recipients', value)
+        super(SendMessageInputSet, self)._set_input('Recipients', value)
     def set_SecretKey(self, value):
         """
         Set the value of the SecretKey input for this Choreo. ((required, string) The Secret Key provided by LinkedIn (AKA the OAuth Consumer Secret).)
         """
-        InputSet._set_input(self, 'SecretKey', value)
+        super(SendMessageInputSet, self)._set_input('SecretKey', value)
     def set_Subject(self, value):
         """
         Set the value of the Subject input for this Choreo. ((required, string) Subject line of message.)
         """
-        InputSet._set_input(self, 'Subject', value)
+        super(SendMessageInputSet, self)._set_input('Subject', value)
 
 class SendMessageResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the SendMessage Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_ResponseStatusCode(self):
         """
         Retrieve the value for the "ResponseStatusCode" output from this Choreo execution. ((integer) The Response Status Code from LinkedIn. For a successful message, the status code should be 201.)
@@ -92,6 +107,6 @@ class SendMessageResultSet(ResultSet):
         return self._output.get('ResponseStatusCode', None)
 
 class SendMessageChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return SendMessageResultSet(response, path)

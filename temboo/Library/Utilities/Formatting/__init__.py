@@ -1,3 +1,1 @@
-from FormatTimestamp import *
-from FormatDateParameters import *
-from RemoveWhiteSpace import *
+from temboo.Library.Utilities.Formatting.RemoveWhiteSpace import RemoveWhiteSpace, RemoveWhiteSpaceInputSet, RemoveWhiteSpaceResultSet, RemoveWhiteSpaceChoreographyExecution

@@ -5,7 +5,22 @@
 # DownloadBase64EncodedDocument
 # Downloads a document with the title you specify, and returns the content as Base64 encoded data.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class DownloadBase64EncodedDocument(Choreography):
         Create a new instance of the DownloadBase64EncodedDocument Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Google/Documents/DownloadBase64EncodedDocument')
+        super(DownloadBase64EncodedDocument, self).__init__(temboo_session, '/Library/Google/Documents/DownloadBase64EncodedDocument')
 
 
     def new_input_set(self):
@@ -42,39 +57,39 @@ class DownloadBase64EncodedDocumentInputSet(InputSet):
     """
     def set_Format(self, value):
         """
-        Set the value of the Format input for this Choreo. ((optional, string) The format you want to export the document to, such as "doc", "txt", "pdf", etc. The default download format is HTML.)
+        Set the value of the Format input for this Choreo. ((optional, string) The format you want to export the document to, such as "doc", "txt", "pdf", etc.)
         """
-        InputSet._set_input(self, 'Format', value)
+        super(DownloadBase64EncodedDocumentInputSet, self)._set_input('Format', value)
     def set_Link(self, value):
         """
         Set the value of the Link input for this Choreo. ((conditional, string) Enter the source links for the document to be retrieved. Required unless specifying the Title.)
         """
-        InputSet._set_input(self, 'Link', value)
+        super(DownloadBase64EncodedDocumentInputSet, self)._set_input('Link', value)
     def set_Password(self, value):
         """
-        Set the value of the Password input for this Choreo. ((required, password) Your Google account password.)
+        Set the value of the Password input for this Choreo. ((required, password) A Google App-specific password that you've generated after enabling 2-Step Verification.)
         """
-        InputSet._set_input(self, 'Password', value)
+        super(DownloadBase64EncodedDocumentInputSet, self)._set_input('Password', value)
     def set_Title(self, value):
         """
         Set the value of the Title input for this Choreo. ((conditional, string) The title of the document to download. Required unless specifying the download Link.)
         """
-        InputSet._set_input(self, 'Title', value)
+        super(DownloadBase64EncodedDocumentInputSet, self)._set_input('Title', value)
     def set_Username(self, value):
         """
         Set the value of the Username input for this Choreo. ((required, string) Your full Google email address e.g., martha.temboo@gmail.com.)
         """
-        InputSet._set_input(self, 'Username', value)
+        super(DownloadBase64EncodedDocumentInputSet, self)._set_input('Username', value)
 
 class DownloadBase64EncodedDocumentResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the DownloadBase64EncodedDocument Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_FileContents(self):
         """
         Retrieve the value for the "FileContents" output from this Choreo execution. ((string) The Base64 encoded file content of the downloaded file.)
@@ -82,6 +97,6 @@ class DownloadBase64EncodedDocumentResultSet(ResultSet):
         return self._output.get('FileContents', None)
 
 class DownloadBase64EncodedDocumentChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return DownloadBase64EncodedDocumentResultSet(response, path)

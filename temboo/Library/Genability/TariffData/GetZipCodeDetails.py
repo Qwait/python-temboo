@@ -5,7 +5,22 @@
 # GetZipCodeDetails
 # Returns the details for a given zip code.
 #
-# Python version 2.6
+# Python versions 2.6, 2.7, 3.x
+#
+# Copyright 2014, Temboo Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+#
 #
 ###############################################################################
 
@@ -23,7 +38,7 @@ class GetZipCodeDetails(Choreography):
         Create a new instance of the GetZipCodeDetails Choreo. A TembooSession object, containing a valid
         set of Temboo credentials, must be supplied.
         """
-        Choreography.__init__(self, temboo_session, '/Library/Genability/TariffData/GetZipCodeDetails')
+        super(GetZipCodeDetails, self).__init__(temboo_session, '/Library/Genability/TariffData/GetZipCodeDetails')
 
 
     def new_input_set(self):
@@ -44,37 +59,37 @@ class GetZipCodeDetailsInputSet(InputSet):
         """
         Set the value of the AppID input for this Choreo. ((conditional, string) The App ID provided by Genability.)
         """
-        InputSet._set_input(self, 'AppID', value)
+        super(GetZipCodeDetailsInputSet, self)._set_input('AppID', value)
     def set_AppKey(self, value):
         """
         Set the value of the AppKey input for this Choreo. ((required, string) The App Key provided by Genability.)
         """
-        InputSet._set_input(self, 'AppKey', value)
+        super(GetZipCodeDetailsInputSet, self)._set_input('AppKey', value)
     def set_PageCount(self, value):
         """
         Set the value of the PageCount input for this Choreo. ((optional, integer) The number of results to return. Defaults to 25.)
         """
-        InputSet._set_input(self, 'PageCount', value)
+        super(GetZipCodeDetailsInputSet, self)._set_input('PageCount', value)
     def set_PageStart(self, value):
         """
         Set the value of the PageStart input for this Choreo. ((optional, integer) The page number to begin the result set from. Defaults to 1.)
         """
-        InputSet._set_input(self, 'PageStart', value)
+        super(GetZipCodeDetailsInputSet, self)._set_input('PageStart', value)
     def set_ZipCode(self, value):
         """
         Set the value of the ZipCode input for this Choreo. ((optional, string) A zip code to search with.)
         """
-        InputSet._set_input(self, 'ZipCode', value)
+        super(GetZipCodeDetailsInputSet, self)._set_input('ZipCode', value)
 
 class GetZipCodeDetailsResultSet(ResultSet):
     """
     A ResultSet with methods tailored to the values returned by the GetZipCodeDetails Choreo.
     The ResultSet object is used to retrieve the results of a Choreo execution.
     """
-    		
+
     def getJSONFromString(self, str):
         return json.loads(str)
-    
+
     def get_Response(self):
         """
         Retrieve the value for the "Response" output from this Choreo execution. ((json) The response from Genability.)
@@ -82,6 +97,6 @@ class GetZipCodeDetailsResultSet(ResultSet):
         return self._output.get('Response', None)
 
 class GetZipCodeDetailsChoreographyExecution(ChoreographyExecution):
-    
+
     def _make_result_set(self, response, path):
         return GetZipCodeDetailsResultSet(response, path)
